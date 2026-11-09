@@ -79,11 +79,10 @@
       border-radius: 999px; padding: 4px 8px; font-size: 11px; font-weight: 700;
       font-family: inherit; cursor: pointer; outline: none;
     }
-    .user-badge-top {
-      background: var(--ui-orange-transparent-10); color: #d97706;
-      border: 1px solid var(--ui-orange); border-radius: 999px;
-      padding: 4px 10px; font-size: 11px; font-weight: 800; cursor: pointer;
-      display: flex; align-items: center; gap: 4px;
+    .user-pill-btn {
+      background: var(--ui-orange-transparent-10); color: #d97706; border: 1px solid var(--ui-orange);
+      border-radius: 999px; padding: 5px 11px; font-size: 11.5px; font-weight: 800;
+      cursor: pointer; display: flex; align-items: center; gap: 4px; font-family: inherit;
     }
 
     .app-container { max-width: 480px; margin: 0 auto; padding: 0 14px; }
@@ -229,6 +228,10 @@
     .stat-tile.highlight { background: var(--ui-orange-transparent-10); border-color: var(--ui-orange); }
     .stat-tile.highlight .val { color: #d97706; }
 
+    .cpm-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
+    .cpm-table th, .cpm-table td { padding: 8px 6px; text-align: left; border-bottom: 1px solid var(--ui-softgrey); }
+    .cpm-table th { color: #666; font-weight: 700; background: var(--ui-lightgrey); }
+
     .backdrop-modal {
       position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1500;
       display: none; align-items: center; justify-content: center; padding: 18px;
@@ -264,7 +267,7 @@
     .dock-tab .material-icons { font-size: 22px; }
 
     .badge-status-pending {
-      background: #fef3c7; color: #d97706; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 800;
+      background: #fef3c7; color: #d97706; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 999px;
     }
   </style>
 </head>
@@ -310,10 +313,10 @@
           <option value="en">🇺🇸 EN</option>
           <option value="pt">🇧🇷 PT</option>
         </select>
-        <div class="user-badge-top" onclick="navegarA('account')" id="top-user-pill">
-          <span class="material-icons" style="font-size:14px;">person</span>
-          <span id="top-user-name">Acceder</span>
-        </div>
+        <button type="button" class="user-pill-btn" id="header-user-btn" onclick="navegarA('auth')">
+          <span class="material-icons" style="font-size:15px;">person</span>
+          <span id="header-user-label">Registrarse / Entrar</span>
+        </button>
       </div>
     </div>
   </div>
@@ -413,7 +416,7 @@
         
         <div style="border:2px solid var(--ui-orange); border-radius:999px; padding:14px 20px; display:flex; justify-content:space-between; align-items:center; font-weight:800; margin-bottom:18px; background:var(--ui-orange-transparent-10);">
           <span data-i18n="watch_ads_label">Watch Ads</span>
-          <span><span style="background:var(--ui-orange); color:#fff; padding:2px 8px; border-radius:6px; margin-right:4px;">3</span>Ads (7s)</span>
+          <span><span style="background:var(--ui-orange); color:#fff; padding:2px 8px; border-radius:6px; margin-right:4px;">3</span>Ads (7s c/u)</span>
         </div>
 
         <button type="button" class="btn-primary-orange" onclick="iniciarVisor3Ads()" data-i18n="continue_btn">Continue</button>
@@ -435,7 +438,7 @@
             <div class="lv-avatar" style="background:var(--ui-purpley-light); color:#6d28d9;">RS</div>
             <span style="font-weight:700;">Rayte Script</span>
           </div>
-          <span style="background:var(--ui-charcoalgrey); color:#fff; font-size:11px; font-weight:700; padding:5px 12px; border-radius:999px;">⚡ Adsterra Secure</span>
+          <span style="background:var(--ui-charcoalgrey); color:#fff; font-size:11px; font-weight:700; padding:5px 12px; border-radius:999px;">⚡ Adsterra Verified</span>
         </div>
 
         <!-- VISOR NATIVE BANNER -->
@@ -451,7 +454,7 @@
           </div>
         </div>
 
-        <h4 id="visor-ad-title" style="font-size:16px; font-weight:700; margin-bottom:14px; line-height:1.35;">Verifica los pasos para desbloquear tu contenido</h4>
+        <h4 id="visor-ad-title" style="font-size:16px; font-weight:700; margin-bottom:14px; line-height:1.35;">Visualiza el anuncio durante 7 segundos para desbloquear</h4>
 
         <div class="stepper-row">
           <div class="stepper-line"></div>
@@ -513,12 +516,14 @@
           <span style="font-size:12px; color:var(--ui-green-dark); font-weight:700;">🔒 Anti-Bypass v2</span>
         </div>
         <h2 style="font-size:21px; font-weight:800; margin-bottom:6px;" data-i18n="create_heading">Crear Nuevo Acortador</h2>
-        <p style="font-size:13px; color:#666; margin-bottom:14px;" data-i18n="create_sub">Crea enlaces acortados y gana dinero por cada visita orgánica verificada.</p>
+        <p style="font-size:13px; color:#666; margin-bottom:14px;" data-i18n="create_sub">Acorta tus enlaces o scripts, compártelos y gana el 30% del Revenue real de Adsterra según el país de tus visitas.</p>
 
-        <!-- AVISO SI NO ESTÁ REGISTRADO -->
-        <div id="guest-warning-banner" style="background:#fff7ed; border:1px solid #fdba74; padding:10px 12px; border-radius:12px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center;">
-          <span style="font-size:12px; color:#9a3412; font-weight:600;">💡 Regístrate para acumular y retirar tus ganancias</span>
-          <button type="button" onclick="navegarA('account')" style="background:var(--ui-orange); color:#fff; border:none; border-radius:8px; padding:5px 10px; font-size:11px; font-weight:800; cursor:pointer;">Crear Cuenta</button>
+        <!-- AVISO DE REGISTRO PARA CREADORES -->
+        <div id="creator-guest-banner" style="background:#fef3c7; border:1.5px solid #f59e0b; padding:12px 14px; border-radius:16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; gap:10px;">
+          <div style="font-size:12px; font-weight:700; color:#92400e; line-height:1.35;">
+            💰 <b>¿Quieres monetizar tus enlaces?</b><br>Regístrate gratis para guardar tus links y cobrar tus ganancias.
+          </div>
+          <button type="button" onclick="navegarA('auth')" style="background:#f59e0b; color:#fff; border:none; padding:8px 12px; border-radius:10px; font-size:11.5px; font-weight:800; cursor:pointer; flex-shrink:0;">Crear Cuenta</button>
         </div>
 
         <div class="mode-selector-tabs">
@@ -587,21 +592,24 @@
       </div>
     </div>
 
-    <!-- PANTALLA 6: DASHBOARD & RETIROS -->
+    <!-- PANTALLA 6: DASHBOARD, CPM POR PAÍSES (30% CREADOR / 70% ADMIN) & RETIROS -->
     <div id="view-dashboard" style="display: none;">
       <div class="ui-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-          <h2 style="font-size:20px; font-weight:800;">📊 Panel de Creador</h2>
-          <span style="background:var(--ui-green-light); color:var(--ui-green-dark); font-size:11px; font-weight:800; padding:4px 10px; border-radius:999px;" id="dash-user-tag">Invitado</span>
+          <div>
+            <h2 style="font-size:20px; font-weight:800;">📊 Panel de Ganancias</h2>
+            <p style="font-size:12px; color:#666;" id="dash-user-welcome">Modo Invitado (Inicia sesión para cobrar)</p>
+          </div>
+          <span style="background:var(--ui-green-light); color:var(--ui-green-dark); font-size:11px; font-weight:800; padding:4px 10px; border-radius:999px;">30% Revenue Share</span>
         </div>
 
         <div class="stats-grid">
           <div class="stat-tile highlight">
-            <div class="label">💰 Saldo Disponible</div>
-            <div class="val" id="dash-earnings">$0.00</div>
+            <div class="label">💰 Tu Saldo (30% Neto)</div>
+            <div class="val" id="dash-earnings">$0.000</div>
           </div>
           <div class="stat-tile">
-            <div class="label">🔓 Desbloqueos</div>
+            <div class="label">🔓 Desbloqueos (3 Ads)</div>
             <div class="val" id="dash-unlocks">0</div>
           </div>
           <div class="stat-tile">
@@ -609,21 +617,1143 @@
             <div class="val" id="dash-views">0</div>
           </div>
           <div class="stat-tile">
-            <div class="label">📈 RPM de Creador</div>
-            <div class="val" id="dash-rpm-label">$4.50</div>
+            <div class="label">🌍 Tu Tarifa CPM (30%)</div>
+            <div class="val" id="dash-rpm-label">$1.26</div>
           </div>
         </div>
 
-        <div style="display:flex; gap:8px;">
-          <button type="button" class="btn-primary-orange" onclick="abrirModalRetiro()" style="flex:1;">
-            <span class="material-icons">payments</span> Solicitar Retiro
-          </button>
-          <button type="button" class="btn-charcoal" onclick="navegarA('create')" style="flex:1;">
-            ➕ Nuevo Link
-          </button>
+        <!-- SELECTOR DE PAÍS DE AUDIENCIA (BASADO EN CPM REAL DE ADSTERRA) -->
+        <div style="background:var(--ui-lightgrey); padding:12px 14px; border-radius:16px; margin-bottom:14px;">
+          <label style="font-size:12px; font-weight:800; display:block; margin-bottom:6px; color:#333;">
+            🌎 Región Principal de tu Tráfico (Cálculo automático Adsterra):
+          </label>
+          <select id="country-tier-selector" onchange="actualizarTierPais()" style="width:100%; padding:9px 12px; border-radius:10px; border:1px solid var(--ui-stonegrey); font-weight:700; font-family:inherit; font-size:12.5px; background:#fff;">
+            <option value="TIER1">🇺🇸🇬🇧🇨🇦 Tier 1 (EE.UU, UK, Canadá, Alemania) — Tu 30%: $3.60 / 1k</option>
+            <option value="TIER2">🇪🇸🇲🇽🇨🇱 Tier 2 (España, Chile, México, Brasil) — Tu 30%: $1.50 / 1k</option>
+            <option value="GLOBAL" selected>🌐 Tráfico Mixto Global (Promedio Adsterra) — Tu 30%: $1.26 / 1k</option>
+            <option value="TIER3">🇦🇷🇵🇪🇨🇴 Tier 3 (Resto de Latam / Global) — Tu 30%: $0.72 / 1k</option>
+          </select>
+          <p style="font-size:11px; color:#666; margin-top:6px;">
+            💡 Cada visitante que completa los 3 anuncios de 7s + Banners genera múltiples impresiones en Adsterra. Tú recibes el <b>30% neto</b> de lo generado.
+          </p>
         </div>
+
+        <button type="button" class="btn-primary-orange" onclick="navegarA('create')">➕ Crear Nuevo Acortador</button>
+      </div>
+
+      <!-- TABLA TRANSPARENTE DE TARIFAS CPM POR PAÍS -->
+      <div class="ui-card">
+        <h3 style="font-size:15px; font-weight:800; margin-bottom:6px;">🌍 Tabla de Pagos por País (1,000 Desbloqueos Completos)</h3>
+        <p style="font-size:11.5px; color:#666; margin-bottom:8px;">Cálculo basado en las impresiones totales por sesión (Banners + Social Bar + 3 Pasos de 7s en Adsterra):</p>
+        <table class="cpm-table">
+          <thead>
+            <tr>
+              <th>País / Región</th>
+              <th>CPM Total Adsterra</th>
+              <th>Tu Pago (30% Creador)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>🇺🇸 EE.UU / 🇬🇧 UK / 🇨🇦 Canadá</td>
+              <td>$12.00 USD</td>
+              <td style="font-weight:800; color:var(--ui-green-dark);">$3.60 USD</td>
+            </tr>
+            <tr>
+              <td>🇪🇸 España / 🇨🇱 Chile / 🇲🇽 México / 🇧🇷 Brasil</td>
+              <td>$5.00 USD</td>
+              <td style="font-weight:800; color:var(--ui-green-dark);">$1.50 USD</td>
+            </tr>
+            <tr>
+              <td>🌐 Promedio Global Mixto</td>
+              <td>$4.20 USD</td>
+              <td style="font-weight:800; color:var(--ui-green-dark);">$1.26 USD</td>
+            </tr>
+            <tr>
+              <td>🇦🇷 Argentina / 🇨🇴 Colombia / 🇵🇪 Perú / Otros</td>
+              <td>$2.40 USD</td>
+              <td style="font-weight:800; color:var(--ui-green-dark);">$0.72 USD</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <!-- SECCIÓN DE RETIRO MANUAL CON AUDITORÍA -->
-      <div class="ui-card" id="box-withdraw-form" style="display:none; border:2px solid var(--ui-orange);">
-        <h3 style="font-size:18
+      <div class="ui-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 style="font-size:17px; font-weight:800;">🏦 Solicitar Retiro de Ganancias</h3>
+          <span class="badge-status-pending">Mínimo $5.00 USD</span>
+        </div>
+        <p style="font-size:12.5px; color:#555; line-height:1.45; margin-bottom:14px;">
+          🔍 <b>Verificación Manual:</b> Al solicitar tu cobro, revisaremos en el panel de Adsterra que tus visitas e impresiones sean <b>100% orgánicas</b> y reales antes de enviarte tu 30% correspondiente.
+        </p>
+
+        <div class="field-box">
+          <label>💳 Método de Cobro</label>
+          <select id="payout-method">
+            <option value="PayPal">PayPal (USD)</option>
+            <option value="Binance USDT">Binance Pay / USDT (BEP20 / TRC20)</option>
+            <option value="Transferencia Bancaria Chile">Transferencia Bancaria / CuentaRUT (Chile)</option>
+          </select>
+        </div>
+
+        <div class="field-box">
+          <label>📝 Datos de tu Cuenta (Correo PayPal, ID Binance o Datos Bancarios)</label>
+          <input type="text" id="payout-details" placeholder="Ej: micorreo@paypal.com o RUT / N° Cuenta">
+        </div>
+
+        <div class="field-box">
+          <label>💵 Monto a Retirar (USD)</label>
+          <input type="number" id="payout-amount" step="0.01" min="5" placeholder="Ej: 5.00">
+        </div>
+
+        <button type="button" class="btn-charcoal" onclick="solicitarRetiroManual()">
+          <span class="material-icons">payments</span> Solicitar Cobro Manual
+        </button>
+
+        <div id="payout-history-box" style="margin-top:16px; border-top:1px solid var(--ui-softgrey); padding-top:12px;">
+          <h4 style="font-size:13px; font-weight:800; margin-bottom:8px;">📋 Mis Solicitudes de Cobro</h4>
+          <div id="payout-history-list" style="font-size:12px; color:#666;">No tienes retiros pendientes.</div>
+        </div>
+      </div>
+
+      <div class="ui-card">
+        <h3 style="font-size:16px; font-weight:800; margin-bottom:12px;">🔗 Mis Enlaces Creados</h3>
+        <div id="dash-links-table" style="font-size:13px; color:#666;">Aún no has creado enlaces.</div>
+      </div>
+    </div>
+
+    <!-- PANTALLA 7: REGISTRO E INICIO DE SESIÓN RÁPIDO -->
+    <div id="view-auth" style="display: none;">
+      <div class="ui-card" id="auth-form-card">
+        <div style="text-align:center; margin-bottom:16px;">
+          <div class="brand-icon-mark" style="width:44px; height:44px; font-size:22px; margin:0 auto 10px;">R</div>
+          <h2 style="font-size:22px; font-weight:800;" id="auth-heading">Portal de Creadores</h2>
+          <p style="font-size:13px; color:#666;">Crea tu cuenta en 10 segundos o inicia sesión para monetizar tus enlaces.</p>
+        </div>
+
+        <div class="mode-selector-tabs">
+          <button type="button" class="mode-tab-btn active" id="tab-auth-register" onclick="cambiarTabAuth('register')">📝 Crear Cuenta Gratis</button>
+          <button type="button" class="mode-tab-btn" id="tab-auth-login" onclick="cambiarTabAuth('login')">🔑 Iniciar Sesión</button>
+        </div>
+
+        <div class="field-box" id="box-auth-alias" style="display:block;">
+          <label>👤 Tu Nombre o Alias de Creador *</label>
+          <input type="text" id="auth-alias" placeholder="Ej: RayteCreator">
+        </div>
+
+        <div class="field-box">
+          <label>📧 Correo Electrónico *</label>
+          <input type="email" id="auth-email" placeholder="tucorreo@gmail.com">
+        </div>
+
+        <div class="field-box">
+          <label>🔒 Contraseña *</label>
+          <input type="password" id="auth-pass" placeholder="Mínimo 4 caracteres">
+        </div>
+
+        <div class="field-box" id="box-auth-payment" style="display:block;">
+          <label>💳 Cuenta para recibir tus pagos (PayPal, Binance o CuentaRUT)</label>
+          <input type="text" id="auth-PrefPay" placeholder="Ej: PayPal: tucorreo@gmail.com">
+        </div>
+
+        <button type="button" class="btn-primary-orange" id="btn-auth-submit" onclick="procesarAutenticacion()">
+          🚀 Registrarme y Empezar a Ganar
+        </button>
+      </div>
+
+      <!-- TARJETA CUANDO EL USUARIO YA ESTÁ CONECTADO -->
+      <div class="ui-card" id="auth-logged-card" style="display:none; text-align:center;">
+        <div class="lv-avatar" id="profile-avatar-big" style="width:64px; height:64px; font-size:22px; margin:0 auto 10px;">RA</div>
+        <h2 style="font-size:20px; font-weight:800;" id="profile-name-big">Rayte12</h2>
+        <p style="font-size:13px; color:#666; margin-bottom:14px;" id="profile-email-big">usuario@correo.com</p>
+        
+        <div style="background:var(--ui-lightgrey); padding:14px; border-radius:14px; margin-bottom:16px; font-size:12.5px; text-align:left; line-height:1.5;">
+          <div>✅ <b>Estado:</b> Cuenta de Creador Activa</div>
+          <div>💰 <b>Comisión:</b> Recibes el 30% neto del CPM de Adsterra por país</div>
+          <div>🔍 <b>Pagos:</b> Depósito manual tras verificación de visitas orgánicas</div>
+        </div>
+
+        <button type="button" class="btn-primary-orange" onclick="navegarA('dashboard')" style="margin-bottom:10px;">
+          📊 Ver Mis Ganancias y Retirar
+        </button>
+        <button type="button" class="btn-outline-orange" onclick="cerrarSesionUsuario()">
+          🚪 Cerrar Sesión
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODAL 1 -->
+  <div class="backdrop-modal" id="modal-welcome">
+    <div class="welcome-dialog">
+      <div style="color:var(--ui-orange); font-weight:700; font-size:15px; margin-bottom:8px;">Welcome to Rayte Script</div>
+      <h2 style="font-size:23px; font-weight:800; margin-bottom:10px;" data-i18n="welcome_title">Get content access</h2>
+      <p style="font-size:14px; color:#666; margin-bottom:20px; line-height:1.4;" data-i18n="welcome_sub">A short ad will be shown before you get the content.</p>
+      <div onclick="abrirIntersticialPaso1()" style="border:1.5px solid var(--ui-stonegrey); border-radius:16px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; text-align:left; cursor:pointer;">
+        <div>
+          <div style="font-weight:800; font-size:15px;" data-i18n="view_short_ad">View a short ad</div>
+          <div style="font-size:12px; color:#666;" data-i18n="access_24h">Site-wide access for 24 hours</div>
+        </div>
+        <div style="width:32px; height:32px; border-radius:50%; background:var(--ui-orange); color:#fff; display:flex; align-items:center; justify-content:center;">▶</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2 -->
+  <div class="interstitial-full" id="modal-interstitial">
+    <div style="display:flex; justify-content:space-between; align-items:center; max-width:460px; width:100%; margin:0 auto;">
+      <span style="font-size:12px; color:#0284c7; background:#e0f2fe; padding:4px 10px; border-radius:8px; font-weight:700;">ⓘ Sponsored Video / Ad</span>
+      <button type="button" id="btn-close-inter" onclick="cerrarIntersticial()" disabled style="background:var(--ui-lightgrey); border:1px solid var(--ui-stonegrey); padding:7px 16px; border-radius:999px; font-weight:700; cursor:pointer;">Wait 4s...</button>
+    </div>
+
+    <div style="max-width:440px; width:100%; margin:auto; text-align:left; padding:16px 0;">
+      <h1 id="inter-title" style="font-size:28px; font-weight:800; margin-bottom:8px;">Submit Your Music & Content Online</h1>
+      <p style="color:#666; font-size:14px; margin-bottom:16px;">Sponsored partner recommended by Rayte Script.</p>
+      <!-- BANNER 300x250 INTERSTICIAL -->
+      <div style="text-align:center; margin-bottom:18px;">
+        <script>
+          atOptions = {
+            'key' : '6bc19282343ee38fcad12851a25d8ee2',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+        <script src="https://bauval.org/22/6bc19282343ee38fcad12851a25d8ee2"></script>
+      </div>
+      <button type="button" class="btn-charcoal" onclick="cerrarIntersticial()">OPEN ></button>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="earn-floating-pill" onclick="navegarA('dashboard')">
+    Post & earn! <span>30% Commission</span> on every link.
+  </div>
+
+  <div class="bottom-nav-dock">
+    <button type="button" class="dock-tab active" id="tab-for-you" onclick="navegarA('create')">
+      <span class="material-icons">add_circle</span>
+      <span data-i18n="nav_foryou">Crear</span>
+    </button>
+    <button type="button" class="dock-tab" id="tab-dashboard" onclick="navegarA('dashboard')">
+      <span class="material-icons">account_balance_wallet</span>
+      <span data-i18n="nav_dashboard">Ganancias</span>
+    </button>
+    <button type="button" class="dock-tab" id="tab-auth" onclick="navegarA('auth')">
+      <span class="material-icons">person</span>
+      <span>Registro / Cuenta</span>
+    </button>
+  </div>
+
+  <script>
+    // WHATSAPP DEL ADMINISTRADOR (MIGUEL) PARA RECIBIR Y AUDITAR SOLICITUDES DE COBRO
+    const ADMIN_WHATSAPP = "56945281442";
+
+    // CONFIGURACIÓN DE REPARTO: 70% DUEÑO (MIGUEL) / 30% CREADOR DEL ENLACE
+    const PORCENTAJE_CREADOR = 0.30;
+    const PORCENTAJE_ADMIN = 0.70;
+
+    // TABLA DE TARIFAS CPM (100% BRUTO ADSTERRA POR CADA 1,000 SESIONES COMPLETAS CON BANNERS + 3 ANUNCIOS)
+    const TARIFAS_PAISES_ADSTERRA = {
+      TIER1: { nombre: "Tier 1 (EE.UU, UK, Canadá, Europa)", cpmBruto: 12.00 }, // 30% Creador = $3.60 | 70% Miguel = $8.40
+      TIER2: { nombre: "Tier 2 (España, Chile, México, Brasil)", cpmBruto: 5.00 }, // 30% Creador = $1.50 | 70% Miguel = $3.50
+      GLOBAL: { nombre: "Tráfico Global Mixto (Promedio)", cpmBruto: 4.20 }, // 30% Creador = $1.26 | 70% Miguel = $2.94
+      TIER3: { nombre: "Tier 3 (Resto de Latam y Mundo)", cpmBruto: 2.40 }  // 30% Creador = $0.72 | 70% Miguel = $1.68
+    };
+
+    const TRADUCCIONES = {
+      es: {
+        back: "Atrás",
+        micro_ad_text: "⚡ Ejecutores y Scripts Actualizados Sin Key 2026",
+        ad_card_title: "Herramientas & Recursos Gaming Pro",
+        ad_card_sub: "Actualizaciones verificadas y acceso rápido sin esperas.",
+        discover_btn: "Descúbrelo >",
+        get_access_btn: "Obtener acceso",
+        share_post_btn: "Compartir enlace",
+        people_unlocked: "personas desbloquearon este enlace",
+        description_title: "Descripción",
+        bottom_ad_text: "🚀 ¿Quieres acceso rápido? Revisa la recomendación patrocinada",
+        choose_action: "Completa los pasos del creador para desbloquear:",
+        watch_ads_label: "Ver Anuncios",
+        continue_btn: "Continuar",
+        anti_bypass_notice: "Protección Anti-Bypass activa • Verificación en tiempo real",
+        step_view: "Ver",
+        step_complete: "Completar",
+        step_done: "Listo",
+        unlocked_heading: "¡Todo listo para<br>acceder al contenido!",
+        unlocked_sub: "¡Buen trabajo! Copia tu texto o script abajo.",
+        final_ad_banner: "🔥 Contenido patrocinado recomendado — Toca para abrir",
+        content_ready: "¡Tu contenido está listo!",
+        redirecting_in: "Redirigiendo automáticamente a tu enlace en",
+        welcome_title: "Obtener acceso al contenido",
+        welcome_sub: "Se mostrará un anuncio corto antes de entregarte el contenido.",
+        view_short_ad: "Ver un anuncio corto",
+        access_24h: "Acceso completo por 24 horas",
+        nav_foryou: "Crear",
+        nav_dashboard: "Ganancias",
+        copy_script_btn: "📋 Copiar Texto / Script",
+        copied_alert: "✅ ¡Texto copiado al portapapeles con éxito!",
+        open_url_btn: "🔓 Ir al Enlace Ahora (Redirección)"
+      },
+      en: {
+        back: "Back",
+        micro_ad_text: "⚡ Updated Gaming Scripts & Tools No Key 2026",
+        ad_card_title: "Pro Gaming Tools & Exclusive Assets",
+        ad_card_sub: "Verified daily updates and instant clean access.",
+        discover_btn: "Discover >",
+        get_access_btn: "Get access",
+        share_post_btn: "Share post",
+        people_unlocked: "people unlocked this link",
+        description_title: "Description",
+        bottom_ad_text: "🚀 Want faster speeds? Check out today's sponsored partner",
+        choose_action: "Complete creator's chosen action:",
+        watch_ads_label: "Watch Ads",
+        continue_btn: "Continue",
+        anti_bypass_notice: "Anti-Bypass Protection Active • Real-time verification",
+        step_view: "View",
+        step_complete: "Complete",
+        step_done: "Done",
+        unlocked_heading: "You're ready to<br>access creativity!",
+        unlocked_sub: "Great job! Copy your text or script below.",
+        final_ad_banner: "🔥 Special Sponsored Offer Unlocked — Tap to view",
+        content_ready: "Your content is ready!",
+        redirecting_in: "Automatically redirecting to your link in",
+        welcome_title: "Get content access",
+        welcome_sub: "A short ad will be shown before you get the content.",
+        view_short_ad: "View a short ad",
+        access_24h: "Site-wide access for 24 hours",
+        nav_foryou: "Create",
+        nav_dashboard: "Earnings",
+        copy_script_btn: "📋 Copy Text / Script",
+        copied_alert: "✅ Text copied to clipboard!",
+        open_url_btn: "🔓 Go to Link Now"
+      },
+      pt: {
+        back: "Voltar",
+        micro_ad_text: "⚡ Scripts e Ferramentas Atualizadas Sem Key 2026",
+        ad_card_title: "Ferramentas & Recursos Gaming Pro",
+        ad_card_sub: "Atualizações verificadas e acesso rápido sem espera.",
+        discover_btn: "Descubra >",
+        get_access_btn: "Obter acesso",
+        share_post_btn: "Compartilhar",
+        people_unlocked: "pessoas desbloquearam este link",
+        description_title: "Descrição",
+        bottom_ad_text: "🚀 Quer acesso mais rápido? Confira o parceiro patrocinado",
+        choose_action: "Complete a ação escolhida pelo criador:",
+        watch_ads_label: "Ver Anúncios",
+        continue_btn: "Continuar",
+        anti_bypass_notice: "Proteção Anti-Bypass ativa • Desbloqueio seguro",
+        step_view: "Ver",
+        step_complete: "Completar",
+        step_done: "Pronto",
+        unlocked_heading: "Tudo pronto para<br>acessar o conteúdo!",
+        unlocked_sub: "Ótimo trabalho! Copie seu texto ou script abaixo.",
+        final_ad_banner: "🔥 Oferta Patrocinada Desbloqueada — Toque para abrir",
+        content_ready: "Seu conteúdo está pronto!",
+        redirecting_in: "Redirecionando automaticamente para o link em",
+        welcome_title: "Obter acesso ao conteúdo",
+        welcome_sub: "Um anúncio curto será exibido antes de liberar o conteúdo.",
+        view_short_ad: "Ver um anúncio curto",
+        access_24h: "Acesso liberado por 24 horas",
+        nav_foryou: "Criar",
+        nav_dashboard: "Ganhos",
+        copy_script_btn: "📋 Copiar Texto / Script",
+        copied_alert: "✅ Texto copiado com sucesso!",
+        open_url_btn: "🔓 Ir para o Link Agora"
+      }
+    };
+
+    let idiomaActual = "es";
+
+    function detectarIdiomaVisitante() {
+      const navLang = (navigator.language || navigator.userLanguage || "es").toLowerCase();
+      if (navLang.startsWith("en")) idiomaActual = "en";
+      else if (navLang.startsWith("pt")) idiomaActual = "pt";
+      else idiomaActual = "es";
+
+      document.getElementById("lang-switcher").value = idiomaActual;
+      aplicarTraducciones();
+
+      // Auto-detectar Tier de país aproximado si no se ha elegido antes
+      if (!localStorage.getItem("rayte_country_tier")) {
+        const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
+        if (tz.includes("new_york") || tz.includes("chicago") || tz.includes("los_angeles") || tz.includes("london") || tz.includes("toronto")) {
+          localStorage.setItem("rayte_country_tier", "TIER1");
+        } else if (tz.includes("santiago") || tz.includes("madrid") || tz.includes("mexico") || tz.includes("sao_paulo")) {
+          localStorage.setItem("rayte_country_tier", "TIER2");
+        } else {
+          localStorage.setItem("rayte_country_tier", "GLOBAL");
+        }
+      }
+    }
+
+    function cambiarIdiomaManual(lang) {
+      idiomaActual = lang;
+      aplicarTraducciones();
+    }
+
+    function t(key) {
+      return (TRADUCCIONES[idiomaActual] && TRADUCCIONES[idiomaActual][key]) || TRADUCCIONES.es[key] || key;
+    }
+
+    function aplicarTraducciones() {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (TRADUCCIONES[idiomaActual][key]) {
+          el.innerHTML = TRADUCCIONES[idiomaActual][key];
+        }
+      });
+    }
+
+    const CLAVE_SECRETA_RAYTE = "RayteScript_AntiBypass_2026_Key";
+
+    function cifrarAntiBypass(texto) {
+      let resultado = "";
+      for (let i = 0; i < texto.length; i++) {
+        resultado += String.fromCharCode(texto.charCodeAt(i) ^ CLAVE_SECRETA_RAYTE.charCodeAt(i % CLAVE_SECRETA_RAYTE.length));
+      }
+      return btoa(unescape(encodeURIComponent(resultado)));
+    }
+
+    function descifrarAntiBypass(cifrado) {
+      try {
+        const raw = decodeURIComponent(escape(atob(cifrado)));
+        let resultado = "";
+        for (let i = 0; i < raw.length; i++) {
+          resultado += String.fromCharCode(raw.charCodeAt(i) ^ CLAVE_SECRETA_RAYTE.charCodeAt(i % CLAVE_SECRETA_RAYTE.length));
+        }
+        return resultado;
+      } catch (e) {
+        return "";
+      }
+    }
+
+    let postActivo = null;
+    let intervaloVisor = null;
+    let timerRedireccion = null;
+    let modoAuthActual = "register";
+
+    window.onload = function() {
+      detectarIdiomaVisitante();
+      verificarSesionActiva();
+      actualizarDashboardUI();
+
+      const params = new URLSearchParams(window.location.search);
+      const dataParam = params.get("data");
+
+      if (dataParam) {
+        try {
+          const jsonString = descifrarAntiBypass(dataParam);
+          const postDecodificado = JSON.parse(jsonString);
+          if (postDecodificado && postDecodificado.t) {
+            postActivo = postDecodificado;
+            sumarVisitaEstadistica(postActivo);
+            mostrarPantallaPost(postActivo);
+            document.getElementById("modal-welcome").style.display = "flex";
+            return;
+          }
+        } catch (e) {
+          console.error("Error al decodificar el enlace:", e);
+        }
+      }
+      
+      navegarA('create');
+    };
+
+    /* ================= SISTEMA DE REGISTRO FÁCIL Y FUNCIONAL ================= */
+    function obtenerUsuarioActual() {
+      try {
+        return JSON.parse(localStorage.getItem("rayte_active_user") || "null");
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function cambiarTabAuth(modo) {
+      modoAuthActual = modo;
+      document.getElementById("tab-auth-register").classList.toggle("active", modo === "register");
+      document.getElementById("tab-auth-login").classList.toggle("active", modo === "login");
+      document.getElementById("box-auth-alias").style.display = (modo === "register") ? "block" : "none";
+      document.getElementById("box-auth-payment").style.display = (modo === "register") ? "block" : "none";
+      document.getElementById("btn-auth-submit").innerText = (modo === "register") ? "🚀 Registrarme y Empezar a Ganar" : "🔑 Entrar a mi Cuenta";
+    }
+
+    function procesarAutenticacion() {
+      const email = document.getElementById("auth-email").value.trim().toLowerCase();
+      const pass = document.getElementById("auth-pass").value.trim();
+      const alias = document.getElementById("auth-alias").value.trim();
+      const prefPay = document.getElementById("auth-PrefPay").value.trim();
+
+      if (!email || !pass) {
+        alert("⚠️ Por favor escribe tu correo electrónico y una contraseña.");
+        return;
+      }
+
+      let usuarios = JSON.parse(localStorage.getItem("rayte_users_db") || "[]");
+
+      if (modoAuthActual === "register") {
+        const nombreFinal = alias || email.split("@")[0];
+        const existente = usuarios.find(u => u.email === email);
+        if (existente) {
+          // Si ya existía, le iniciamos sesión directamente para que sea fácil y sin trabas
+          localStorage.setItem("rayte_active_user", JSON.stringify(existente));
+          alert("👋 Ya tenías cuenta con este correo. ¡Sesión iniciada como " + existente.alias + "!");
+        } else {
+          const nuevoUser = {
+            alias: nombreFinal,
+            email: email,
+            pass: pass,
+            prefPay: prefPay || "",
+            joined: new Date().toLocaleDateString()
+          };
+          usuarios.push(nuevoUser);
+          localStorage.setItem("rayte_users_db", JSON.stringify(usuarios));
+          localStorage.setItem("rayte_active_user", JSON.stringify(nuevoUser));
+
+          // Vincular enlaces creados como invitado en este dispositivo a su nueva cuenta
+          let creaciones = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
+          creaciones.forEach(p => {
+            if (!p.ownerEmail || p.ownerEmail === "guest") {
+              p.ownerEmail = nuevoUser.email;
+              p.c = nuevoUser.alias;
+            }
+          });
+          localStorage.setItem("rayte_mis_creaciones", JSON.stringify(creaciones));
+
+          alert("✅ ¡Bienvenido " + nombreFinal + "! Tu cuenta ha sido creada. Ya ganas el 30% de todos tus enlaces acortados.");
+        }
+      } else {
+        const encontrado = usuarios.find(u => u.email === email && u.pass === pass);
+        if (!encontrado) {
+          alert("❌ Correo o contraseña incorrectos. Si eres nuevo, toca la pestaña 'Crear Cuenta Gratis'.");
+          return;
+        }
+        localStorage.setItem("rayte_active_user", JSON.stringify(encontrado));
+        alert("👋 ¡Bienvenido de vuelta, " + encontrado.alias + "!");
+      }
+
+      verificarSesionActiva();
+      navegarA('dashboard');
+    }
+
+    function verificarSesionActiva() {
+      const user = obtenerUsuarioActual();
+      const headerLabel = document.getElementById("header-user-label");
+      const guestBanner = document.getElementById("creator-guest-banner");
+      const inCreator = document.getElementById("in-creator");
+      const dashWelcome = document.getElementById("dash-user-welcome");
+
+      if (user) {
+        headerLabel.innerText = user.alias;
+        if (guestBanner) guestBanner.style.display = "none";
+        if (inCreator) inCreator.value = user.alias;
+        if (dashWelcome) dashWelcome.innerText = "✅ Conectado como: " + user.alias + " (" + user.email + ")";
+        if (user.prefPay && document.getElementById("payout-details") && !document.getElementById("payout-details").value) {
+          document.getElementById("payout-details").value = user.prefPay;
+        }
+        document.getElementById("auth-form-card").style.display = "none";
+        document.getElementById("auth-logged-card").style.display = "block";
+        document.getElementById("profile-name-big").innerText = user.alias;
+        document.getElementById("profile-email-big").innerText = user.email;
+        document.getElementById("profile-avatar-big").innerText = user.alias.substring(0, 2).toUpperCase();
+      } else {
+        headerLabel.innerText = "Registrarse / Entrar";
+        if (guestBanner) guestBanner.style.display = "flex";
+        if (dashWelcome) dashWelcome.innerText = "⚠️ Modo Invitado — Regístrate gratis para cobrar tus ganancias";
+        document.getElementById("auth-form-card").style.display = "block";
+        document.getElementById("auth-logged-card").style.display = "none";
+      }
+    }
+
+    function cerrarSesionUsuario() {
+      localStorage.removeItem("rayte_active_user");
+      verificarSesionActiva();
+      navegarA('auth');
+    }
+
+    /* ================= NAVEGACIÓN ================= */
+    function ocultarVistas() {
+      if (timerRedireccion) clearInterval(timerRedireccion);
+      ["view-post", "view-selector", "view-visor", "view-unlocked", "view-create", "view-dashboard", "view-auth"].forEach(id => {
+        document.getElementById(id).style.display = "none";
+      });
+      ["tab-for-you", "tab-dashboard", "tab-auth"].forEach(id => {
+        document.getElementById(id).classList.remove("active");
+      });
+    }
+
+    function navegarA(seccion) {
+      ocultarVistas();
+      window.scrollTo(0, 0);
+
+      if (seccion === 'create') {
+        document.getElementById("view-create").style.display = "block";
+        document.getElementById("tab-for-you").classList.add("active");
+      } else if (seccion === 'dashboard') {
+        actualizarDashboardUI();
+        document.getElementById("view-dashboard").style.display = "block";
+        document.getElementById("tab-dashboard").classList.add("active");
+      } else if (seccion === 'auth') {
+        verificarSesionActiva();
+        document.getElementById("view-auth").style.display = "block";
+        document.getElementById("tab-auth").classList.add("active");
+      }
+    }
+
+    function procesarImagenLocal(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement("canvas");
+          const maxW = 400;
+          const scale = Math.min(1, maxW / img.width);
+          canvas.width = img.width * scale;
+          canvas.height = img.height * scale;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          imagenSubidaBase64 = canvas.toDataURL("image/jpeg", 0.55);
+
+          const prev = document.getElementById("preview-uploaded-img");
+          prev.src = imagenSubidaBase64;
+          prev.style.display = "block";
+          document.getElementById("upload-status-text").innerText = "✅ Imagen cargada correctamente";
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+    let imagenSubidaBase64 = "";
+
+    function obtenerIdYoutube(url) {
+      if (!url) return null;
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    function mostrarPantallaPost(datos) {
+      ocultarVistas();
+      postActivo = datos;
+      document.getElementById("view-post").style.display = "block";
+
+      const autor = datos.c || "Rayte12";
+      document.getElementById("post-author").innerText = autor;
+      document.getElementById("post-avatar").innerText = autor.substring(0, 2).toUpperCase();
+      document.getElementById("post-title-text").innerText = datos.t || "Protected Content";
+      document.getElementById("post-desc-text").innerText = datos.desc || "";
+      document.getElementById("post-views-num").innerText = (datos.views || 1);
+
+      const numSocial = datos.socialCount || 50365;
+      document.getElementById("social-unlocks-number").innerText = numSocial.toLocaleString();
+      document.getElementById("unlocked-proof-num").innerText = (numSocial + 1).toLocaleString();
+
+      const imgEl = document.getElementById("post-img-display");
+      const ytEl = document.getElementById("post-yt-iframe");
+      const defEl = document.getElementById("post-default-cover");
+
+      imgEl.style.display = "none";
+      ytEl.style.display = "none";
+      defEl.style.display = "none";
+      ytEl.src = "";
+
+      const ytId = obtenerIdYoutube(datos.yt);
+      if (ytId) {
+        ytEl.src = "https://www.youtube.com/embed/" + ytId;
+        ytEl.style.display = "block";
+      } else if (datos.img && datos.img.length > 10) {
+        imgEl.src = datos.img;
+        imgEl.style.display = "block";
+      } else {
+        defEl.style.display = "block";
+        document.getElementById("post-cover-type").innerText = (datos.mode === "url") ? "Get Link from" : "Get Text from";
+      }
+    }
+
+    function volverAlPostActual() {
+      if (postActivo) mostrarPantallaPost(postActivo);
+      else navegarA('create');
+    }
+
+    function abrirIntersticialPaso1() {
+      document.getElementById("modal-welcome").style.display = "none";
+      lanzarIntersticial();
+    }
+
+    function abrirIntersticialPaso2() {
+      lanzarIntersticial();
+    }
+
+    function lanzarIntersticial() {
+      const modal = document.getElementById("modal-interstitial");
+      const btn = document.getElementById("btn-close-inter");
+      modal.style.display = "flex";
+      btn.disabled = true;
+
+      let seg = 4;
+      btn.innerText = "Wait " + seg + "s...";
+      const intv = setInterval(() => {
+        seg--;
+        if (seg <= 0) {
+          clearInterval(intv);
+          btn.disabled = false;
+          btn.innerText = "Close ✖";
+        } else {
+          btn.innerText = "Wait " + seg + "s...";
+        }
+      }, 1000);
+    }
+
+    function cerrarIntersticial() {
+      const btn = document.getElementById("btn-close-inter");
+      if (btn.disabled) return;
+      document.getElementById("modal-interstitial").style.display = "none";
+      
+      if (document.getElementById("view-post").style.display === "block") {
+        ocultarVistas();
+        document.getElementById("view-selector").style.display = "block";
+      }
+    }
+
+    /* ================= VISOR DE 3 ANUNCIOS (7 SEGUNDOS CADA UNO) ================= */
+    function iniciarVisor3Ads() {
+      ocultarVistas();
+      document.getElementById("view-visor").style.display = "block";
+      indiceVisor = 0;
+      cargarTarjetaVisor();
+    }
+
+    let indiceVisor = 0;
+    let visorListo = false;
+
+    function cargarTarjetaVisor() {
+      visorListo = false;
+      if (intervaloVisor) clearInterval(intervaloVisor);
+
+      document.getElementById("visor-counter").innerText = (indiceVisor + 1) + "/3";
+
+      for (let i = 1; i <= 3; i++) {
+        const d = document.getElementById("dot-" + i);
+        d.className = "step-dot";
+        d.innerText = i;
+      }
+
+      const btn = document.getElementById("visor-main-btn");
+      btn.className = "btn-primary-orange";
+      btn.innerText = "Viewing Ad... (7s)";
+
+      const bar = document.getElementById("visor-progress");
+      bar.style.width = "0%";
+
+      // 20 pasos * 350ms = 7,000 milisegundos = 7 segundos exactos por cada anuncio
+      let p = 0;
+      intervaloVisor = setInterval(() => {
+        p += 5;
+        bar.style.width = p + "%";
+        const segRestantes = Math.max(1, Math.ceil(((100 - p) / 100) * 7));
+
+        if (p < 100) {
+          btn.innerText = "Viewing Ad... (" + segRestantes + "s)";
+        }
+        if (p >= 35) marcarDot(1);
+        if (p >= 70) marcarDot(2);
+        if (p >= 100) {
+          clearInterval(intervaloVisor);
+          marcarDot(3);
+          visorListo = true;
+          btn.className = "btn-charcoal";
+          btn.innerText = t("continue_btn") + " (" + (indiceVisor + 1) + "/3) →";
+        }
+      }, 350);
+    }
+
+    function marcarDot(num) {
+      const d = document.getElementById("dot-" + num);
+      d.className = "step-dot done";
+      d.innerText = "✔";
+    }
+
+    function avanzarSiguienteAnuncio() {
+      if (!visorListo) return;
+      indiceVisor++;
+      if (indiceVisor < 3) {
+        cargarTarjetaVisor();
+      } else {
+        sumarDesbloqueoEstadistica(postActivo);
+        mostrarPantallaFinalDesbloqueada();
+      }
+    }
+
+    function mostrarPantallaFinalDesbloqueada() {
+      ocultarVistas();
+      document.getElementById("view-unlocked").style.display = "block";
+
+      const contenidoReal = postActivo.k ? descifrarAntiBypass(postActivo.k) : "";
+      postActivo.decryptedContent = contenidoReal;
+
+      const box = document.getElementById("unlocked-box");
+      const btn = document.getElementById("btn-final-delivery");
+      const redirectBanner = document.getElementById("auto-redirect-banner");
+
+      box.innerText = contenidoReal;
+
+      const esModoUrl = (postActivo.mode === "url");
+
+      if (esModoUrl) {
+        btn.innerText = t("open_url_btn");
+        redirectBanner.style.display = "block";
+        let segRedir = 3;
+        document.getElementById("redirect-sec").innerText = segRedir;
+
+        timerRedireccion = setInterval(() => {
+          segRedir--;
+          document.getElementById("redirect-sec").innerText = segRedir;
+          if (segRedir <= 0) {
+            clearInterval(timerRedireccion);
+            window.location.href = contenidoReal;
+          }
+        }, 1000);
+      } else {
+        redirectBanner.style.display = "none";
+        btn.innerText = t("copy_script_btn");
+      }
+    }
+
+    function cancelarRedireccion() {
+      if (timerRedireccion) clearInterval(timerRedireccion);
+      document.getElementById("auto-redirect-banner").style.display = "none";
+      alert("⏸️ Redirección automática cancelada. Puedes usar el botón de abajo.");
+    }
+
+    function ejecutarAccionFinal() {
+      const val = postActivo.decryptedContent || "";
+      const esModoUrl = (postActivo.mode === "url");
+
+      if (esModoUrl) {
+        window.location.href = val;
+      } else {
+        navigator.clipboard.writeText(val);
+        const btn = document.getElementById("btn-final-delivery");
+        btn.style.background = "var(--ui-green-dark)";
+        btn.innerText = t("copied_alert");
+        setTimeout(() => {
+          btn.style.background = "var(--ui-orange)";
+          btn.innerText = t("copy_script_btn");
+        }, 2500);
+      }
+    }
+
+    function generarAcortadorRayte() {
+      const user = obtenerUsuarioActual();
+      const c = document.getElementById("in-creator").value.trim() || (user ? user.alias : "Rayte12");
+      const tTitle = document.getElementById("in-title").value.trim();
+      const yt = document.getElementById("in-yt").value.trim();
+      const desc = document.getElementById("in-desc").value.trim();
+
+      let contenidoDestino = "";
+      let modoCreacionActual = document.getElementById("tab-mode-url").classList.contains("active") ? "url" : "text";
+
+      if (modoCreacionActual === "url") {
+        contenidoDestino = document.getElementById("in-target-url").value.trim();
+        if (contenidoDestino && !contenidoDestino.startsWith("http")) {
+          contenidoDestino = "https://" + contenidoDestino;
+        }
+      } else {
+        contenidoDestino = document.getElementById("in-target-text").value.trim();
+      }
+
+      if (!tTitle || !contenidoDestino) {
+        alert("⚠️ Completa el Título y el contenido (URL o Texto/Script) que quieres proteger.");
+        return;
+      }
+
+      const socialRandom = Math.floor(24100 + Math.random() * 54800);
+      const contenidoCifrado = cifrarAntiBypass(contenidoDestino);
+
+      const nuevoPost = {
+        mode: modoCreacionActual,
+        c,
+        ownerEmail: user ? user.email : "guest",
+        t: tTitle, yt, desc,
+        k: contenidoCifrado,
+        img: imagenSubidaBase64,
+        views: 1,
+        unlocks: 0,
+        socialCount: socialRandom
+      };
+
+      const jsonStr = JSON.stringify(nuevoPost);
+      const dataCifrada = cifrarAntiBypass(jsonStr);
+      const linkCompleto = window.location.origin + window.location.pathname + "?data=" + encodeURIComponent(dataCifrada);
+
+      document.getElementById("out-generated-link").value = linkCompleto;
+      document.getElementById("out-short-link").style.display = "none";
+      document.getElementById("create-result-box").style.display = "block";
+      postActivo = nuevoPost;
+      guardarEstadisticaLocal(nuevoPost);
+      actualizarDashboardUI();
+    }
+
+    function cambiarModoCreacion(modo) {
+      document.getElementById("tab-mode-url").classList.toggle("active", modo === 'url');
+      document.getElementById("tab-mode-text").classList.toggle("active", modo === 'text');
+      document.getElementById("box-input-url").style.display = (modo === 'url') ? "block" : "none";
+      document.getElementById("box-input-text").style.display = (modo === 'text') ? "block" : "none";
+    }
+
+    function copiarInput(id) {
+      const el = document.getElementById(id);
+      navigator.clipboard.writeText(el.value);
+      alert("✅ ¡Enlace copiado al portapapeles!");
+    }
+
+    function abrirLinkGenerado() {
+      window.location.href = document.getElementById("out-generated-link").value;
+    }
+
+    function acortarConIsGd() {
+      const larga = document.getElementById("out-generated-link").value;
+      const btn = document.getElementById("btn-short-yt");
+      const out = document.getElementById("out-short-link");
+      btn.innerText = "⏳ Generando link corto...";
+
+      fetch("https://is.gd/create.php?format=json&url=" + encodeURIComponent(larga))
+        .then(r => r.json())
+        .then(d => {
+          if (d.shorturl) {
+            out.value = d.shorturl;
+            out.style.display = "block";
+            navigator.clipboard.writeText(d.shorturl);
+            btn.innerText = "✅ ¡Link Corto Copiado!";
+          } else {
+            btn.innerText = "Usa el botón Copiar Link de arriba";
+          }
+        })
+        .catch(() => {
+          btn.innerText = "Usa el botón Copiar Link de arriba";
+        });
+    }
+
+    function compartirEnlaceActual() {
+      navigator.clipboard.writeText(window.location.href);
+      alert("🔗 Enlace copiado al portapapeles.");
+    }
+
+    function guardarEstadisticaLocal(post) {
+      let db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
+      db.unshift(post);
+      localStorage.setItem("rayte_mis_creaciones", JSON.stringify(db.slice(0, 50)));
+    }
+
+    function sumarVisitaEstadistica(post) {
+      let db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
+      let encontrado = db.find(p => p.t === post.t);
+      if (encontrado) {
+        encontrado.views = (encontrado.views || 0) + 1;
+        localStorage.setItem("rayte_mis_creaciones", JSON.stringify(db));
+      }
+    }
+
+    function sumarDesbloqueoEstadistica(post) {
+      let db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
+      let encontrado = db.find(p => p.t === post.t);
+      if (encontrado) {
+        encontrado.unlocks = (encontrado.unlocks || 0) + 1;
+        encontrado.socialCount = (encontrado.socialCount || 50365) + 1;
+        localStorage.setItem("rayte_mis_creaciones", JSON.stringify(db));
+      }
+      actualizarDashboardUI();
+    }
+
+    /* ================= CÁLCULO 70% ADMIN / 30% CREADOR POR PAÍSES ================= */
+    function actualizarTierPais() {
+      const tier = document.getElementById("country-tier-selector").value;
+      localStorage.setItem("rayte_country_tier", tier);
+      actualizarDashboardUI();
+    }
+
+    function calcularSaldoActual() {
+      const user = obtenerUsuarioActual();
+      const db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
+      const tierKey = localStorage.getItem("rayte_country_tier") || "GLOBAL";
+      const infoTier = TARIFAS_PAISES_ADSTERRA[tierKey] || TARIFAS_PAISES_ADSTERRA.GLOBAL;
+
+      // 100% Bruto Adsterra vs 30% Creador vs 70% Miguel
+      const cpmBrutoAdsterra = infoTier.cpmBruto;
+      const cpmCreador30 = cpmBrutoAdsterra * PORCENTAJE_CREADOR;
+
+      const misPosts = user ? db.filter(i => i.ownerEmail === user.email || i.c === user.alias) : db;
+
+      let totalViews = 0;
+      let totalUnlocks = 0;
+      misPosts.forEach(item => {
+        totalViews += (item.views || 0);
+        totalUnlocks += (item.unlocks || 0);
+      });
+
+      // Ingreso Bruto Total generado para Adsterra (100%)
+      const brutoTotalAdsterra = ((totalUnlocks / 1000) * cpmBrutoAdsterra) + ((totalViews / 1000) * (cpmBrutoAdsterra * 0.20));
+      // Ganancia del Creador (30%)
+      const gananciaCreadorBruta = brutoTotalAdsterra * PORCENTAJE_CREADOR;
+      // Ganancia de Miguel (70%)
+      const gananciaAdmin70 = brutoTotalAdsterra * PORCENTAJE_ADMIN;
+
+      const retirado = parseFloat(localStorage.getItem("rayte_withdrawn_" + (user ? user.email : "guest")) || "0");
+      const disponibleCreador = Math.max(0, gananciaCreadorBruta - retirado);
+
+      return {
+        misPosts,
+        totalViews,
+        totalUnlocks,
+        tierKey,
+        infoTier,
+        cpmBrutoAdsterra,
+        cpmCreador30,
+        brutoTotalAdsterra,
+        gananciaAdmin70,
+        disponibleCreador
+      };
+    }
+
+    function actualizarDashboardUI() {
+      const datos = calcularSaldoActual();
+
+      document.getElementById("country-tier-selector").value = datos.tierKey;
+      document.getElementById("dash-rpm-label").innerText = "$" + datos.cpmCreador30.toFixed(2);
+      document.getElementById("dash-views").innerText = datos.totalViews;
+      document.getElementById("dash-unlocks").innerText = datos.totalUnlocks;
+      document.getElementById("dash-earnings").innerText = "$" + datos.disponibleCreador.toFixed(3);
+
+      renderizarHistorialRetiros();
+
+      const tabla = document.getElementById("dash-links-table");
+      if (datos.misPosts.length === 0) {
+        tabla.innerHTML = "Aún no has creado enlaces en esta cuenta.";
+        return;
+      }
+
+      tabla.innerHTML = datos.misPosts.map((item) => {
+        const brutoLink = (((item.unlocks || 0) / 1000) * datos.cpmBrutoAdsterra) + (((item.views || 0) / 1000) * (datos.cpmBrutoAdsterra * 0.20));
+        const ganCreador30 = (brutoLink * PORCENTAJE_CREADOR).toFixed(3);
+        const iconoModo = (item.mode === "url") ? "🔗 URL" : "📜 Script";
+        return `
+          <div style="padding:12px 0; border-bottom:1px solid var(--ui-softgrey); display:flex; justify-content:space-between; align-items:center; gap:8px;">
+            <div style="overflow:hidden;">
+              <div style="font-weight:700; color:#111; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.t}</div>
+              <div style="font-size:11px; color:#777;">${iconoModo} • 👁️ ${item.views || 1} vistas • 🔓 ${item.unlocks || 0} desbloqueos</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div style="font-weight:800; color:var(--ui-green-dark); font-size:14px;">+$${ganCreador30}</div>
+              <div style="font-size:10px; color:#888;">Tu 30%</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    /* ================= SOLICITUD DE RETIRO MANUAL CON DESGLOSE 70/30 ================= */
+    function solicitarRetiroManual() {
+      const user = obtenerUsuarioActual();
+      if (!user) {
+        alert("⚠️ Primero regístrate o inicia sesión en la pestaña 'Registro / Cuenta' para poder cobrar tus ganancias.");
+        navegarA('auth');
+        return;
+      }
+
+      const datos = calcularSaldoActual();
+      const metodo = document.getElementById("payout-method").value;
+      const detalles = document.getElementById("payout-details").value.trim();
+      const monto = parseFloat(document.getElementById("payout-amount").value);
+
+      if (!detalles) {
+        alert("⚠️ Ingresa los datos de tu cuenta (PayPal, Binance o Banco) para recibir tu pago.");
+        return;
+      }
+      if (isNaN(monto) || monto < 5) {
+        alert("⚠️ El monto mínimo de retiro es de $5.00 USD.");
+        return;
+      }
+      if (monto > datos.disponibleCreador) {
+        alert("⚠️ Saldo insuficiente. Tu saldo disponible (30% comisión creador) es de $" + datos.disponibleCreador.toFixed(3) + " USD.");
+        return;
+      }
+
+      const totalBrutoRequerido = (monto / PORCENTAJE_CREADOR).toFixed(2);
+      const gananciaTuyaAdmin = (totalBrutoRequerido * PORCENTAJE_ADMIN).toFixed(2);
+
+      const codigoOrden = "PAY-" + Math.floor(100000 + Math.random() * 900000);
+      const nuevaSolicitud = {
+        id: codigoOrden,
+        user: user.alias,
+        email: user.email,
+        metodo: metodo,
+        detalles: detalles,
+        montoCreador30: monto.toFixed(2),
+        brutoAdsterra100: totalBrutoRequerido,
+        gananciaAdmin70: gananciaTuyaAdmin,
+        region: datos.infoTier.nombre,
+        views: datos.totalViews,
+        unlocks: datos.totalUnlocks,
+        fecha: new Date().toLocaleDateString(),
+        estado: "En Revisión de Tráfico Orgánico"
+      };
+
+      const prevRetirado = parseFloat(localStorage.getItem("rayte_withdrawn_" + user.email) || "0");
+      localStorage.setItem("rayte_withdrawn_" + user.email, (prevRetirado + monto).toString());
+
+      let historial = JSON.parse(localStorage.getItem("rayte_payouts_" + user.email) || "[]");
+      historial.unshift(nuevaSolicitud);
+      localStorage.setItem("rayte_payouts_" + user.email, JSON.stringify(historial));
+
+      actualizarDashboardUI();
+
+      // Reporte completo para Miguel con el cálculo exacto 100% / 70% / 30%
+      const mensajeWhatsApp = 
+        `🏦 *SOLICITUD DE RETIRO (30% CREADOR) - RAYTE SCRIPT*\n` +
+        `• *Orden:* ${codigoOrden}\n` +
+        `• *Creador:* ${user.alias} (${user.email})\n` +
+        `• *Región declarada:* ${datos.infoTier.nombre}\n` +
+        `• *Tráfico registrado:* ${datos.totalViews} vistas / ${datos.totalUnlocks} desbloqueos (3 ads de 7s)\n\n` +
+        `📊 *AUDITORÍA ADSTERRA (70/30):*\n` +
+        `• *100% Generado en Adsterra:* $${totalBrutoRequerido} USD\n` +
+        `• *70% Ganancia Admin (Miguel):* $${gananciaTuyaAdmin} USD\n` +
+        `• *30% A Pagar al Creador:* $${monto.toFixed(2)} USD\n\n` +
+        `💳 *DATOS DE PAGO:*\n` +
+        `• *Método:* ${metodo}\n` +
+        `• *Cuenta destino:* ${detalles}\n\n` +
+        `🔍 _Solicito verificación manual de mis visitas orgánicas para depósito._`;
+
+      alert("✅ Solicitud " + codigoOrden + " registrada. Se enviará tu ficha al administrador para verificar tus visitas orgánicas en Adsterra y liberar tu pago.");
+      window.open("https://wa.me/" + ADMIN_WHATSAPP + "?text=" + encodeURIComponent(mensajeWhatsApp), "_blank");
+    }
+
+    function renderizarHistorialRetiros() {
+      const user = obtenerUsuarioActual();
+      const box = document.getElementById("payout-history-list");
+      if (!user) {
+        box.innerHTML = "Inicia sesión para ver tus cobros.";
+        return;
+      }
+      const historial = JSON.parse(localStorage.getItem("rayte_payouts_" + user.email) || "[]");
+      if (historial.length === 0) {
+        box.innerHTML = "No tienes retiros pendientes.";
+        return;
+      }
+      box.innerHTML = historial.map(h => `
+        <div style="padding:8px 0; border-bottom:1px solid var(--ui-softgrey); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <b>${h.id} • $${h.montoCreador30} USD (Tu 30%)</b> — ${h.metodo}<br>
+            <span style="font-size:11px; color:#777;">Fecha: ${h.fecha} • Cuenta: ${h.detalles}</span>
+          </div>
+          <span class="badge-status-pending">⏳ ${h.estado}</span>
+        </div>
+      `).join("");
+    }
+  </script>
+</body>
+</html>
