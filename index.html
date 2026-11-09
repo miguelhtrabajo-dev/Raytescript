@@ -1518,5 +1518,18 @@
       alert("🔗 Enlace copiado al portapapeles.");
     }
   </script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/Raytescript/sw.js')
+        .then(function(registration) {
+          console.log('ServiceWorker registrado con éxito con alcance: ', registration.scope);
+        })
+        .catch(function(err) {
+          console.log('Fallo en el registro del ServiceWorker: ', err);
+        });
+    });
+  }
+</script>
 </body>
 </html>
