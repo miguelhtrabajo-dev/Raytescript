@@ -376,8 +376,9 @@
 
         <h1 class="post-heading" id="post-title-text">Loading...</h1>
 
-        <button class="btn-primary-orange" onclick="abrirIntersticialPaso2()" data-i18n="get_access_btn">Get access</button>
-        <button class="btn-outline-orange" onclick="compartirEnlaceActual()" data-i18n="share_post_btn">Share post</button>
+        <!-- BOTÓN GET ACCESS CORREGIDO -->
+        <button type="button" class="btn-primary-orange" onclick="abrirIntersticialPaso2()" data-i18n="get_access_btn">Get access</button>
+        <button type="button" class="btn-outline-orange" onclick="compartirEnlaceActual()" data-i18n="share_post_btn">Share post</button>
 
         <div class="social-proof-counter">
           🔥 <b id="social-unlocks-number">50,365</b> <span data-i18n="people_unlocked">personas desbloquearon este enlace</span>
@@ -418,7 +419,7 @@
           <span><span style="background:var(--ui-orange); color:#fff; padding:2px 8px; border-radius:6px; margin-right:4px;">3</span>Ads</span>
         </div>
 
-        <button class="btn-primary-orange" onclick="iniciarVisor3Ads()" data-i18n="continue_btn">Continue</button>
+        <button type="button" class="btn-primary-orange" onclick="iniciarVisor3Ads()" data-i18n="continue_btn">Continue</button>
 
         <div class="social-proof-counter">
           🔒 <span data-i18n="anti_bypass_notice">Protección Anti-Bypass activa • Verificación en tiempo real</span>
@@ -471,7 +472,7 @@
           </div>
         </div>
 
-        <button id="visor-main-btn" class="btn-primary-orange" onclick="avanzarSiguienteAnuncio()">Learn more</button>
+        <button type="button" id="visor-main-btn" class="btn-primary-orange" onclick="avanzarSiguienteAnuncio()">Learn more</button>
       </div>
     </div>
 
@@ -494,12 +495,12 @@
         <h3 style="font-size:19px; font-weight:800; margin-bottom:10px;" data-i18n="content_ready">Your content is ready!</h3>
         
         <div id="auto-redirect-banner" style="display:none; background:var(--ui-orange-transparent-10); border:1px solid var(--ui-orange); color:#b45309; padding:12px; border-radius:14px; font-size:14px; font-weight:700; margin-bottom:14px;">
-          🚀 <span data-i18n="redirecting_in">Redirigiendo automáticamente a tu enlace en</span> <span id="redirect-sec">3</span>s... <button onclick="cancelarRedireccion()" style="background:none; border:none; color:#111; text-decoration:underline; cursor:pointer; font-weight:800; margin-left:6px;">Cancelar</button>
+          🚀 <span data-i18n="redirecting_in">Redirigiendo automáticamente a tu enlace en</span> <span id="redirect-sec">3</span>s... <button type="button" onclick="cancelarRedireccion()" style="background:none; border:none; color:#111; text-decoration:underline; cursor:pointer; font-weight:800; margin-left:6px;">Cancelar</button>
         </div>
 
         <div id="unlocked-box" style="background:var(--ui-lightgrey); border:1.5px solid var(--ui-stonegrey); border-radius:14px; padding:14px; font-family:monospace; font-size:13px; word-break:break-all; margin-bottom:16px; text-align:left; max-height:180px; overflow-y:auto; user-select:all;"></div>
         
-        <button class="btn-primary-orange" id="btn-final-delivery" onclick="ejecutarAccionFinal()">📋 Copy / Open</button>
+        <button type="button" class="btn-primary-orange" id="btn-final-delivery" onclick="ejecutarAccionFinal()">📋 Copy / Open</button>
 
         <div class="social-proof-counter">
           ✅ <b id="unlocked-proof-num">50,366</b> <span data-i18n="people_unlocked">personas desbloquearon este enlace</span>
@@ -562,7 +563,7 @@
           <textarea id="in-desc" rows="3" placeholder="🔥 INSTANT SCRIPT — Detalles o notas..."></textarea>
         </div>
 
-        <button class="btn-primary-orange" onclick="generarAcortadorRayte()">
+        <button type="button" class="btn-primary-orange" onclick="generarAcortadorRayte()">
           <span class="material-icons">bolt</span> Generar Enlace Protegido
         </button>
 
@@ -571,11 +572,11 @@
           <input type="text" id="out-generated-link" readonly style="width:100%; padding:10px; border-radius:10px; border:1px solid #bbf7d0; font-size:12px; margin-bottom:10px; background:#fff;">
           
           <div style="display:flex; gap:8px; margin-bottom:10px;">
-            <button class="btn-charcoal" style="height:40px; font-size:13px;" onclick="copiarInput('out-generated-link')">📋 Copiar Link</button>
-            <button class="btn-primary-orange" style="height:40px; font-size:13px;" onclick="abrirLinkGenerado()">👁️ Probar Link</button>
+            <button type="button" class="btn-charcoal" style="height:40px; font-size:13px;" onclick="copiarInput('out-generated-link')">📋 Copiar Link</button>
+            <button type="button" class="btn-primary-orange" style="height:40px; font-size:13px;" onclick="abrirLinkGenerado()">👁️ Probar Link</button>
           </div>
 
-          <button id="btn-short-yt" class="btn-outline-orange" style="height:38px; font-size:12px; margin-top:0; background:#fff;" onclick="acortarConIsGd()">
+          <button type="button" id="btn-short-yt" class="btn-outline-orange" style="height:38px; font-size:12px; margin-top:0; background:#fff;" onclick="acortarConIsGd()">
             ✨ Generar Link Cortito para YouTube (is.gd)
           </button>
           <input type="text" id="out-short-link" readonly style="display:none; width:100%; padding:9px; border-radius:10px; border:1px solid #bbf7d0; font-size:13px; font-weight:700; margin-top:8px; background:#fff; color:#0284c7;">
@@ -620,7 +621,7 @@
           </select>
         </div>
 
-        <button class="btn-primary-orange" onclick="navegarA('create')">➕ Crear Nuevo Acortador</button>
+        <button type="button" class="btn-primary-orange" onclick="navegarA('create')">➕ Crear Nuevo Acortador</button>
       </div>
 
       <div class="ui-card">
@@ -653,7 +654,7 @@
           <span class="ui-chip">🔥 +50,365 Unlocks</span>
           <span class="ui-chip">👍 100% Verified</span>
         </div>
-        <button class="btn-primary-orange" onclick="navegarA('dashboard')">📊 Ver Panel de Ganancias</button>
+        <button type="button" class="btn-primary-orange" onclick="navegarA('dashboard')">📊 Ver Panel de Ganancias</button>
       </div>
     </div>
 
@@ -679,7 +680,7 @@
   <div class="interstitial-full" id="modal-interstitial">
     <div style="display:flex; justify-content:space-between; align-items:center; max-width:460px; width:100%; margin:0 auto;">
       <span style="font-size:12px; color:#0284c7; background:#e0f2fe; padding:4px 10px; border-radius:8px; font-weight:700;">ⓘ Sponsored Video / Ad</span>
-      <button id="btn-close-inter" onclick="cerrarIntersticial()" disabled style="background:var(--ui-lightgrey); border:1px solid var(--ui-stonegrey); padding:7px 16px; border-radius:999px; font-weight:700; cursor:pointer;">Wait 4s...</button>
+      <button type="button" id="btn-close-inter" onclick="cerrarIntersticial()" disabled style="background:var(--ui-lightgrey); border:1px solid var(--ui-stonegrey); padding:7px 16px; border-radius:999px; font-weight:700; cursor:pointer;">Wait 4s...</button>
     </div>
 
     <div style="max-width:440px; width:100%; margin:auto; text-align:left; padding:16px 0;">
@@ -698,7 +699,7 @@
         </script>
         <script src="https://bauval.org/22/6bc19282343ee38fcad12851a25d8ee2"></script>
       </div>
-      <button class="btn-charcoal" onclick="cerrarIntersticial()">OPEN ></button>
+      <button type="button" class="btn-charcoal" onclick="cerrarIntersticial()">OPEN ></button>
     </div>
     <div></div>
   </div>
@@ -708,22 +709,22 @@
   </div>
 
   <div class="bottom-nav-dock">
-    <button class="dock-tab active" id="tab-for-you" onclick="navegarA('for-you')">
+    <button type="button" class="dock-tab active" id="tab-for-you" onclick="navegarA('for-you')">
       <span class="material-icons">home</span>
       <span data-i18n="nav_foryou">For you</span>
     </button>
-    <button class="dock-tab" id="tab-explore" onclick="navegarA('explore')">
+    <button type="button" class="dock-tab" id="tab-explore" onclick="navegarA('explore')">
       <span class="material-icons">explore</span>
       <span data-i18n="nav_explore">Explore</span>
     </button>
-    <button class="dock-fab-plus" onclick="navegarA('create')" title="Create">
+    <button type="button" class="dock-fab-plus" onclick="navegarA('create')" title="Create">
       <span class="material-icons">add</span>
     </button>
-    <button class="dock-tab" id="tab-dashboard" onclick="navegarA('dashboard')">
+    <button type="button" class="dock-tab" id="tab-dashboard" onclick="navegarA('dashboard')">
       <span class="material-icons">dashboard</span>
       <span data-i18n="nav_dashboard">Dashboard</span>
     </button>
-    <button class="dock-tab" id="tab-profile" onclick="navegarA('profile')">
+    <button type="button" class="dock-tab" id="tab-profile" onclick="navegarA('profile')">
       <span class="material-icons">person</span>
       <span data-i18n="nav_profile">Profile</span>
     </button>
