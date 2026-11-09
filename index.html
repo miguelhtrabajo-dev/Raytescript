@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linkvertise - Content Access & Creator Hub</title>
+
+  <!-- =================================================================
+       ESPACIO PARA SCRIPT GLOBAL (OPCIONAL):
+       Si usas "Vignette Banner" o "In-Page Push" de Monetag, pégalo aquí
+       ================================================================= -->
+
+  <style>
+    :root {
+      --orange: #f59e0b;
+      --orange-hover: #d97706;
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --dark: #18181b;
+      --green: #65a30d;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 140px; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+    /* BARRA SUPERIOR ESTILO CÁPSULA */
+    .header-wrap { padding: 12px 14px 4px; max-width: 480px; margin: 0 auto; }
+    .top-header {
+      background: var(--card); padding: 13px 20px; border-radius: 30px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    }
+    .brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 20px; color: #111; text-decoration: none; letter-spacing: -0.5px; }
+    .brand-logo {
+      width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, #111 50%, var(--orange) 50%);
+      display: inline-block;
+    }
+    .header-actions { display: flex; gap: 16px; font-size: 19px; color: #374151; cursor: pointer; user-select: none; }
+
+    .container { max-width: 480px; margin: 0 auto; padding: 0 14px; }
+    .back-nav {
+      display: inline-flex; align-items: center; gap: 6px; font-size: 14px;
+      color: #374151; margin: 10px 4px 12px; cursor: pointer; font-weight: 600;
+    }
+
+    /* TARJETAS Y BOTONES */
+    .card {
+      background: var(--card); border-radius: 24px; padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04); margin-bottom: 16px;
+    }
+    .btn-orange {
+      width: 100%; background: var(--orange); color: #fff; border: none; padding: 15px;
+      border-radius: 30px; font-size: 16px; font-weight: 700; cursor: pointer;
+      transition: transform 0.15s, background 0.2s; box-shadow: 0 4px 14px rgba(245,158,11,0.3);
+    }
+    .btn-orange:hover { background: var(--orange-hover); }
+    .btn-orange:active { transform: scale(0.98); }
+    .btn-outline {
+      width: 100%; background: #fff; color: var(--text); border: 2px solid var(--orange);
+      padding: 13px; border-radius: 30px; font-size: 15px; font-weight: 700;
+      cursor: pointer; margin-top: 10px; transition: 0.2s;
+    }
+    .btn-dark {
+      width: 100%; background: var(--dark); color: #fff; border: none; padding: 15px;
+      border-radius: 30px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.2s;
+    }
+
+    /* BLOQUES DE ANUNCIOS VISUALES (BANNERS / VIDEOS) */
+    .ad-banner-box {
+      background: #fff; border-radius: 20px; overflow: hidden; margin-bottom: 16px;
+      border: 1px solid var(--border); position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+    .ad-info-tag {
+      position: absolute; top: 8px; right: 10px; background: rgba(255,255,255,0.9);
+      color: #0284c7; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; z-index: 5;
+    }
+    .ad-split-card { display: flex; flex-direction: row; align-items: stretch; min-height: 210px; }
+    .ad-split-img { width: 48%; object-fit: cover; background: #e5e7eb; }
+    .ad-split-content { width: 52%; padding: 16px 14px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; }
+
+    /* DETALLES DEL POST DEL CREADOR (CAPTURA 4) */
+    .creator-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .avatar-circle {
+      width: 38px; height: 38px; border-radius: 50%; background: #fef3c7; color: #d97706;
+      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px;
+    }
+    .media-container {
+      width: 100%; height: 190px; border-radius: 18px; overflow: hidden; margin-bottom: 14px;
+      background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+      display: flex; align-items: center; justify-content: center; color: #fff; position: relative;
+    }
+    .media-container img { width: 100%; height: 100%; object-fit: cover; display: none; }
+    .fallback-cover { text-align: center; padding: 20px; }
+    .fallback-cover h2 { font-size: 25px; font-weight: 800; margin-bottom: 6px; }
+    .fallback-cover p { font-size: 16px; opacity: 0.92; font-weight: 600; }
+
+    .meta-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .meta-pill { background: #f3f4f6; font-size: 12px; padding: 5px 11px; border-radius: 20px; color: #374151; font-weight: 600; }
+    .post-main-title { font-size: 19px; font-weight: 800; margin-bottom: 16px; line-height: 1.3; color: #111; }
+
+    /* MODAL BIENVENIDA (CAPTURA 1) */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000;
+      display: none; align-items: center; justify-content: center; padding: 18px; backdrop-filter: blur(2px);
+    }
+    .welcome-card {
+      background: #fff; border-radius: 26px; max-width: 390px; width: 100%;
+      padding: 28px 22px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      animation: popIn 0.25s ease-out;
+    }
+    @keyframes popIn { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .welcome-label { color: var(--orange); font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+    .welcome-head { font-size: 24px; font-weight: 800; margin-bottom: 10px; color: #111; }
+    .welcome-text { font-size: 14px; color: var(--muted); margin-bottom: 22px; line-height: 1.45; }
+    .trigger-ad-btn {
+      border: 1.5px solid #d1d5db; border-radius: 16px; padding: 14px 16px;
+      display: flex; align-items: center; justify-content: space-between; text-align: left;
+      cursor: pointer; transition: 0.2s; background: #fff; width: 100%;
+    }
+    .trigger-ad-btn:hover { border-color: var(--orange); background: #fffbeb; }
+    .play-icon-btn {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--orange); color: #fff;
+      display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0;
+    }
+
+    /* PANTALLA INTERSTICIAL DE VIDEO / ANUNCIO (CAPTURAS 2 y 5) */
+    .interstitial-modal {
+      position: fixed; inset: 0; background: #ffffff; z-index: 1200;
+      display: none; flex-direction: column; justify-content: space-between; padding: 20px; overflow-y: auto;
+    }
+    .interstitial-top { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 460px; margin: 0 auto; }
+    .close-ad-pill {
+      background: #f3f4f6; border: 1px solid #d1d5db; padding: 7px 16px;
+      border-radius: 20px; font-weight: 700; font-size: 13px; cursor: pointer; color: #111;
+    }
+    .close-ad-pill:disabled { opacity: 0.6; cursor: not-allowed; }
+    .interstitial-body { max-width: 440px; width: 100%; margin: auto; text-align: left; padding: 15px 0; }
+
+    /* SELECTOR DE ACCIÓN (CAPTURA 6) */
+    .plan-box {
+      border: 1.5px solid #d1d5db; border-radius: 30px; padding: 14px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-weight: 700; font-size: 15px; margin-bottom: 12px; color: #374151; opacity: 0.65;
+    }
+    .divider-or {
+      display: flex; align-items: center; text-align: center; color: #9ca3af;
+      font-size: 13px; font-weight: 700; margin: 16px 0;
+    }
+    .divider-or::before, .divider-or::after { content: ''; flex: 1; border-bottom: 1px solid #e5e7eb; }
+    .divider-or:not(:empty)::before { margin-right: 12px; }
+    .divider-or:not(:empty)::after { margin-left: 12px; }
+    .watch-ads-option {
+      border: 2px solid var(--orange); border-radius: 30px; padding: 15px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-weight: 800; font-size: 15px; margin-bottom: 18px; background: #fffbeb;
+    }
+    .badge-3 { background: var(--orange); color: #fff; padding: 2px 7px; border-radius: 6px; margin-right: 4px; }
+
+    /* VISOR DE 3 ANUNCIOS 1/3, 2/3, 3/3 (CAPTURAS 7, 8 y 9) */
+    .visor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .advertise-pill { background: var(--dark); color: #fff; font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 20px; }
+    .visor-media-box {
+      position: relative; border-radius: 18px; overflow: hidden; height: 220px;
+      background: #111; margin-bottom: 14px; border: 1px solid var(--border);
+    }
+    .visor-media-box img { width: 100%; height: 100%; object-fit: cover; }
+    .tag-overlay-left {
+      position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.55);
+      color: #fff; padding: 4px 12px; border-radius: 14px; font-size: 12px; font-weight: 700; backdrop-filter: blur(4px);
+    }
+    .tag-overlay-right {
+      position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.55);
+      color: #fff; padding: 4px 12px; border-radius: 14px; font-size: 12px; font-weight: 700; backdrop-filter: blur(4px);
+    }
+    .progress-track { position: absolute; bottom: 0; left: 0; width: 100%; height: 6px; background: rgba(255,255,255,0.3); }
+    .progress-fill { height: 100%; width: 0%; background: var(--orange); transition: width 0.15s linear; }
+
+    .steps-timeline { display: flex; justify-content: space-between; position: relative; margin: 18px 0 22px; }
+    .steps-line-bg { position: absolute; top: 12px; left: 16%; right: 16%; height: 2px; background: #e5e7eb; z-index: 1; }
+    .step-node { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 33%; }
+    .node-circle {
+      width: 25px; height: 25px; border-radius: 50%; background: #111827; color: #fff;
+      font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; transition: 0.25s;
+    }
+    .node-circle.completed { background: var(--orange); color: #fff; }
+    .node-text { font-size: 12px; color: #374151; font-weight: 600; }
+
+    /* PANTALLA DESBLOQUEADA (CAPTURA 10) */
+    .success-badge {
+      width: 84px; height: 84px; border-radius: 50%; background: var(--green); color: #fff;
+      font-size: 44px; display: flex; align-items: center; justify-content: center;
+      margin: 18px auto; box-shadow: 0 10px 25px rgba(101,163,13,0.35); position: relative;
+    }
+    .script-output {
+      background: #f9fafb; border: 1.5px solid #d1d5db; border-radius: 16px;
+      padding: 14px; font-family: Consolas, Monaco, monospace; font-size: 13px;
+      word-break: break-all; margin: 14px 0 18px; text-align: left; color: #111; max-height: 160px; overflow-y: auto;
+    }
+
+    /* PANEL CREADOR DE ENLACES */
+    .form-field { margin-bottom: 14px; text-align: left; }
+    .form-field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: #1f2937; }
+    .form-field input, .form-field textarea {
+      width: 100%; padding: 12px 14px; border: 1.5px solid #d1d5db; border-radius: 14px;
+      font-size: 14px; outline: none; transition: 0.2s; background: #f9fafb;
+    }
+    .form-field input:focus, .form-field textarea:focus { border-color: var(--orange); background: #fff; }
+    .thumb-preview { width: 100%; height: 140px; object-fit: cover; border-radius: 14px; margin-top: 8px; display: none; border: 1px solid var(--border); }
+
+    /* BARRA FLOTANTE INFERIOR */
+    .earn-pill-bar {
+      position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%);
+      background: #18181b; color: #fff; padding: 8px 18px; border-radius: 24px;
+      font-size: 13px; font-weight: 600; white-space: nowrap; z-index: 900;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.22); cursor: pointer;
+    }
+    .earn-pill-bar span { color: var(--orange); font-weight: 800; }
+    .bottom-dock {
+      position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%);
+      background: #fff; max-width: 460px; width: 94%; border-radius: 35px; padding: 8px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.14); z-index: 900;
+    }
+    .dock-item { display: flex; flex-direction: column; align-items: center; font-size: 11px; color: #9ca3af; cursor: pointer; font-weight: 600; gap: 2px; }
+    .dock-item.active { color: #111827; font-weight: 700; }
+    .dock-plus-btn {
+      width: 48px; height: 48px; border-radius: 50%; background: var(--orange); color: #fff;
+      font-size: 28px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 4px 14px rgba(245,158,11,0.45); transform: translateY(-4px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header-wrap">
+    <div class="top-header">
+      <a href="?" class="brand"><span class="brand-logo"></span> Linkvertise</a>
+      <div class="header-actions">
+        <span onclick="irAlPanelCreador()" title="Crear Enlace">☰</span>
+        <span onclick="irAlPanelCreador()" title="Buscar / Panel">🔍</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- ==========================================================
+         VISTA 1: PÁGINA DEL RECURSO / POST (CAPTURAS 3 y 4)
+         ========================================================== -->
+    <div id="screen-post" style="display: none;">
+      <div class="back-nav" onclick="irAlPanelCreador()">← Back</div>
+
+      <!-- ANUNCIO VISUAL SUPERIOR (ESTILO CAPTURA 3) -->
+      <div class="ad-banner-box">
+        <span class="ad-info-tag">ⓘ Ad</span>
+        <!-- === PEGA AQUÍ TU CÓDIGO DE BANNER 300x250 DE ADSTERRA / A-ADS === -->
+        <div class="ad-split-card">
+          <img class="ad-split-img" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80" alt="Promo">
+          <div class="ad-split-content">
+            <div>
+              <span style="background:#ef4444; color:#fff; font-size:10px; font-weight:800; padding:3px 7px; border-radius:10px;">DESTACADO</span>
+              <h4 style="font-size:16px; font-weight:800; margin:8px 0 6px; line-height:1.25;">Descubre los Mejores Recursos Gaming 2026</h4>
+              <p style="font-size:12px; color:#6b7280; line-height:1.35;">Actualizaciones diarias, herramientas y contenido verificado para creadores.</p>
+            </div>
+            <button class="btn-dark" style="padding:8px 14px; font-size:12px; border-radius:10px; margin-top:10px;" onclick="mostrarAvisoAnuncio()">Descúbrelo ></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TARJETA PRINCIPAL DEL POST (CAPTURA 4) -->
+      <div class="card">
+        <div class="creator-bar">
+          <div class="avatar-circle" id="ui-avatar">RA</div>
+          <span style="font-weight:700; font-size:15px;" id="ui-creator">Rayte12</span>
+        </div>
+
+        <!-- IMAGEN DEL POST O PORTADA POR DEFECTO -->
+        <div class="media-container">
+          <img id="ui-post-img" src="" alt="Imagen del Post">
+          <div class="fallback-cover" id="ui-post-fallback">
+            <h2 id="ui-fallback-title">Get Text from</h2>
+            <p>🌐 linkvertise.com</p>
+          </div>
+        </div>
+
+        <div class="meta-pills">
+          <span class="meta-pill">🌍 Public</span>
+          <span class="meta-pill">📅 1 day ago</span>
+          <span class="meta-pill">👍 100%</span>
+          <span class="meta-pill">👁️ <span id="ui-views">342</span></span>
+        </div>
+
+        <div class="post-main-title" id="ui-title">Cargando recurso...</div>
+
+        <button class="btn-orange" onclick="abrirIntersticial2()">Get access</button>
+        <button class="btn-outline" onclick="compartirUrlActual()">Share post</button>
+      </div>
+
+      <!-- DESCRIPCIÓN DEL RECURSO -->
+      <div class="card">
+        <h4 style="font-size:16px; font-weight:800; margin-bottom:8px;">Description</h4>
+        <p id="ui-desc" style="font-size:14px; color:#374151; line-height:1.55; white-space:pre-line;"></p>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         VISTA 2: SELECTOR "WATCH 3 ADS" (CAPTURA 6)
+         ========================================================== -->
+    <div id="screen-selector" style="display: none;">
+      <div class="back-nav" onclick="volverAlPost()">← Back</div>
+      <div class="card">
+        <p style="font-size:15px; font-weight:700; margin-bottom:18px; color:#111;">Subscribe or complete creator's chosen action:</p>
+
+        <div class="plan-box">
+          <span>7 Days Access Pass</span>
+          <span>PRO</span>
+        </div>
+
+        <div class="divider-or">OR</div>
+
+        <div class="watch-ads-option">
+          <span>Watch Ads</span>
+          <span><span class="badge-3">3</span>Ads</span>
+        </div>
+
+        <button class="btn-orange" onclick="empezarVisor3Ads()">Continue</button>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         VISTA 3: VISOR DE 3 ANUNCIOS 1/3, 2/3, 3/3 (CAPTURAS 7, 8, 9)
+         ========================================================== -->
+    <div id="screen-visor" style="display: none;">
+      <div class="back-nav" onclick="volverAlPost()">← Back</div>
+      <div class="card">
+        <div class="visor-header">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div class="avatar-circle" style="background:#f3e8ff; color:#7e22ce;">LI</div>
+            <span style="font-weight:700; font-size:15px;">Linkvertise</span>
+          </div>
+          <span class="advertise-pill">⚡ Advertise here</span>
+        </div>
+
+        <!-- CONTENEDOR DEL ANUNCIO VISUAL CON BARRA NARANJA -->
+        <div class="visor-media-box">
+          <span class="tag-overlay-left">Ad</span>
+          <span class="tag-overlay-right" id="visor-step-badge">1/3</span>
+          <!-- === AQUÍ SE MUESTRA EL ANUNCIO VISUAL O BANNER === -->
+          <img id="visor-img" src="" alt="Sponsored">
+          <div class="progress-track">
+            <div class="progress-fill" id="visor-bar"></div>
+          </div>
+        </div>
+
+        <h4 id="visor-headline" style="font-size:16px; font-weight:700; margin-bottom:14px; line-height:1.35; text-align:left;"></h4>
+
+        <!-- LÍNEA DE PASOS: 1 (View) - 2 (Complete) - 3 (Done) -->
+        <div class="steps-timeline">
+          <div class="steps-line-bg"></div>
+          <div class="step-node">
+            <div class="node-circle" id="node-1">1</div>
+            <span class="node-text">View</span>
+          </div>
+          <div class="step-node">
+            <div class="node-circle" id="node-2">2</div>
+            <span class="node-text">Complete</span>
+          </div>
+          <div class="step-node">
+            <div class="node-circle" id="node-3">3</div>
+            <span class="node-text">Done</span>
+          </div>
+        </div>
+
+        <!-- BOTÓN DINÁMICO: NARANJA ("Viewing Ad...") -> NEGRO ("Continue") -->
+        <button id="visor-btn" class="btn-orange" onclick="avanzarVisorAd()">Learn more (Wait 5s)</button>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         VISTA 4: PANTALLA FINAL DESBLOQUEADA (CAPTURA 10)
+         ========================================================== -->
+    <div id="screen-unlocked" style="display: none;">
+      <div class="back-nav" onclick="volverAlPost()">← Back</div>
+      
+      <div class="card" style="text-align:center; padding:28px 20px;">
+        <h2 style="font-size:27px; font-weight:800; line-height:1.2; color:#111;">You're ready to<br>access creativity!</h2>
+        <div class="success-badge">✔</div>
+        <p style="font-size:14px; color:#4b5563; line-height:1.45;">
+          Great job! Unlock the asset below.<br>We're just as excited as you are to see what's next!
+        </p>
+      </div>
+
+      <div class="card" style="text-align:center;">
+        <h3 style="font-size:20px; font-weight:800; margin-bottom:10px;">Your content is ready!</h3>
+        <div class="script-output" id="final-output-box"></div>
+        <button class="btn-orange" id="final-deliver-btn" onclick="entregarContenidoFinal()">📋 Copiar Contenido / Ir al Link</button>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         VISTA 5: PANEL CREADOR PÚBLICO (CON IMAGEN, TÍTULO Y DESCRIPCIÓN)
+         ========================================================== -->
+    <div id="screen-creator" style="display: none;">
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <span style="background:#fef3c7; color:#d97706; padding:4px 12px; border-radius:20px; font-size:12px; font-weight:800;">⚡ Panel Creador Activo</span>
+          <span style="font-size:12px; color:#6b7280; font-weight:600;">100% Gratis & Sin Registro</span>
+        </div>
+        <h2 style="font-size:22px; font-weight:800; margin-bottom:6px;">Crear Enlace Monetizado</h2>
+        <p style="font-size:13px; color:#6b7280; margin-bottom:18px;">
+          Cualquier persona puede crear un enlace protegido con imagen, título y descripción listo para YouTube, TikTok o Discord.
+        </p>
+
+        <div class="form-field">
+          <label>👤 Tu Nombre o Alias de Creador</label>
+          <input type="text" id="f-creator" placeholder="Ej: Rayte12" value="Rayte12">
+        </div>
+
+        <div class="form-field">
+          <label>📌 Título del Script / Archivo / Video *</label>
+          <input type="text" id="f-title" placeholder="Ej: Steal an egg script 2026 key new upd infinity">
+        </div>
+
+        <div class="form-field">
+          <label>🖼️ URL de Imagen o Miniatura (Opcional)</label>
+          <input type="text" id="f-img" placeholder="Pega el link de una imagen (https://...jpg o .png)" oninput="actualizarVistaPreviaImg()">
+          <img id="f-img-preview" class="thumb-preview" alt="Preview">
+        </div>
+
+        <div class="form-field">
+          <label>📝 Descripción detallada</label>
+          <textarea id="f-desc" rows="3" placeholder="🔥 INSTANT SCRIPT — Nueva actualización, funciones incluidas y pasos de uso..."></textarea>
+        </div>
+
+        <div class="form-field">
+          <label>🔒 Enlace de Destino o Script a Desbloquear *</label>
+          <input type="text" id="f-target" placeholder="https://... o loadstring(game:HttpGet(...))">
+        </div>
+
+        <button class="btn-orange" onclick="crearEnlaceAcortado()">➕ Generar Enlace Ahora</button>
+
+        <!-- CAJA DE ENLACES GENERADOS -->
+        <div id="result-box" style="display:none; margin-top:18px; background:#f0fdf4; border:1.5px solid #86efac; padding:16px; border-radius:18px;">
+          <p style="font-size:14px; font-weight:800; color:#166534; margin-bottom:10px;">✅ ¡Tu enlace fue creado con éxito!</p>
+          
+          <label style="font-size:11px; font-weight:700; color:#15803d; display:block; margin-bottom:4px;">ENLACE DIRECTO DE TU WEB:</label>
+          <input type="text" id="res-long-url" readonly style="width:100%; padding:10px; border-radius:10px; border:1px solid #bbf7d0; font-size:12px; margin-bottom:10px; background:#fff;">
+
+          <div style="display:flex; gap:8px; margin-bottom:10px;">
+            <button class="btn-dark" style="padding:11px; font-size:13px;" onclick="copiarUrlGenerada('res-long-url')">📋 Copiar Link</button>
+            <button class="btn-orange" style="padding:11px; font-size:13px;" onclick="probarUrlGenerada()">👁️ Probar Cómo Se Ve</button>
+          </div>
+
+          <!-- ACORTADOR AUTOMÁTICO PARA YOUTUBE -->
+          <div style="border-top:1px dashed #86efac; padding-top:10px; margin-top:6px;">
+            <button id="btn-shorten-api" class="btn-outline" style="margin-top:0; padding:9px; font-size:12px; background:#fff;" onclick="acortarParaYoutube()">
+              ✨ Acortar URL Cortita para YouTube (is.gd)
+            </button>
+            <input type="text" id="res-short-url" readonly style="display:none; width:100%; padding:10px; border-radius:10px; border:1px solid #bbf7d0; font-size:13px; font-weight:700; margin-top:8px; background:#fff; color:#0284c7;">
+          </div>
+        </div>
+      </div>
+
+      <!-- HISTORIAL GUARDADO EN EL DISPOSITIVO -->
+      <div class="card">
+        <h4 style="font-size:16px; font-weight:800; margin-bottom:10px;">📊 Mis Enlaces Creados en este Dispositivo</h4>
+        <div id="history-container" style="font-size:13px; color:#6b7280;">Aún no has generado enlaces.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==========================================================
+       MODAL 1: BIENVENIDA "VIEW A SHORT AD" (CAPTURA 1)
+       ========================================================== -->
+  <div class="modal-backdrop" id="modal-welcome">
+    <div class="welcome-card">
+      <div class="welcome-label">Welcome to Linkvertise</div>
+      <div class="welcome-head">Get content access</div>
+      <div class="welcome-text">A short ad will be shown before you get the content.</div>
+      <button class="trigger-ad-btn" onclick="abrirIntersticial1()">
+        <div>
+          <div style="font-weight:800; font-size:15px; color:#111;">View a short ad</div>
+          <div style="font-size:12px; color:#6b7280; margin-top:2px;">Site-wide access for 24 hours</div>
+        </div>
+        <div class="play-icon-btn">▶</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       MODAL 2: PANTALLA INTERSTICIAL DE VIDEO / IMAGEN (CAPTURAS 2 y 5)
+       ========================================================== -->
+  <div class="interstitial-modal" id="modal-interstitial">
+    <div class="interstitial-top">
+      <span style="font-size:12px; color:#0284c7; background:#e0f2fe; padding:4px 10px; border-radius:8px; font-weight:700;">ⓘ Anuncio en Video / Display</span>
+      <button class="close-ad-pill" id="btn-close-interstitial" onclick="cerrarIntersticial()" disabled>Wait 4s...</button>
+    </div>
+
+    <div class="interstitial-body">
+      <!-- === AQUÍ PUEDES PEGAR TU CÓDIGO DE VIDEO AD O BANNER GRANDE === -->
+      <h1 id="inter-heading" style="font-size:30px; font-weight:800; margin-bottom:8px; line-height:1.15;">Submit Your Music & Projects Online</h1>
+      <p id="inter-domain" style="color:#9ca3af; font-size:14px; margin-bottom:14px;">sponsored-showcase.com</p>
+      <p id="inter-copy" style="color:#4b5563; font-size:15px; line-height:1.45; margin-bottom:18px;">
+        La plataforma diseñada para creadores independientes, desarrolladores y gamers que buscan impulsar su contenido.
+      </p>
+      <div style="position:relative; border-radius:18px; overflow:hidden; height:225px; background:#000; margin-bottom:20px;">
+        <img id="inter-media" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=700&q=80" style="width:100%; height:100%; object-fit:cover;">
+        <span style="position:absolute; top:12px; left:12px; background:rgba(0,0,0,0.6); color:#fff; padding:5px 10px; border-radius:50%; font-size:13px;">🔊</span>
+      </div>
+      <button class="btn-dark" onclick="cerrarIntersticial()">OPEN ></button>
+    </div>
+
+    <div style="text-align:center; font-size:11px; color:#9ca3af;">Publicidad verificada • Cierra arriba a la derecha al terminar el contador</div>
+  </div>
+
+  <!-- BARRA INFERIOR FIJA -->
+  <div class="earn-pill-bar" onclick="irAlPanelCreador()">
+    Post & earn! <span>$27.139.864</span> paid to creators.
+  </div>
+  <div class="bottom-dock">
+    <div class="dock-item active" onclick="volverAlPost()">🏠<span>For you</span></div>
+    <div class="dock-item" onclick="irAlPanelCreador()">🧭<span>Explore</span></div>
+    <div class="dock-plus-btn" onclick="irAlPanelCreador()" title="Crear nuevo enlace">+</div>
+    <div class="dock-item" onclick="irAlPanelCreador()">🎛️<span>Dashboard</span></div>
+    <div class="dock-item" onclick="irAlPanelCreador()">👤<span>Profile</span></div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // LISTA DE LOS 3 ANUNCIOS VISUALES DEL VISOR (1/3, 2/3, 3/3)
+    // =========================================================================
+    const MIS_3_ANUNCIOS = [
+      {
+        titulo: "She eats the skin of a kiwi and that's why people should know this!",
+        img: "https://images.unsplash.com/photo-1618897996318-5a901fa6ca71?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        titulo: "25 Must-Know Car Hacks & Accessories for Drivers!",
+        img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        titulo: "Here's why you should add coffee to your morning routine every day",
+        img: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=600&q=80"
+      }
+    ];
+
+    let postData = null;
+    let etapaIntersticial = 1;
+    let adIndex = 0;
+    let adCompletado = false;
+    let timerVisor = null;
+
+    // Al abrir la web, detecta si es un enlace compartido (?d=...) o si debe abrir el Panel Creador
+    window.onload = function() {
+      renderizarHistorial();
+      const params = new URLSearchParams(window.location.search);
+      const rawData = params.get("d");
+
+      if (rawData) {
+        try {
+          const decoded = decodeURIComponent(escape(atob(rawData)));
+          postData = JSON.parse(decoded);
+          cargarDatosEnPost();
+          document.getElementById("modal-welcome").style.display = "flex";
+        } catch (err) {
+          irAlPanelCreador();
+        }
+      } else {
+        irAlPanelCreador();
+      }
+    };
+
+    function ocultarPantallas() {
+      ["screen-post", "screen-selector", "screen-visor", "screen-unlocked", "screen-creator"].forEach(id => {
+        document.getElementById(id).style.display = "none";
+      });
+    }
+
+    function cargarDatosEnPost() {
+      ocultarPantallas();
+      document.getElementById("screen-post").style.display = "block";
+      
+      const creador = postData.c || "Rayte12";
+      document.getElementById("ui-creator").innerText = creador;
+      document.getElementById("ui-avatar").innerText = creador.substring(0, 2).toUpperCase();
+      document.getElementById("ui-title").innerText = postData.t || "Contenido Desbloqueable";
+      document.getElementById("ui-desc").innerText = postData.desc || "Sigue los pasos en pantalla para desbloquear el enlace o texto.";
+
+      const imgTag = document.getElementById("ui-post-img");
+      const fallbackTag = document.getElementById("ui-post-fallback");
+
+      if (postData.img && postData.img.startsWith("http")) {
+        imgTag.src = postData.img;
+        imgTag.style.display = "block";
+        fallbackTag.style.display = "none";
+      } else {
+        imgTag.style.display = "none";
+        fallbackTag.style.display = "block";
+        const esLink = postData.u.startsWith("http://") || postData.u.startsWith("https://");
+        document.getElementById("ui-fallback-title").innerText = esLink ? "Get Link from" : "Get Text from";
+      }
+    }
+
+    // PASO 1: INTERSTICIAL DESDE MODAL DE BIENVENIDA (CAPTURAS 1 -> 2)
+    function abrirIntersticial1() {
+      etapaIntersticial = 1;
+      document.getElementById("modal-welcome").style.display = "none";
+      iniciarPantallaIntersticial(
+        "Submit Your Music & Content Online",
+        "groover-showcase.co",
+        "La plataforma de promoción diseñada para artistas, creadores de contenido y desarrolladores.",
+        "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=700&q=80"
+      );
+    }
+
+    // PASO 2: INTERSTICIAL AL DARLE A "GET ACCESS" (CAPTURAS 4 -> 5)
+    function abrirIntersticial2() {
+      etapaIntersticial = 2;
+      iniciarPantallaIntersticial(
+        "Explora más tecnología a tu lado",
+        "suzuki-hybrid-promo.com",
+        "Conoce los nuevos modelos híbridos y equipamiento inteligente para cada camino.",
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=700&q=80"
+      );
+    }
+
+    function iniciarPantallaIntersticial(titulo, dominio, texto, imagen) {
+      document.getElementById("inter-heading").innerText = titulo;
+      document.getElementById("inter-domain").innerText = dominio;
+      document.getElementById("inter-copy").innerText = texto;
+      document.getElementById("inter-media").src = imagen;
+
+      const modal = document.getElementById("modal-interstitial");
+      const btnClose = document.getElementById("btn-close-interstitial");
+      modal.style.display = "flex";
+      btnClose.disabled = true;
+
+      let restantes = 4;
+      btnClose.innerText = "Wait " + restantes + "s...";
+
+      const intervalo = setInterval(() => {
+        restantes--;
+        if (restantes <= 0) {
+          clearInterval(intervalo);
+          btnClose.disabled = false;
+          btnClose.innerText = "Close ✖";
+        } else {
+          btnClose.innerText = "Wait " + restantes + "s...";
+        }
+      }, 1000);
+    }
+
+    function cerrarIntersticial() {
+      const btnClose = document.getElementById("btn-close-interstitial");
+      if (btnClose.disabled) return;
+
+      document.getElementById("modal-interstitial").style.display = "none";
+      if (etapaIntersticial === 2) {
+        ocultarPantallas();
+        document.getElementById("screen-selector").style.display = "block";
+        window.scrollTo(0, 0);
+      }
+    }
+
+    // PASO 3: VISOR DE LOS 3 ANUNCIOS (CAPTURAS 7, 8, 9)
+    function empezarVisor3Ads() {
+      ocultarPantallas();
+      document.getElementById("screen-visor").style.display = "block";
+      adIndex = 0;
+      mostrarAnuncioVisor();
+      window.scrollTo(0, 0);
+    }
+
+    function mostrarAnuncioVisor() {
+      adCompletado = false;
+      if (timerVisor) clearInterval(timerVisor);
+
+      const item = MIS_3_ANUNCIOS[adIndex];
+      document.getElementById("visor-step-badge").innerText = (adIndex + 1) + "/3";
+      document.getElementById("visor-img").src = item.img;
+      document.getElementById("visor-headline").innerText = item.titulo;
+
+      // Reiniciar bolitas 1, 2, 3 a negro
+      for (let i = 1; i <= 3; i++) {
+        const nodo = document.getElementById("node-" + i);
+        nodo.className = "node-circle";
+        nodo.innerText = i;
+      }
+
+      const btn = document.getElementById("visor-btn");
+      btn.className = "btn-orange";
+      btn.innerText = "Viewing Ad... (5s)";
+
+      const barra = document.getElementById("visor-bar");
+      barra.style.width = "0%";
+
+      let porcentaje = 0;
+      timerVisor = setInterval(() => {
+        porcentaje += 4;
+        barra.style.width = porcentaje + "%";
+
+        if (porcentaje >= 32) completarNodo(1);
+        if (porcentaje >= 68) completarNodo(2);
+        if (porcentaje >= 100) {
+          clearInterval(timerVisor);
+          completarNodo(3);
+          adCompletado = true;
+          btn.className = "btn-dark";
+          btn.innerText = "Continue";
+        }
+      }, 200); // 5 segundos exactos por cada anuncio
+    }
+
+    function completarNodo(num) {
+      const n = document.getElementById("node-" + num);
+      n.className = "node-circle completed";
+      n.innerText = "✔";
+    }
+
+    function avanzarVisorAd() {
+      if (!adCompletado) return; // Espera a que termine la barra naranja
+
+      adIndex++;
+      if (adIndex < 3) {
+        mostrarAnuncioVisor();
+      } else {
+        mostrarPantallaExito();
+      }
+    }
+
+    // PASO 4: PANTALLA FINAL DESBLOQUEADA (CAPTURA 10)
+    function mostrarPantallaExito() {
+      ocultarPantallas();
+      document.getElementById("screen-unlocked").style.display = "block";
+      document.getElementById("final-output-box").innerText = postData.u;
+
+      const esEnlace = postData.u.startsWith("http://") || postData.u.startsWith("https://");
+      document.getElementById("final-deliver-btn").innerText = esEnlace ? "🔓 Abrir Enlace Desbloqueado" : "📋 Copiar Script / Texto";
+      window.scrollTo(0, 0);
+    }
+
+    function entregarContenidoFinal() {
+      const valor = postData.u;
+      if (valor.startsWith("http://") || valor.startsWith("https://")) {
+        window.location.href = valor;
+      } else {
+        navigator.clipboard.writeText(valor);
+        alert("✅ ¡Script copiado al portapapeles con éxito!");
+      }
+    }
+
+    // FUNCIONES DEL PANEL CREADOR PÚBLICO
+    function irAlPanelCreador() {
+      ocultarPantallas();
+      document.getElementById("screen-creator").style.display = "block";
+      window.scrollTo(0, 0);
+    }
+
+    function volverAlPost() {
+      if (postData) cargarDatosEnPost();
+      else irAlPanelCreador();
+    }
+
+    function actualizarVistaPreviaImg() {
+      const url = document.getElementById("f-img").value.trim();
+      const prev = document.getElementById("f-img-preview");
+      if (url.startsWith("http")) {
+        prev.src = url;
+        prev.style.display = "block";
+      } else {
+        prev.style.display = "none";
+      }
+    }
+
+    function crearEnlaceAcortado() {
+      const c = document.getElementById("f-creator").value.trim() || "Rayte12";
+      const t = document.getElementById("f-title").value.trim();
+      const img = document.getElementById("f-img").value.trim();
+      const desc = document.getElementById("f-desc").value.trim();
+      const u = document.getElementById("f-target").value.trim();
+
+      if (!t || !u) {
+        alert("⚠️ Por favor escribe el Título y pega el Enlace o Script que deseas bloquear.");
+        return;
+      }
+
+      const objeto = { c, t, img, desc, u };
+      const base64 = btoa(unescape(encodeURIComponent(JSON.stringify(objeto))));
+      const urlBase = window.location.origin + window.location.pathname;
+      const linkCompleto = urlBase + "?d=" + base64;
+
+      document.getElementById("res-long-url").value = linkCompleto;
+      document.getElementById("res-short-url").style.display = "none";
+      document.getElementById("result-box").style.display = "block";
+
+      guardarHistorial(t, linkCompleto);
+    }
+
+    function copiarUrlGenerada(inputId) {
+      const el = document.getElementById(inputId);
+      navigator.clipboard.writeText(el.value);
+      alert("✅ ¡Enlace copiado! Ya puedes pegarlo en YouTube o enviarlo.");
+    }
+
+    function probarUrlGenerada() {
+      window.location.href = document.getElementById("res-long-url").value;
+    }
+
+    // Acorta automáticamente el enlace largo para que se vea elegante en YouTube
+    function acortarParaYoutube() {
+      const longUrl = document.getElementById("res-long-url").value;
+      const btn = document.getElementById("btn-shorten-api");
+      const outShort = document.getElementById("res-short-url");
+
+      btn.innerText = "⏳ Acortando enlace...";
+      fetch("https://is.gd/create.php?format=json&url=" + encodeURIComponent(longUrl))
+        .then(r => r.json())
+        .then(data => {
+          if (data.shorturl) {
+            outShort.value = data.shorturl;
+            outShort.style.display = "block";
+            navigator.clipboard.writeText(data.shorturl);
+            btn.innerText = "✅ ¡Link Corto Copiado al Portapapeles!";
+          } else {
+            btn.innerText = "Usa el botón Copiar Link de arriba";
+          }
+        })
+        .catch(() => {
+          btn.innerText = "Usa el botón Copiar Link de arriba";
+        });
+    }
+
+    function compartirUrlActual() {
+      navigator.clipboard.writeText(window.location.href);
+      alert("🔗 Enlace de este post copiado al portapapeles.");
+    }
+
+    function mostrarAvisoAnuncio() {
+      alert("💡 Espacio publicitario activo: Cuando pegues tu código de Adsterra o Monetag, aquí se mostrará el anuncio real.");
+    }
+
+    function guardarHistorial(titulo, url) {
+      let hist = JSON.parse(localStorage.getItem("lv_creator_history") || "[]");
+      hist.unshift({ titulo, url });
+      localStorage.setItem("lv_creator_history", JSON.stringify(hist.slice(0, 12)));
+      renderizarHistorial();
+    }
+
+    function renderizarHistorial() {
+      const hist = JSON.parse(localStorage.getItem("lv_creator_history") || "[]");
+      const box = document.getElementById("history-container");
+      if (hist.length === 0) return;
+
+      box.innerHTML = hist.map(item => `
+        <div style="padding:10px 0; border-bottom:1px solid #e5e7eb; display:flex; justify-content:space-between; align-items:center; gap:10px;">
+          <span style="font-weight:700; color:#111; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${item.titulo}</span>
+          <a href="${item.url}" style="color:#d97706; font-weight:800; text-decoration:none; flex-shrink:0;">Ver Post →</a>
+        </div>
+      `).join("");
+    }
+  </script>
+</body>
+</html>
