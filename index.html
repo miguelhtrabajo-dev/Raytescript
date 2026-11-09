@@ -300,7 +300,7 @@
 
   <div class="header-shell">
     <div class="top-pill-bar">
-      <div class="brand-box" onclick="navegarA('for-you')">
+      <div class="brand-box" onclick="navegarA('create')">
         <span class="brand-icon-mark">R</span>
         <span>Rayte Script</span>
       </div>
@@ -310,10 +310,10 @@
           <option value="en">🇺🇸 EN</option>
           <option value="pt">🇧🇷 PT</option>
         </select>
-        <button class="icon-btn" onclick="navegarA('explore')" title="Search">
-          <span class="material-icons">search</span>
+        <button type="button" class="icon-btn" onclick="navegarA('create')" title="Create">
+          <span class="material-icons">add</span>
         </button>
-        <button class="icon-btn" onclick="navegarA('dashboard')" title="Dashboard">
+        <button type="button" class="icon-btn" onclick="navegarA('dashboard')" title="Dashboard">
           <span class="material-icons">menu</span>
         </button>
       </div>
@@ -331,7 +331,7 @@
 
     <!-- PANTALLA 1: POST -->
     <div id="view-post" style="display: none;">
-      <div class="back-row" onclick="navegarA('for-you')">
+      <div class="back-row" onclick="navegarA('create')">
         <span class="material-icons" style="font-size:18px;">arrow_back</span> <span data-i18n="back">Back</span>
       </div>
 
@@ -376,7 +376,6 @@
 
         <h1 class="post-heading" id="post-title-text">Loading...</h1>
 
-        <!-- BOTÓN GET ACCESS CORREGIDO -->
         <button type="button" class="btn-primary-orange" onclick="abrirIntersticialPaso2()" data-i18n="get_access_btn">Get access</button>
         <button type="button" class="btn-outline-orange" onclick="compartirEnlaceActual()" data-i18n="share_post_btn">Share post</button>
 
@@ -509,7 +508,7 @@
     </div>
 
     <!-- PANTALLA 5: CREADOR -->
-    <div id="view-create" style="display: none;">
+    <div id="view-create" style="display: block;">
       <div class="ui-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
           <span style="background:var(--ui-orange-transparent-10); color:#d97706; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:800;">➕ Rayte Script Creator</span>
@@ -630,34 +629,6 @@
       </div>
     </div>
 
-    <!-- PANTALLA 7: FEED -->
-    <div id="view-feed" style="display: none;">
-      <div class="ui-card" id="search-bar-box" style="display:none; padding:14px 18px;">
-        <input type="text" id="search-input" oninput="filtrarFeed()" placeholder="🔍 Search scripts..." style="width:100%; padding:11px 14px; border-radius:999px; border:1.5px solid var(--ui-stonegrey); font-family:inherit; font-size:14px; outline:none;">
-      </div>
-
-      <div style="display:flex; justify-content:space-between; align-items:center; margin:6px 4px 12px;">
-        <h2 style="font-size:19px; font-weight:800;" id="feed-heading">🔥 For You — Scripts</h2>
-        <span style="font-size:12px; color:var(--ui-orange); font-weight:700; cursor:pointer;" onclick="navegarA('create')">+ Create Link</span>
-      </div>
-
-      <div id="feed-cards-container"></div>
-    </div>
-
-    <!-- PANTALLA 8: PROFILE -->
-    <div id="view-profile" style="display: none;">
-      <div class="ui-card" style="text-align:center;">
-        <div class="lv-avatar" style="width:68px; height:68px; font-size:24px; margin:0 auto 10px;">RA</div>
-        <h2 style="font-size:21px; font-weight:800;">Rayte12</h2>
-        <p style="font-size:13px; color:#666; margin-bottom:14px;">Official Creator at Rayte Script • 100% Positive Rating</p>
-        <div style="display:flex; justify-content:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
-          <span class="ui-chip">🔥 +50,365 Unlocks</span>
-          <span class="ui-chip">👍 100% Verified</span>
-        </div>
-        <button type="button" class="btn-primary-orange" onclick="navegarA('dashboard')">📊 Ver Panel de Ganancias</button>
-      </div>
-    </div>
-
   </div>
 
   <!-- MODAL 1 -->
@@ -709,24 +680,13 @@
   </div>
 
   <div class="bottom-nav-dock">
-    <button type="button" class="dock-tab active" id="tab-for-you" onclick="navegarA('for-you')">
-      <span class="material-icons">home</span>
-      <span data-i18n="nav_foryou">For you</span>
-    </button>
-    <button type="button" class="dock-tab" id="tab-explore" onclick="navegarA('explore')">
-      <span class="material-icons">explore</span>
-      <span data-i18n="nav_explore">Explore</span>
-    </button>
-    <button type="button" class="dock-fab-plus" onclick="navegarA('create')" title="Create">
+    <button type="button" class="dock-tab active" id="tab-for-you" onclick="navegarA('create')">
       <span class="material-icons">add</span>
+      <span data-i18n="create_heading">Crear</span>
     </button>
     <button type="button" class="dock-tab" id="tab-dashboard" onclick="navegarA('dashboard')">
       <span class="material-icons">dashboard</span>
       <span data-i18n="nav_dashboard">Dashboard</span>
-    </button>
-    <button type="button" class="dock-tab" id="tab-profile" onclick="navegarA('profile')">
-      <span class="material-icons">person</span>
-      <span data-i18n="nav_profile">Profile</span>
     </button>
   </div>
 
@@ -759,10 +719,8 @@
         welcome_sub: "Se mostrará un anuncio corto antes de entregarte el contenido.",
         view_short_ad: "Ver un anuncio corto",
         access_24h: "Acceso completo por 24 horas",
-        nav_foryou: "Para ti",
-        nav_explore: "Explorar",
+        nav_foryou: "Crear",
         nav_dashboard: "Panel",
-        nav_profile: "Perfil",
         copy_script_btn: "📋 Copiar Texto / Script",
         copied_alert: "✅ ¡Texto copiado al portapapeles con éxito!",
         open_url_btn: "🔓 Ir al Enlace Ahora (Redirección)"
@@ -794,10 +752,8 @@
         welcome_sub: "A short ad will be shown before you get the content.",
         view_short_ad: "View a short ad",
         access_24h: "Site-wide access for 24 hours",
-        nav_foryou: "For you",
-        nav_explore: "Explore",
+        nav_foryou: "Create",
         nav_dashboard: "Dashboard",
-        nav_profile: "Profile",
         copy_script_btn: "📋 Copy Text / Script",
         copied_alert: "✅ Text copied to clipboard!",
         open_url_btn: "🔓 Go to Link Now"
@@ -820,7 +776,7 @@
         step_view: "Ver",
         step_complete: "Completar",
         step_done: "Pronto",
-        unlocked_heading: "Tudo pronto para<br>acessar o conteúdo!",
+        unlocked_heading: "Tudo pronto para<br>acceder ao conteúdo!",
         unlocked_sub: "Ótimo trabalho! Copie seu texto ou script abaixo.",
         final_ad_banner: "🔥 Oferta Patrocinada Desbloqueada — Toque para abrir",
         content_ready: "Seu conteúdo está pronto!",
@@ -829,10 +785,8 @@
         welcome_sub: "Um anúncio curto será exibido antes de liberar o conteúdo.",
         view_short_ad: "Ver um anúncio curto",
         access_24h: "Acesso liberado por 24 horas",
-        nav_foryou: "Para você",
-        nav_explore: "Explorar",
+        nav_foryou: "Criar",
         nav_dashboard: "Painel",
-        nav_profile: "Perfil",
         copy_script_btn: "📋 Copiar Texto / Script",
         copied_alert: "✅ Texto copiado com sucesso!",
         open_url_btn: "🔓 Ir para o Link Agora"
@@ -893,79 +847,40 @@
     }
 
     let postActivo = null;
-    let modoCreacionActual = "url";
-    let imagenSubidaBase64 = "";
-    let pasoInter = 1;
-    let indiceVisor = 0;
-    let visorListo = false;
     let intervaloVisor = null;
     let timerRedireccion = null;
 
     window.onload = function() {
       detectarIdiomaVisitante();
-      inicializarPostsEjemplo();
       actualizarDashboardUI();
 
       const params = new URLSearchParams(window.location.search);
-      const postId = params.get("id");
+      const dataParam = params.get("data");
 
-      if (postId) {
-        const db = JSON.parse(localStorage.getItem("rayte_posts_v4") || "[]");
-        const encontrado = db.find(p => p.id === postId);
-        if (encontrado) {
-          postActivo = encontrado;
-          sumarVisitaEstadistica(postActivo.id);
-          mostrarPantallaPost(postActivo);
-          document.getElementById("modal-welcome").style.display = "flex";
-        } else {
-          alert("⚠️ El enlace ya no existe o fue eliminado.");
-          navegarA('create');
+      if (dataParam) {
+        try {
+          const jsonString = descifrarAntiBypass(dataParam);
+          const postDecodificado = JSON.parse(jsonString);
+          if (postDecodificado && postDecodificado.t) {
+            postActivo = postDecodificado;
+            sumarVisitaEstadistica(postActivo);
+            mostrarPantallaPost(postActivo);
+            document.getElementById("modal-welcome").style.display = "flex";
+            return;
+          }
+        } catch (e) {
+          console.error("Error al decodificar el enlace:", e);
         }
-      } else {
-        navegarA('create');
       }
+      
+      // Si entra a la raíz o el enlace no tiene datos válidos, muestra el creador directamente
+      navegarA('create');
     };
-
-    function generarNumeroAleatorioSocial() {
-      return Math.floor(24100 + Math.random() * 54800);
-    }
-
-    function inicializarPostsEjemplo() {
-      let guardados = JSON.parse(localStorage.getItem("rayte_posts_v4") || "[]");
-      if (guardados.length === 0) {
-        const textoDemo = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/RayteScript/loader/main.lua"))()';
-        const ejemplo = {
-          id: "demo1",
-          mode: "text",
-          c: "Rayte12",
-          t: "Steal an egg script 2026 key new upd infinity",
-          desc: "🔥 INSTANT STEAL SCRIPT — STEAL AN EGG 🔥",
-          k: cifrarAntiBypass(textoDemo),
-          img: "",
-          yt: "",
-          views: 42,
-          unlocks: 19,
-          socialCount: 50365
-        };
-        localStorage.setItem("rayte_posts_v4", JSON.stringify([ejemplo]));
-      }
-    }
-
-    function cambiarModoCreacion(modo) {
-      modoCreacionActual = modo;
-      document.getElementById("tab-mode-url").classList.toggle("active", modo === 'url');
-      document.getElementById("tab-mode-text").classList.toggle("active", modo === 'text');
-      document.getElementById("box-input-url").style.display = (modo === 'url') ? "block" : "none";
-      document.getElementById("box-input-text").style.display = (modo === 'text') ? "block" : "none";
-    }
 
     function ocultarVistas() {
       if (timerRedireccion) clearInterval(timerRedireccion);
-      ["view-post", "view-selector", "view-visor", "view-unlocked", "view-create", "view-dashboard", "view-feed", "view-profile"].forEach(id => {
+      ["view-post", "view-selector", "view-visor", "view-unlocked", "view-create", "view-dashboard"].forEach(id => {
         document.getElementById(id).style.display = "none";
-      });
-      ["tab-for-you", "tab-explore", "tab-dashboard", "tab-profile"].forEach(id => {
-        document.getElementById(id).classList.remove("active");
       });
     }
 
@@ -973,25 +888,11 @@
       ocultarVistas();
       window.scrollTo(0, 0);
 
-      if (seccion === 'for-you') {
-        document.getElementById("view-feed").style.display = "block";
-        document.getElementById("search-bar-box").style.display = "none";
-        document.getElementById("tab-for-you").classList.add("active");
-        renderizarFeed("");
-      } else if (seccion === 'explore') {
-        document.getElementById("view-feed").style.display = "block";
-        document.getElementById("search-bar-box").style.display = "block";
-        document.getElementById("tab-explore").classList.add("active");
-        renderizarFeed("");
-      } else if (seccion === 'create') {
+      if (seccion === 'create') {
         document.getElementById("view-create").style.display = "block";
       } else if (seccion === 'dashboard') {
         actualizarDashboardUI();
         document.getElementById("view-dashboard").style.display = "block";
-        document.getElementById("tab-dashboard").classList.add("active");
-      } else if (seccion === 'profile') {
-        document.getElementById("view-profile").style.display = "block";
-        document.getElementById("tab-profile").classList.add("active");
       }
     }
 
@@ -1003,13 +904,13 @@
         const img = new Image();
         img.onload = function() {
           const canvas = document.createElement("canvas");
-          const maxW = 460;
+          const maxW = 400;
           const scale = Math.min(1, maxW / img.width);
           canvas.width = img.width * scale;
           canvas.height = img.height * scale;
           const ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-          imagenSubidaBase64 = canvas.toDataURL("image/jpeg", 0.62);
+          imagenSubidaBase64 = canvas.toDataURL("image/jpeg", 0.55);
 
           const prev = document.getElementById("preview-uploaded-img");
           prev.src = imagenSubidaBase64;
@@ -1020,6 +921,7 @@
       };
       reader.readAsDataURL(file);
     }
+    let imagenSubidaBase64 = "";
 
     function obtenerIdYoutube(url) {
       if (!url) return null;
@@ -1068,23 +970,19 @@
 
     function volverAlPostActual() {
       if (postActivo) mostrarPantallaPost(postActivo);
-      else navegarA('for-you');
+      else navegarA('create');
     }
 
     function abrirIntersticialPaso1() {
-      pasoInter = 1;
       document.getElementById("modal-welcome").style.display = "none";
-      lanzarIntersticial("Submit Your Music & Content Online", "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=700&q=80");
+      lanzarIntersticial();
     }
 
     function abrirIntersticialPaso2() {
-      pasoInter = 2;
-      lanzarIntersticial("Explora más tecnología a tu lado", "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=700&q=80");
+      lanzarIntersticial();
     }
 
-    function lanzarIntersticial(titulo, imgUrl) {
-      document.getElementById("inter-title").innerText = titulo;
-      document.getElementById("inter-img").src = imgUrl;
+    function lanzarIntersticial() {
       const modal = document.getElementById("modal-interstitial");
       const btn = document.getElementById("btn-close-inter");
       modal.style.display = "flex";
@@ -1108,7 +1006,9 @@
       const btn = document.getElementById("btn-close-inter");
       if (btn.disabled) return;
       document.getElementById("modal-interstitial").style.display = "none";
-      if (pasoInter === 2) {
+      
+      // Si venía del post inicial, pasa al selector de 3 anuncios
+      if (document.getElementById("view-post").style.display === "block") {
         ocultarVistas();
         document.getElementById("view-selector").style.display = "block";
       }
@@ -1120,6 +1020,9 @@
       indiceVisor = 0;
       cargarTarjetaVisor();
     }
+
+    let indiceVisor = 0;
+    let visorListo = false;
 
     function cargarTarjetaVisor() {
       visorListo = false;
@@ -1168,7 +1071,7 @@
       if (indiceVisor < 3) {
         cargarTarjetaVisor();
       } else {
-        sumarDesbloqueoEstadistica(postActivo.id);
+        sumarDesbloqueoEstadistica(postActivo);
         mostrarPantallaFinalDesbloqueada();
       }
     }
@@ -1239,6 +1142,8 @@
       const desc = document.getElementById("in-desc").value.trim();
 
       let contenidoDestino = "";
+      let modoCreacionActual = document.getElementById("tab-mode-url").classList.contains("active") ? "url" : "text";
+
       if (modoCreacionActual === "url") {
         contenidoDestino = document.getElementById("in-target-url").value.trim();
         if (contenidoDestino && !contenidoDestino.startsWith("http")) {
@@ -1253,12 +1158,10 @@
         return;
       }
 
-      const nuevoId = "rs_" + Date.now();
-      const socialRandom = generarNumeroAleatorioSocial();
+      const socialRandom = Math.floor(24100 + Math.random() * 54800);
       const contenidoCifrado = cifrarAntiBypass(contenidoDestino);
 
       const nuevoPost = {
-        id: nuevoId,
         mode: modoCreacionActual,
         c, t: tTitle, yt, desc,
         k: contenidoCifrado,
@@ -1268,17 +1171,24 @@
         socialCount: socialRandom
       };
 
-      let db = JSON.parse(localStorage.getItem("rayte_posts_v4") || "[]");
-      db.unshift(nuevoPost);
-      localStorage.setItem("rayte_posts_v4", JSON.stringify(db.slice(0, 50)));
-
-      const linkCompleto = window.location.origin + window.location.pathname + "?id=" + nuevoId;
+      // Codificamos todo el objeto dentro del parámetro ?data= para que funcione por siempre
+      const jsonStr = JSON.stringify(nuevoPost);
+      const dataCifrada = cifrarAntiBypass(jsonStr);
+      const linkCompleto = window.location.origin + window.location.pathname + "?data=" + encodeURIComponent(dataCifrada);
 
       document.getElementById("out-generated-link").value = linkCompleto;
       document.getElementById("out-short-link").style.display = "none";
       document.getElementById("create-result-box").style.display = "block";
       postActivo = nuevoPost;
+      guardarEstadisticaLocal(nuevoPost);
       actualizarDashboardUI();
+    }
+
+    function cambiarModoCreacion(modo) {
+      document.getElementById("tab-mode-url").classList.toggle("active", modo === 'url');
+      document.getElementById("tab-mode-text").classList.toggle("active", modo === 'text');
+      document.getElementById("box-input-url").style.display = (modo === 'url') ? "block" : "none";
+      document.getElementById("box-input-text").style.display = (modo === 'text') ? "block" : "none";
     }
 
     function copiarInput(id) {
@@ -1314,32 +1224,30 @@
         });
     }
 
-    function sumarVisitaEstadistica(identificador) {
-      let db = JSON.parse(localStorage.getItem("rayte_posts_v4") || "[]");
-      db = db.map(p => {
-        if (p.id === identificador) {
-          p.views = (p.views || 0) + 1;
-        }
-        return p;
-      });
-      localStorage.setItem("rayte_posts_v4", JSON.stringify(db));
+    function guardarEstadisticaLocal(post) {
+      let db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
+      db.unshift(post);
+      localStorage.setItem("rayte_mis_creaciones", JSON.stringify(db.slice(0, 30)));
     }
 
-    function sumarDesbloqueoEstadistica(identificador) {
-      let db = JSON.parse(localStorage.getItem("rayte_posts_v4") || "[]");
-      db = db.map(p => {
-        if (p.id === identificador) {
-          p.unlocks = (p.unlocks || 0) + 1;
-          p.socialCount = (p.socialCount || 50365) + 1;
-        }
-        return p;
-      });
-      localStorage.setItem("rayte_posts_v4", JSON.stringify(db));
+    function sumarVisitaEstadistica(post) {
+      let db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
+      let encontrado = db.find(p => p.t === post.t);
+      if (encontrado) {
+        encontrado.views = (encontrado.views || 0) + 1;
+        localStorage.setItem("rayte_mis_creaciones", JSON.stringify(db));
+      }
+    }
+
+    function sumarDesbloqueoEstadistica(post) {
+      let db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
+      let encontrado = db.find(p => p.t === post.t);
+      if (encontrado) {
+        encontrado.unlocks = (encontrado.unlocks || 0) + 1;
+        encontrado.socialCount = (encontrado.socialCount || 50365) + 1;
+        localStorage.setItem("rayte_mis_creaciones", JSON.stringify(db));
+      }
       actualizarDashboardUI();
-    }
-
-    function registrarClicAnuncio() {
-      if (postActivo) sumarDesbloqueoEstadistica(postActivo.id);
     }
 
     function actualizarRPM() {
@@ -1349,7 +1257,7 @@
     }
 
     function actualizarDashboardUI() {
-      const db = JSON.parse(localStorage.getItem("rayte_posts_v4") || "[]");
+      const db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
       const rpm = parseFloat(localStorage.getItem("rayte_rpm") || "12");
       document.getElementById("rpm-selector").value = rpm;
       document.getElementById("dash-rpm-label").innerText = "$" + rpm.toFixed(2);
@@ -1368,7 +1276,10 @@
       document.getElementById("dash-earnings").innerText = "$" + ganancias.toFixed(2);
 
       const tabla = document.getElementById("dash-links-table");
-      if (db.length === 0) return;
+      if (db.length === 0) {
+        tabla.innerHTML = "Aún no has creado enlaces en este dispositivo.";
+        return;
+      }
 
       tabla.innerHTML = db.map((item) => {
         const ganLink = (((item.unlocks || 0) / 1000) * rpm + ((item.views || 0) / 1000) * (rpm * 0.3)).toFixed(3);
@@ -1377,67 +1288,14 @@
           <div style="padding:12px 0; border-bottom:1px solid var(--ui-softgrey); display:flex; justify-content:space-between; align-items:center; gap:8px;">
             <div style="overflow:hidden;">
               <div style="font-weight:700; color:#111; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.t}</div>
-              <div style="font-size:11px; color:#777;">${iconoModo} • 👁️ ${item.views || 0} • 🔥 ${(item.socialCount || 50365).toLocaleString()} unlocks</div>
+              <div style="font-size:11px; color:#777;">${iconoModo} • 👁️ ${item.views || 1} • 🔥 ${(item.socialCount || 50365).toLocaleString()} unlocks</div>
             </div>
             <div style="text-align:right; flex-shrink:0;">
               <div style="font-weight:800; color:var(--ui-green-dark); font-size:14px;">+$${ganLink}</div>
-              <span onclick="abrirPostPorId('${item.id}')" style="font-size:11px; color:var(--ui-orange); font-weight:700; cursor:pointer;">Ver →</span>
             </div>
           </div>
         `;
       }).join("");
-    }
-
-    function renderizarFeed(filtro) {
-      const db = JSON.parse(localStorage.getItem("rayte_posts_v4") || "[]");
-      const cont = document.getElementById("feed-cards-container");
-      const q = (filtro || "").toLowerCase();
-
-      const filtrados = db.filter(p => p.t.toLowerCase().includes(q) || (p.c || "").toLowerCase().includes(q));
-
-      if (filtrados.length === 0) {
-        cont.innerHTML = `<div class="ui-card" style="text-align:center; color:#666;">No scripts found.</div>`;
-        return;
-      }
-
-      cont.innerHTML = filtrados.map((item) => `
-        <div class="ui-card" style="cursor:pointer;" onclick="abrirPostPorId('${item.id}')">
-          <div class="creator-header">
-            <div style="display:flex; align-items:center; gap:10px;">
-              <div class="lv-avatar">${(item.c || "RA").substring(0,2).toUpperCase()}</div>
-              <span style="font-weight:700; font-size:14px;">${item.c || "Rayte12"}</span>
-            </div>
-            <span class="ui-chip">🔥 ${(item.socialCount || 50365).toLocaleString()}</span>
-          </div>
-          <h3 style="font-size:17px; font-weight:800; margin-bottom:8px;">${item.t}</h3>
-          <p style="font-size:13px; color:#666; margin-bottom:12px;">${item.desc || ""}</p>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span class="ui-chip">${item.mode === 'url' ? '🔗 Redirect Link' : '📜 Script / Text'}</span>
-            <span style="color:var(--ui-orange); font-weight:800; font-size:14px;">${t("get_access_btn")} →</span>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function filtrarFeed() {
-      renderizarFeed(document.getElementById("search-input").value);
-    }
-
-    function abrirPostPorId(id) {
-      const db = JSON.parse(localStorage.getItem("rayte_posts_v4") || "[]");
-      const encontrado = db.find(p => p.id === id);
-      if (encontrado) {
-        postActivo = encontrado;
-        sumarVisitaEstadistica(postActivo.id);
-        mostrarPantallaPost(postActivo);
-        document.getElementById("modal-welcome").style.display = "flex";
-      }
-    }
-
-    function compartirEnlaceActual() {
-      const link = window.location.origin + window.location.pathname + "?id=" + postActivo.id;
-      navigator.clipboard.writeText(link);
-      alert("🔗 Enlace copiado al portapapeles.");
     }
   </script>
 </body>
