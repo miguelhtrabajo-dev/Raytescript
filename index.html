@@ -3,24 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Rayte Script | The Search Engine for Exclusive Scripts & Content</title>
+  <title>Rayte Script | Exclusive Content & Script Unlocker</title>
   
-  <!-- Tipografías Oficiales Extraídas del HTML: Outfit + Material Icons -->
+  <!-- Tipografías Oficiales: Outfit + Material Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <!-- =================================================================
+       ZONA SCRIPT GLOBAL (MONETAG / ADSTERRA):
+       Pega aquí tu código de "In-Page Push" o "Vignette Banner"
+       ================================================================= -->
+
   <style>
-    /* VARIABLES OFICIALES EXTRAÍDAS DEL SISTEMA */
     :root {
       --ui-orange: #fe9900;
       --ui-orange-hover: #fead33;
-      --ui-orange-light: #ffdfb0;
       --ui-orange-transparent-10: #fe99001a;
       --ui-charcoalgrey: #171717;
-      --ui-charcoalgrey-hover: #383838;
-      --ui-purpley: #c5b3ff;
       --ui-purpley-light: #e8e1ff;
       --ui-lightgrey: #f5f5f5;
       --ui-softgrey: #e8e8e8;
@@ -44,8 +45,20 @@
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
     }
-    /* Espacio inferior amplio para que la barra flotante NUNCA tape ningún botón */
-    body { padding-bottom: 165px; }
+    body { padding-bottom: 175px; }
+
+    /* BANNERS LATERALES SOLO PARA PC (NO MOLESTAN EN CELULAR) */
+    .pc-side-ad {
+      position: fixed; top: 100px; width: 160px; height: 600px;
+      background: var(--ui-white); border-radius: 16px; border: 1px solid var(--ui-softgrey);
+      box-shadow: var(--ui-shadow); display: none; flex-direction: column;
+      align-items: center; justify-content: center; padding: 10px; text-align: center; z-index: 100;
+    }
+    .pc-side-left { left: calc(50% - 420px); }
+    .pc-side-right { right: calc(50% - 420px); }
+    @media (min-width: 900px) {
+      .pc-side-ad { display: flex; }
+    }
 
     /* HEADER CÁPSULA SUPERIOR */
     .header-shell {
@@ -53,13 +66,13 @@
       position: sticky; top: 0; z-index: 800; background: linear-gradient(180deg, var(--ui-lightgrey) 80%, transparent);
     }
     .top-pill-bar {
-      background: var(--ui-white); border-radius: 999px; padding: 12px 20px;
+      background: var(--ui-white); border-radius: 999px; padding: 10px 18px;
       display: flex; align-items: center; justify-content: space-between;
       box-shadow: var(--ui-shadow);
     }
     .brand-box {
-      display: flex; align-items: center; gap: 10px; text-decoration: none;
-      color: var(--ui-charcoalgrey); font-weight: 800; font-size: 20px; letter-spacing: -0.4px; cursor: pointer;
+      display: flex; align-items: center; gap: 9px; text-decoration: none;
+      color: var(--ui-charcoalgrey); font-weight: 800; font-size: 19px; letter-spacing: -0.4px; cursor: pointer;
     }
     .brand-icon-mark {
       width: 28px; height: 28px; border-radius: 8px;
@@ -67,21 +80,34 @@
       color: var(--ui-white); display: flex; align-items: center; justify-content: center;
       font-weight: 800; font-size: 16px; box-shadow: 0 3px 8px rgba(254, 153, 0, 0.35);
     }
-    .top-actions { display: flex; align-items: center; gap: 14px; color: var(--ui-charcoalgrey); }
+    .top-actions { display: flex; align-items: center; gap: 8px; }
+    .lang-pill {
+      background: var(--ui-lightgrey); border: 1px solid var(--ui-stonegrey);
+      border-radius: 999px; padding: 4px 8px; font-size: 11px; font-weight: 700;
+      font-family: inherit; cursor: pointer; outline: none;
+    }
     .icon-btn {
       background: none; border: none; cursor: pointer; display: flex;
       align-items: center; justify-content: center; color: var(--ui-charcoalgrey); padding: 4px;
     }
 
-    /* CONTENEDOR MÓVIL CENTRAL */
+    /* CONTENEDOR PRINCIPAL */
     .app-container { max-width: 480px; margin: 0 auto; padding: 0 14px; }
+
+    /* MINI BANNER EXTRA DEBAJO DEL HEADER (NO INVASIVO) */
+    .micro-ad-strip {
+      background: var(--ui-white); border: 1px solid var(--ui-softgrey); border-radius: 14px;
+      padding: 8px 12px; margin: 6px 0 12px; display: flex; align-items: center;
+      justify-content: space-between; box-shadow: var(--ui-shadow); cursor: pointer;
+    }
+    .micro-ad-tag { background: #e0f2fe; color: #0284c7; font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px; }
 
     .back-row {
       display: inline-flex; align-items: center; gap: 6px; font-size: 14px;
-      font-weight: 600; color: var(--ui-charcoalgrey); margin: 8px 4px 12px; cursor: pointer;
+      font-weight: 600; color: var(--ui-charcoalgrey); margin: 4px 4px 10px; cursor: pointer;
     }
 
-    /* TARJETAS Y BOTONES OFICIALES */
+    /* TARJETAS Y BOTONES */
     .ui-card {
       background: var(--ui-white); border-radius: 24px; padding: 20px;
       box-shadow: var(--ui-shadow); margin-bottom: 16px;
@@ -98,7 +124,7 @@
 
     .btn-outline-orange {
       width: 100%; background: var(--ui-white); color: var(--ui-charcoalgrey);
-      border: 2px solid var(--ui-orange); height: 46px; border-radius: 999px;
+      border: 2px solid var(--ui-orange); height: 45px; border-radius: 999px;
       font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer;
       display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px;
     }
@@ -109,6 +135,14 @@
       display: flex; align-items: center; justify-content: center; gap: 8px;
     }
 
+    /* CONTADOR DE PRUEBA SOCIAL ("50,365 personas desbloquearon...") */
+    .social-proof-counter {
+      margin-top: 12px; font-size: 12px; color: #555; font-weight: 600;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      background: #fafafa; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--ui-softgrey);
+    }
+    .social-proof-counter b { color: var(--ui-charcoalgrey); font-weight: 800; }
+
     /* ANUNCIO DIVIDIDO ESTILO CAPTURA 3 */
     .ad-showcase-card {
       background: var(--ui-white); border-radius: 20px; overflow: hidden;
@@ -118,12 +152,12 @@
       position: absolute; top: 8px; right: 10px; background: rgba(255,255,255,0.92);
       color: #0284c7; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; z-index: 5;
     }
-    .ad-split-grid { display: flex; min-height: 200px; }
-    .ad-split-left { width: 46%; object-fit: cover; background: #ddd; }
-    .ad-split-right { width: 54%; padding: 16px 14px; display: flex; flex-direction: column; justify-content: space-between; }
+    .ad-split-grid { display: flex; min-height: 190px; }
+    .ad-split-left { width: 45%; object-fit: cover; background: #ddd; }
+    .ad-split-right { width: 55%; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; }
 
-    /* ELEMENTOS DEL POST (IMAGEN SUBIDA O VIDEO DE YOUTUBE) */
-    .creator-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    /* ELEMENTOS DEL POST */
+    .creator-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
     .lv-avatar {
       width: 38px; height: 38px; border-radius: 50%; background: #fef3c7; color: #f59e0b;
       display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px;
@@ -131,13 +165,12 @@
     .media-stage {
       width: 100%; border-radius: 18px; overflow: hidden; margin-bottom: 14px;
       background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
-      position: relative; min-height: 195px; display: flex; align-items: center; justify-content: center;
+      position: relative; min-height: 190px; display: flex; align-items: center; justify-content: center;
     }
-    .media-stage img { width: 100%; max-height: 260px; object-fit: cover; display: none; }
+    .media-stage img { width: 100%; max-height: 250px; object-fit: cover; display: none; }
     .media-stage iframe { width: 100%; height: 220px; border: none; display: none; }
     .media-default-text { text-align: center; color: var(--ui-white); padding: 24px; }
     .media-default-text h2 { font-size: 24px; font-weight: 800; margin-bottom: 4px; }
-    .media-default-text p { font-size: 15px; opacity: 0.9; font-weight: 500; }
 
     .chips-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
     .ui-chip {
@@ -146,15 +179,25 @@
     }
     .post-heading { font-size: 19px; font-weight: 700; line-height: 1.3; margin-bottom: 16px; }
 
+    /* SELECTOR DE TIPO EN EL CREADOR (MODO URL VS MODO TEXTO/SCRIPT) */
+    .mode-selector-tabs {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+      background: var(--ui-lightgrey); padding: 5px; border-radius: 14px; margin-bottom: 14px;
+    }
+    .mode-tab-btn {
+      padding: 10px; border-radius: 10px; border: none; font-family: inherit;
+      font-size: 13px; font-weight: 700; cursor: pointer; background: transparent; color: #666; transition: 0.2s;
+    }
+    .mode-tab-btn.active { background: var(--ui-white); color: var(--ui-charcoalgrey); box-shadow: var(--ui-shadow); }
+
     /* SUBIDOR DE IMAGEN DESDE CELULAR / PC */
     .upload-dropzone {
-      border: 2px dashed var(--ui-stonegrey); border-radius: 16px; padding: 18px;
-      text-align: center; cursor: pointer; background: var(--ui-lightgrey);
-      transition: 0.2s; position: relative;
+      border: 2px dashed var(--ui-stonegrey); border-radius: 16px; padding: 16px;
+      text-align: center; cursor: pointer; background: var(--ui-lightgrey); transition: 0.2s;
     }
     .upload-dropzone:hover { border-color: var(--ui-orange); background: var(--ui-orange-transparent-10); }
     .upload-preview-img {
-      width: 100%; max-height: 170px; object-fit: cover; border-radius: 12px;
+      width: 100%; max-height: 160px; object-fit: cover; border-radius: 12px;
       margin-top: 10px; display: none; border: 1px solid var(--ui-stonegrey);
     }
 
@@ -162,15 +205,15 @@
     .field-box { margin-bottom: 14px; text-align: left; }
     .field-box label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--ui-charcoalgrey); }
     .field-box input, .field-box textarea {
-      width: 100%; padding: 13px 14px; border: 1.5px solid var(--ui-stonegrey);
+      width: 100%; padding: 12px 14px; border: 1.5px solid var(--ui-stonegrey);
       border-radius: 14px; font-size: 14px; font-family: inherit; background: #fafafa; outline: none;
     }
     .field-box input:focus, .field-box textarea:focus { border-color: var(--ui-orange); background: var(--ui-white); }
 
     /* VISOR DE 3 ANUNCIOS (1/3, 2/3, 3/3) */
     .ad-frame-box {
-      position: relative; border-radius: 18px; overflow: hidden; height: 220px;
-      background: #111; margin-bottom: 14px;
+      position: relative; border-radius: 18px; overflow: hidden; height: 215px;
+      background: #111; margin-bottom: 14px; cursor: pointer;
     }
     .ad-frame-box img { width: 100%; height: 100%; object-fit: cover; }
     .pill-overlay-left {
@@ -194,7 +237,7 @@
     .step-dot.done { background: var(--ui-orange); }
     .step-caption { font-size: 12px; font-weight: 600; color: #383838; }
 
-    /* DASHBOARD DE GANANCIAS */
+    /* DASHBOARD */
     .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
     .stat-tile {
       background: var(--ui-lightgrey); border-radius: 18px; padding: 14px; text-align: left;
@@ -219,7 +262,7 @@
       display: none; flex-direction: column; justify-content: space-between; padding: 20px; overflow-y: auto;
     }
 
-    /* BARRA INFERIOR FIJA ESTILO CÁPSULA (NO TAPA EL CONTENIDO) */
+    /* BARRA INFERIOR FIJA */
     .earn-floating-pill {
       position: fixed; bottom: 78px; left: 50%; transform: translateX(-50%);
       background: var(--ui-charcoalgrey); color: var(--ui-white); padding: 7px 18px;
@@ -250,7 +293,24 @@
 </head>
 <body>
 
-  <!-- BARRA SUPERIOR CON TU MARCA: RAYTE SCRIPT -->
+  <!-- BANNERS LATERALES PARA VISITANTES DE PC (GANANCIA EXTRA SIN ESTORBAR EN MÓVIL) -->
+  <div class="pc-side-ad pc-side-left" onclick="registrarClicAnuncio()">
+    <span class="micro-ad-tag" style="margin-bottom:8px;">ⓘ Ad 160x600</span>
+    <!-- PEGA AQUÍ TU BANNER VERTICAL 160x600 DE ADSTERRA -->
+    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=300&q=80" style="width:100%; height:440px; object-fit:cover; border-radius:10px; margin-bottom:10px;">
+    <b style="font-size:13px;">Rayte Gaming Partner</b>
+    <span style="font-size:11px; color:var(--ui-orange); font-weight:700; margin-top:4px;">Abrir Oferta →</span>
+  </div>
+
+  <div class="pc-side-ad pc-side-right" onclick="registrarClicAnuncio()">
+    <span class="micro-ad-tag" style="margin-bottom:8px;">ⓘ Ad 160x600</span>
+    <!-- PEGA AQUÍ TU SEGUNDO BANNER VERTICAL 160x600 DE ADSTERRA -->
+    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=300&q=80" style="width:100%; height:440px; object-fit:cover; border-radius:10px; margin-bottom:10px;">
+    <b style="font-size:13px;">Scripts & Tools 2026</b>
+    <span style="font-size:11px; color:var(--ui-orange); font-weight:700; margin-top:4px;">Ver Más →</span>
+  </div>
+
+  <!-- HEADER SUPERIOR CON DETECTOR DE IDIOMA -->
   <div class="header-shell">
     <div class="top-pill-bar">
       <div class="brand-box" onclick="navegarA('for-you')">
@@ -258,10 +318,15 @@
         <span>Rayte Script</span>
       </div>
       <div class="top-actions">
-        <button class="icon-btn" onclick="navegarA('explore')" title="Buscar Scripts">
+        <select id="lang-switcher" class="lang-pill" onchange="cambiarIdiomaManual(this.value)">
+          <option value="es">🇪🇸 ES</option>
+          <option value="en">🇺🇸 EN</option>
+          <option value="pt">🇧🇷 PT</option>
+        </select>
+        <button class="icon-btn" onclick="navegarA('explore')" title="Search">
           <span class="material-icons">search</span>
         </button>
-        <button class="icon-btn" onclick="navegarA('dashboard')" title="Panel de Ganancias">
+        <button class="icon-btn" onclick="navegarA('dashboard')" title="Dashboard">
           <span class="material-icons">menu</span>
         </button>
       </div>
@@ -270,27 +335,36 @@
 
   <div class="app-container">
 
+    <!-- MINI BANNER SUPERIOR (SUMA IMPRESIONES EN TODAS LAS PÁGINAS SIN MOLESTAR) -->
+    <div class="micro-ad-strip" onclick="registrarClicAnuncio()">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span class="micro-ad-tag">AD</span>
+        <span style="font-size:12px; font-weight:700;" data-i18n="micro_ad_text">⚡ Ejecutores y Scripts Actualizados Sin Key 2026</span>
+      </div>
+      <span style="font-size:12px; font-weight:800; color:var(--ui-orange);">OPEN ›</span>
+    </div>
+
     <!-- ==========================================================
          PANTALLA 1: VISTA DEL ACORTADOR / POST DESBLOQUEABLE
          ========================================================== -->
     <div id="view-post" style="display: none;">
       <div class="back-row" onclick="navegarA('for-you')">
-        <span class="material-icons" style="font-size:18px;">arrow_back</span> Back
+        <span class="material-icons" style="font-size:18px;">arrow_back</span> <span data-i18n="back">Back</span>
       </div>
 
       <!-- BANNER PUBLICITARIO SUPERIOR (ESTILO CAPTURA 3) -->
-      <div class="ad-showcase-card">
+      <div class="ad-showcase-card" onclick="registrarClicAnuncio()" style="cursor:pointer;">
         <span class="ad-badge-info">ⓘ Ad</span>
-        <!-- PEGA AQUÍ TU CÓDIGO DE BANNER 300x250 CUANDO TENGAS TU CUENTA DE ADS -->
+        <!-- PEGA AQUÍ TU BANNER 300x250 DE ADSTERRA / MONETAG -->
         <div class="ad-split-grid">
           <img class="ad-split-left" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=80" alt="Ad">
           <div class="ad-split-right">
             <div>
-              <span style="background:var(--ui-red); color:#fff; font-size:10px; font-weight:800; padding:2px 7px; border-radius:8px;">PATROCINADO</span>
-              <h4 style="font-size:15px; font-weight:800; margin:8px 0 5px; line-height:1.25;">Herramientas & Recursos Gaming Pro</h4>
-              <p style="font-size:12px; color:#666; line-height:1.35;">Actualizaciones verificadas y scripts optimizados sin esperas.</p>
+              <span style="background:var(--ui-red); color:#fff; font-size:10px; font-weight:800; padding:2px 7px; border-radius:8px;">SPONSORED</span>
+              <h4 style="font-size:15px; font-weight:800; margin:8px 0 5px; line-height:1.25;" data-i18n="ad_card_title">Herramientas & Recursos Gaming Pro</h4>
+              <p style="font-size:12px; color:#666; line-height:1.35;" data-i18n="ad_card_sub">Actualizaciones verificadas y acceso rápido sin esperas.</p>
             </div>
-            <button class="btn-charcoal" style="height:34px; font-size:12px; border-radius:10px; margin-top:8px;" onclick="registrarClicAnuncio()">Descúbrelo ></button>
+            <button class="btn-charcoal" style="height:34px; font-size:12px; border-radius:10px; margin-top:8px;" data-i18n="discover_btn">Descúbrelo ></button>
           </div>
         </div>
       </div>
@@ -298,37 +372,51 @@
       <!-- TARJETA DEL POST CON FOTO SUBIDA O VIDEO DE YOUTUBE -->
       <div class="ui-card">
         <div class="creator-header">
-          <div class="lv-avatar" id="post-avatar">RA</div>
-          <span style="font-weight:700; font-size:15px;" id="post-author">Rayte12</span>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="lv-avatar" id="post-avatar">RA</div>
+            <span style="font-weight:700; font-size:15px;" id="post-author">Rayte12</span>
+          </div>
+          <span style="font-size:11px; color:var(--ui-green-dark); background:var(--ui-green-light); padding:3px 9px; border-radius:999px; font-weight:800;">✔ Verified</span>
         </div>
 
-        <!-- CONTENEDOR MULTIMEDIA: MUESTRA FOTO SUBIDA, VIDEO YOUTUBE O BANNER GRIS -->
+        <!-- CONTENEDOR MULTIMEDIA -->
         <div class="media-stage">
           <img id="post-img-display" src="" alt="Post Cover">
           <iframe id="post-yt-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <div class="media-default-text" id="post-default-cover">
             <h2 id="post-cover-type">Get Script from</h2>
-            <p>🌐 Rayte Script Hub</p>
+            <p>🌐 Rayte Script</p>
           </div>
         </div>
 
         <div class="chips-row">
           <span class="ui-chip"><span class="material-icons" style="font-size:14px;">public</span> Public</span>
-          <span class="ui-chip"><span class="material-icons" style="font-size:14px;">schedule</span> Active</span>
-          <span class="ui-chip"><span class="material-icons" style="font-size:14px;">thumb_up</span> 100%</span>
+          <span class="ui-chip"><span class="material-icons" style="font-size:14px;">verified</span> 100%</span>
           <span class="ui-chip"><span class="material-icons" style="font-size:14px;">visibility</span> <span id="post-views-num">1</span></span>
         </div>
 
-        <h1 class="post-heading" id="post-title-text">Cargando script...</h1>
+        <h1 class="post-heading" id="post-title-text">Loading...</h1>
 
-        <button class="btn-primary-orange" onclick="abrirIntersticialPaso2()">Get access</button>
-        <button class="btn-outline-orange" onclick="compartirEnlaceActual()">Share post</button>
+        <button class="btn-primary-orange" onclick="abrirIntersticialPaso2()" data-i18n="get_access_btn">Get access</button>
+        <button class="btn-outline-orange" onclick="compartirEnlaceActual()" data-i18n="share_post_btn">Share post</button>
+
+        <!-- CONTADOR ALEATORIO DE PERSONAS QUE DESBLOQUEARON EL ENLACE -->
+        <div class="social-proof-counter">
+          🔥 <b id="social-unlocks-number">50,365</b> <span data-i18n="people_unlocked">personas desbloquearon este enlace</span>
+        </div>
       </div>
 
       <!-- DESCRIPCIÓN -->
       <div class="ui-card">
-        <h4 style="font-size:16px; font-weight:800; margin-bottom:8px;">Description</h4>
+        <h4 style="font-size:16px; font-weight:800; margin-bottom:8px;" data-i18n="description_title">Description</h4>
         <p id="post-desc-text" style="font-size:14px; color:#383838; line-height:1.55; white-space:pre-line;"></p>
+      </div>
+
+      <!-- SEGUNDO BLOQUE PUBLICITARIO NO INVASIVO (AL FINAL DEL POST) -->
+      <div class="ui-card" onclick="registrarClicAnuncio()" style="cursor:pointer; border:1px solid var(--ui-softgrey); text-align:center; padding:14px;">
+        <span class="micro-ad-tag">ⓘ Native Ad</span>
+        <!-- PEGA AQUÍ TU NATIVE BANNER DE ADSTERRA -->
+        <p style="font-size:13px; font-weight:700; margin-top:6px;" data-i18n="bottom_ad_text">🚀 ¿Quieres descargar a máxima velocidad? Revisa el anuncio patrocinado</p>
       </div>
     </div>
 
@@ -337,17 +425,21 @@
          ========================================================== -->
     <div id="view-selector" style="display: none;">
       <div class="back-row" onclick="volverAlPostActual()">
-        <span class="material-icons" style="font-size:18px;">arrow_back</span> Back
+        <span class="material-icons" style="font-size:18px;">arrow_back</span> <span data-i18n="back">Back</span>
       </div>
       <div class="ui-card">
-        <p style="font-size:15px; font-weight:700; margin-bottom:16px;">Complete creator's chosen action:</p>
+        <p style="font-size:15px; font-weight:700; margin-bottom:16px;" data-i18n="choose_action">Complete creator's chosen action:</p>
         
         <div style="border:2px solid var(--ui-orange); border-radius:999px; padding:14px 20px; display:flex; justify-content:space-between; align-items:center; font-weight:800; margin-bottom:18px; background:var(--ui-orange-transparent-10);">
-          <span>Watch Ads</span>
+          <span data-i18n="watch_ads_label">Watch Ads</span>
           <span><span style="background:var(--ui-orange); color:#fff; padding:2px 8px; border-radius:6px; margin-right:4px;">3</span>Ads</span>
         </div>
 
-        <button class="btn-primary-orange" onclick="iniciarVisor3Ads()">Continue</button>
+        <button class="btn-primary-orange" onclick="iniciarVisor3Ads()" data-i18n="continue_btn">Continue</button>
+
+        <div class="social-proof-counter">
+          🔒 <span data-i18n="anti_bypass_notice">Protección Anti-Bypass activa • Desbloqueo seguro</span>
+        </div>
       </div>
     </div>
 
@@ -356,18 +448,18 @@
          ========================================================== -->
     <div id="view-visor" style="display: none;">
       <div class="back-row" onclick="volverAlPostActual()">
-        <span class="material-icons" style="font-size:18px;">arrow_back</span> Back
+        <span class="material-icons" style="font-size:18px;">arrow_back</span> <span data-i18n="back">Back</span>
       </div>
       <div class="ui-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
           <div style="display:flex; align-items:center; gap:8px;">
             <div class="lv-avatar" style="background:var(--ui-purpley-light); color:#6d28d9;">RS</div>
-            <span style="font-weight:700;">Rayte Ads</span>
+            <span style="font-weight:700;">Rayte Script</span>
           </div>
-          <span style="background:var(--ui-charcoalgrey); color:#fff; font-size:11px; font-weight:700; padding:5px 12px; border-radius:999px;">⚡ Sponsored</span>
+          <span onclick="registrarClicAnuncio()" style="background:var(--ui-charcoalgrey); color:#fff; font-size:11px; font-weight:700; padding:5px 12px; border-radius:999px; cursor:pointer;">⚡ Advertise here</span>
         </div>
 
-        <div class="ad-frame-box">
+        <div class="ad-frame-box" onclick="registrarClicAnuncio()">
           <span class="pill-overlay-left">Ad</span>
           <span class="pill-overlay-right" id="visor-counter">1/3</span>
           <img id="visor-ad-img" src="" alt="Ad">
@@ -382,112 +474,143 @@
           <div class="stepper-line"></div>
           <div class="step-col">
             <div class="step-dot" id="dot-1">1</div>
-            <span class="step-caption">View</span>
+            <span class="step-caption" data-i18n="step_view">View</span>
           </div>
           <div class="step-col">
             <div class="step-dot" id="dot-2">2</div>
-            <span class="step-caption">Complete</span>
+            <span class="step-caption" data-i18n="step_complete">Complete</span>
           </div>
           <div class="step-col">
             <div class="step-dot" id="dot-3">3</div>
-            <span class="step-caption">Done</span>
+            <span class="step-caption" data-i18n="step_done">Done</span>
           </div>
         </div>
 
-        <button id="visor-main-btn" class="btn-primary-orange" onclick="avanzarSiguienteAnuncio()">Viewing Ad...</button>
+        <button id="visor-main-btn" class="btn-primary-orange" onclick="avanzarSiguienteAnuncio()">Learn more</button>
       </div>
     </div>
 
     <!-- ==========================================================
-         PANTALLA 4: DESBLOQUEO COMPLETADO (CAPTURA 10)
+         PANTALLA 4: DESBLOQUEO COMPLETADO (REDIRECCIÓN AUTOMÁTICA O COPIAR TEXTO)
          ========================================================== -->
     <div id="view-unlocked" style="display: none;">
       <div class="back-row" onclick="volverAlPostActual()">
-        <span class="material-icons" style="font-size:18px;">arrow_back</span> Back
+        <span class="material-icons" style="font-size:18px;">arrow_back</span> <span data-i18n="back">Back</span>
       </div>
-      <div class="ui-card" style="text-align:center; padding:26px 20px;">
-        <h2 style="font-size:26px; font-weight:800; line-height:1.2;">You're ready to<br>access creativity!</h2>
-        <div style="width:82px; height:82px; border-radius:50%; background:var(--ui-green); color:#fff; font-size:44px; display:flex; align-items:center; justify-content:center; margin:18px auto; box-shadow:0 8px 22px rgba(124,207,0,0.35);">
-          <span class="material-icons" style="font-size:48px;">check</span>
+      <div class="ui-card" style="text-align:center; padding:24px 20px;">
+        <h2 style="font-size:25px; font-weight:800; line-height:1.2;" data-i18n="unlocked_heading">You're ready to<br>access creativity!</h2>
+        <div style="width:78px; height:78px; border-radius:50%; background:var(--ui-green); color:#fff; font-size:42px; display:flex; align-items:center; justify-content:center; margin:16px auto; box-shadow:0 8px 22px rgba(124,207,0,0.35);">
+          <span class="material-icons" style="font-size:44px;">check</span>
         </div>
-        <p style="font-size:14px; color:#555; line-height:1.45;">
-          Great job! Unlock the asset below.<br>We're just as excited as you are to see what's next!
+        <p style="font-size:14px; color:#555; line-height:1.45;" data-i18n="unlocked_sub">
+          Great job! Unlock the asset below.
         </p>
       </div>
 
+      <!-- ANUNCIO EXTRA JUSTO ARRIBA DE LA ENTREGA FINAL -->
+      <div class="micro-ad-strip" onclick="registrarClicAnuncio()" style="margin-bottom:14px;">
+        <span class="micro-ad-tag">SPONSORED</span>
+        <span style="font-size:12px; font-weight:700;" data-i18n="final_ad_banner">🔥 Oferta Especial Desbloqueada — Haz clic para ver</span>
+        <span style="font-size:12px; font-weight:800; color:var(--ui-orange);">GO ›</span>
+      </div>
+
       <div class="ui-card" style="text-align:center;">
-        <h3 style="font-size:19px; font-weight:800; margin-bottom:10px;">Your content is ready!</h3>
-        <div id="unlocked-box" style="background:var(--ui-lightgrey); border:1.5px solid var(--ui-stonegrey); border-radius:14px; padding:14px; font-family:monospace; font-size:13px; word-break:break-all; margin-bottom:16px; text-align:left; max-height:160px; overflow-y:auto;"></div>
-        <button class="btn-primary-orange" id="btn-final-delivery" onclick="ejecutarAccionFinal()">📋 Copiar Script / Abrir Link</button>
+        <h3 style="font-size:19px; font-weight:800; margin-bottom:10px;" data-i18n="content_ready">Your content is ready!</h3>
+        
+        <!-- AVISO DE REDIRECCIÓN AUTOMÁTICA (CUANDO ES MODO URL) -->
+        <div id="auto-redirect-banner" style="display:none; background:var(--ui-orange-transparent-10); border:1px solid var(--ui-orange); color:#b45309; padding:12px; border-radius:14px; font-size:14px; font-weight:700; margin-bottom:14px;">
+          🚀 <span data-i18n="redirecting_in">Redirigiendo automáticamente a tu enlace en</span> <span id="redirect-sec">3</span>s...
+        </div>
+
+        <!-- CUADRO DE TEXTO / SCRIPT (CUANDO ES MODO TEXTO O PARA VER EL LINK) -->
+        <div id="unlocked-box" style="background:var(--ui-lightgrey); border:1.5px solid var(--ui-stonegrey); border-radius:14px; padding:14px; font-family:monospace; font-size:13px; word-break:break-all; margin-bottom:16px; text-align:left; max-height:180px; overflow-y:auto; user-select:all;"></div>
+        
+        <!-- BOTÓN FINAL: COPIAR TEXTO O IR AL LINK -->
+        <button class="btn-primary-orange" id="btn-final-delivery" onclick="ejecutarAccionFinal()">📋 Copy / Open</button>
+
+        <div class="social-proof-counter">
+          ✅ <b id="unlocked-proof-num">50,366</b> <span data-i18n="people_unlocked">personas desbloquearon este enlace</span>
+        </div>
       </div>
     </div>
 
     <!-- ==========================================================
-         PANTALLA 5: CREAR ACORTADOR (BOTÓN +) CON SUBIDA DE FOTO DESDE PC/CELULAR Y VIDEO YOUTUBE
+         PANTALLA 5: CREAR ACORTADOR (BOTÓN +) CON OPCIÓN URL REDIRECT O TEXTO/SCRIPT
          ========================================================== -->
     <div id="view-create" style="display: none;">
       <div class="ui-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <span style="background:var(--ui-orange-transparent-10); color:#d97706; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:800;">➕ Creador de Acortadores</span>
-          <span style="font-size:12px; color:#666; font-weight:600;">Rayte Script</span>
+          <span style="background:var(--ui-orange-transparent-10); color:#d97706; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:800;">➕ Rayte Script Creator</span>
+          <span style="font-size:12px; color:var(--ui-green-dark); font-weight:700;">🔒 Anti-Bypass v2</span>
         </div>
-        <h2 style="font-size:21px; font-weight:800; margin-bottom:6px;">Crear Nuevo Enlace Monetizado</h2>
-        <p style="font-size:13px; color:#666; margin-bottom:16px;">Sube una imagen desde tu galería o PC, o pega un video de YouTube para tu acortador.</p>
+        <h2 style="font-size:21px; font-weight:800; margin-bottom:6px;" data-i18n="create_heading">Crear Nuevo Acortador</h2>
+        <p style="font-size:13px; color:#666; margin-bottom:14px;" data-i18n="create_sub">Elige si quieres redirigir a una URL automáticamente o entregar un Texto/Script para copiar.</p>
+
+        <!-- SELECTOR DE MODO: URL REDIRECT VS TEXTO/SCRIPT -->
+        <div class="mode-selector-tabs">
+          <button type="button" class="mode-tab-btn active" id="tab-mode-url" onclick="cambiarModoCreacion('url')">🔗 Redirección a URL</button>
+          <button type="button" class="mode-tab-btn" id="tab-mode-text" onclick="cambiarModoCreacion('text')">📜 Texto / Script (Copiar)</button>
+        </div>
 
         <div class="field-box">
-          <label>👤 Tu Alias de Creador</label>
+          <label>👤 Alias de Creador</label>
           <input type="text" id="in-creator" value="Rayte12" placeholder="Ej: Rayte12">
         </div>
 
         <div class="field-box">
-          <label>📌 Título del Script / Archivo *</label>
+          <label>📌 Título del Enlace / Script *</label>
           <input type="text" id="in-title" placeholder="Ej: Steal an egg script 2026 key new upd infinity">
         </div>
 
-        <!-- SUBIR IMAGEN DIRECTO DESDE EL CELULAR O COMPUTADOR -->
+        <!-- CAMPO DINÁMICO SEGÚN MODO ELEGIDO -->
+        <div class="field-box" id="box-input-url">
+          <label>🔗 URL de Destino (Redireccionará automáticamente al terminar los anuncios) *</label>
+          <input type="url" id="in-target-url" placeholder="https://mega.nz/... o https://tu-web.com">
+        </div>
+
+        <div class="field-box" id="box-input-text" style="display:none;">
+          <label>📜 Texto, Key o Script para Copiar (Se desbloqueará con botón de Copiar) *</label>
+          <textarea id="in-target-text" rows="4" placeholder='loadstring(game:HttpGet("https://raw.githubusercontent.com/..."))() o pega aquí tu texto/key'></textarea>
+        </div>
+
+        <!-- SUBIR IMAGEN DESDE CELULAR O PC -->
         <div class="field-box">
           <label>🖼️ Subir Imagen desde tu Celular o PC (Opcional)</label>
           <div class="upload-dropzone" onclick="document.getElementById('in-file-img').click()">
-            <span class="material-icons" style="font-size:32px; color:var(--ui-orange);">cloud_upload</span>
-            <p style="font-size:13px; font-weight:700; margin-top:4px;" id="upload-status-text">Toca aquí para elegir una foto de tu galería o PC</p>
-            <p style="font-size:11px; color:#777;">Se optimiza automáticamente para tu enlace</p>
+            <span class="material-icons" style="font-size:30px; color:var(--ui-orange);">add_photo_alternate</span>
+            <p style="font-size:13px; font-weight:700; margin-top:4px;" id="upload-status-text">Toca aquí para elegir una imagen de tu galería o PC</p>
             <input type="file" id="in-file-img" accept="image/*" style="display:none;" onchange="procesarImagenLocal(event)">
-            <img id="preview-uploaded-img" class="upload-preview-img" alt="Vista previa">
+            <img id="preview-uploaded-img" class="upload-preview-img" alt="Preview">
           </div>
         </div>
 
-        <!-- O COLOCAR URL DE VIDEO DE YOUTUBE -->
+        <!-- VIDEO DE YOUTUBE -->
         <div class="field-box">
-          <label>▶️ URL de Video de YouTube (Opcional - Se verá en el Post)</label>
-          <input type="text" id="in-yt" placeholder="Ej: https://www.youtube.com/watch?v=... o link de YouTube">
+          <label>▶️ URL de Video de YouTube (Opcional)</label>
+          <input type="text" id="in-yt" placeholder="https://www.youtube.com/watch?v=...">
         </div>
 
         <div class="field-box">
-          <label>📝 Descripción del Script / Instrucciones</label>
-          <textarea id="in-desc" rows="3" placeholder="🔥 INSTANT SCRIPT — Explica las funciones, actualización o pasos..."></textarea>
-        </div>
-
-        <div class="field-box">
-          <label>🔒 Script (`loadstring...`) o URL Final a Desbloquear *</label>
-          <input type="text" id="in-target" placeholder="https://... o loadstring(game:HttpGet(...))">
+          <label>📝 Descripción del Post</label>
+          <textarea id="in-desc" rows="3" placeholder="🔥 INSTANT SCRIPT — Detalles, instrucciones o notas..."></textarea>
         </div>
 
         <button class="btn-primary-orange" onclick="generarAcortadorRayte()">
-          <span class="material-icons">add_link</span> Crear Acortador Ahora
+          <span class="material-icons">bolt</span> Generar Enlace Protegido
         </button>
 
-        <!-- CAJA DE RESULTADO -->
+        <!-- RESULTADO -->
         <div id="create-result-box" style="display:none; margin-top:18px; background:var(--ui-green-light); border:1.5px solid var(--ui-green); padding:16px; border-radius:18px;">
-          <p style="font-size:14px; font-weight:800; color:var(--ui-green-dark); margin-bottom:8px;">✅ ¡Acortador creado y guardado!</p>
+          <p style="font-size:14px; font-weight:800; color:var(--ui-green-dark); margin-bottom:8px;">✅ ¡Enlace Anti-Bypass creado con éxito!</p>
           <input type="text" id="out-generated-link" readonly style="width:100%; padding:10px; border-radius:10px; border:1px solid #bbf7d0; font-size:12px; margin-bottom:10px; background:#fff;">
           
           <div style="display:flex; gap:8px; margin-bottom:10px;">
             <button class="btn-charcoal" style="height:40px; font-size:13px;" onclick="copiarInput('out-generated-link')">📋 Copiar Link</button>
-            <button class="btn-primary-orange" style="height:40px; font-size:13px;" onclick="abrirLinkGenerado()">👁️ Ver mi Post</button>
+            <button class="btn-primary-orange" style="height:40px; font-size:13px;" onclick="abrirLinkGenerado()">👁️ Probar Link</button>
           </div>
 
           <button id="btn-short-yt" class="btn-outline-orange" style="height:38px; font-size:12px; margin-top:0; background:#fff;" onclick="acortarConIsGd()">
-            ✨ Generar Link Cortito para YouTube (is.gd)
+            ✨ Acortar Link para YouTube (is.gd)
           </button>
           <input type="text" id="out-short-link" readonly style="display:none; width:100%; padding:9px; border-radius:10px; border:1px solid #bbf7d0; font-size:13px; font-weight:700; margin-top:8px; background:#fff; color:#0284c7;">
         </div>
@@ -495,23 +618,22 @@
     </div>
 
     <!-- ==========================================================
-         PANTALLA 6: DASHBOARD DE GANANCIAS REALES (BOTÓN DASHBOARD)
+         PANTALLA 6: DASHBOARD DE GANANCIAS REALES
          ========================================================== -->
     <div id="view-dashboard" style="display: none;">
       <div class="ui-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-          <h2 style="font-size:21px; font-weight:800;">📊 Creator Dashboard</h2>
-          <span style="background:var(--ui-green-light); color:var(--ui-green-dark); font-size:11px; font-weight:800; padding:4px 10px; border-radius:999px;">Monetización Activa</span>
+          <h2 style="font-size:21px; font-weight:800;">📊 Rayte Script Dashboard</h2>
+          <span style="background:var(--ui-green-light); color:var(--ui-green-dark); font-size:11px; font-weight:800; padding:4px 10px; border-radius:999px;">Activo</span>
         </div>
-        <p style="font-size:13px; color:#666; margin-bottom:16px;">Resumen de ganancias generadas por tus enlaces acortados y visualizaciones de anuncios.</p>
 
         <div class="stats-grid">
           <div class="stat-tile highlight">
-            <div class="label">💰 Saldo Ganado (USD)</div>
+            <div class="label">💰 Ganancias (USD)</div>
             <div class="val" id="dash-earnings">$0.00</div>
           </div>
           <div class="stat-tile">
-            <div class="label">🔓 Links Desbloqueados</div>
+            <div class="label">🔓 Desbloqueos</div>
             <div class="val" id="dash-unlocks">0</div>
           </div>
           <div class="stat-tile">
@@ -519,58 +641,59 @@
             <div class="val" id="dash-views">0</div>
           </div>
           <div class="stat-tile">
-            <div class="label">📈 RPM Configurado</div>
-            <div class="val" id="dash-rpm-label">$10.00</div>
+            <div class="label">📈 RPM Activo</div>
+            <div class="val" id="dash-rpm-label">$12.00</div>
           </div>
         </div>
 
         <div style="background:var(--ui-lightgrey); padding:12px 14px; border-radius:14px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center;">
-          <span style="font-size:12px; font-weight:700;">Ajustar RPM estimado (Pago c/1000 vistas):</span>
+          <span style="font-size:12px; font-weight:700;">Tarifa RPM (Pago c/1,000 visitas):</span>
           <select id="rpm-selector" onchange="actualizarRPM()" style="padding:6px 10px; border-radius:8px; border:1px solid var(--ui-stonegrey); font-weight:700; font-family:inherit;">
             <option value="5">$5.00 USD</option>
-            <option value="10" selected>$10.00 USD</option>
+            <option value="10">$10.00 USD</option>
+            <option value="12" selected>$12.00 USD</option>
             <option value="15">$15.00 USD</option>
           </select>
         </div>
 
-        <button class="btn-primary-orange" onclick="navegarA('create')">➕ Crear Nuevo Enlace</button>
+        <button class="btn-primary-orange" onclick="navegarA('create')">➕ Crear Nuevo Acortador</button>
       </div>
 
       <div class="ui-card">
-        <h3 style="font-size:16px; font-weight:800; margin-bottom:12px;">🔗 Rendimiento por Enlace Creado</h3>
+        <h3 style="font-size:16px; font-weight:800; margin-bottom:12px;">🔗 Mis Enlaces y Ganancias</h3>
         <div id="dash-links-table" style="font-size:13px; color:#666;">Aún no has creado enlaces.</div>
       </div>
     </div>
 
     <!-- ==========================================================
-         PANTALLA 7: FOR YOU & EXPLORE (FEED DE SCRIPTS PUBLICADOS)
+         PANTALLA 7: FOR YOU & EXPLORE
          ========================================================== -->
     <div id="view-feed" style="display: none;">
       <div class="ui-card" id="search-bar-box" style="display:none; padding:14px 18px;">
-        <input type="text" id="search-input" oninput="filtrarFeed()" placeholder="🔍 Buscar scripts por título o creador..." style="width:100%; padding:11px 14px; border-radius:999px; border:1.5px solid var(--ui-stonegrey); font-family:inherit; font-size:14px; outline:none;">
+        <input type="text" id="search-input" oninput="filtrarFeed()" placeholder="🔍 Search scripts..." style="width:100%; padding:11px 14px; border-radius:999px; border:1.5px solid var(--ui-stonegrey); font-family:inherit; font-size:14px; outline:none;">
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin:6px 4px 12px;">
-        <h2 style="font-size:19px; font-weight:800;" id="feed-heading">🔥 For You — Scripts Destacados</h2>
-        <span style="font-size:12px; color:var(--ui-orange); font-weight:700; cursor:pointer;" onclick="navegarA('create')">+ Publicar</span>
+        <h2 style="font-size:19px; font-weight:800;" id="feed-heading">🔥 For You — Scripts</h2>
+        <span style="font-size:12px; color:var(--ui-orange); font-weight:700; cursor:pointer;" onclick="navegarA('create')">+ Create Link</span>
       </div>
 
       <div id="feed-cards-container"></div>
     </div>
 
     <!-- ==========================================================
-         PANTALLA 8: PROFILE (PERFIL DE CREADOR RAYTE SCRIPT)
+         PANTALLA 8: PROFILE
          ========================================================== -->
     <div id="view-profile" style="display: none;">
       <div class="ui-card" style="text-align:center;">
         <div class="lv-avatar" style="width:68px; height:68px; font-size:24px; margin:0 auto 10px;">RA</div>
         <h2 style="font-size:21px; font-weight:800;">Rayte12</h2>
-        <p style="font-size:13px; color:#666; margin-bottom:14px;">Creador Oficial verificado en Rayte Script • 100% Positive Rating</p>
-        <div style="display:flex; justify-content:center; gap:12px; margin-bottom:16px;">
-          <span class="ui-chip">👍 100% Confiable</span>
-          <span class="ui-chip">⚡ Respuesta Instantánea</span>
+        <p style="font-size:13px; color:#666; margin-bottom:14px;">Official Creator at Rayte Script • 100% Positive Rating</p>
+        <div style="display:flex; justify-content:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
+          <span class="ui-chip">🔥 +50,365 Unlocks</span>
+          <span class="ui-chip">👍 100% Verified</span>
         </div>
-        <button class="btn-primary-orange" onclick="navegarA('dashboard')">Ver Mis Ganancias ($)</button>
+        <button class="btn-primary-orange" onclick="navegarA('dashboard')">📊 Ver Panel de Ganancias</button>
       </div>
     </div>
 
@@ -580,12 +703,12 @@
   <div class="backdrop-modal" id="modal-welcome">
     <div class="welcome-dialog">
       <div style="color:var(--ui-orange); font-weight:700; font-size:15px; margin-bottom:8px;">Welcome to Rayte Script</div>
-      <h2 style="font-size:23px; font-weight:800; margin-bottom:10px;">Get content access</h2>
-      <p style="font-size:14px; color:#666; margin-bottom:20px; line-height:1.4;">A short ad will be shown before you get the content.</p>
+      <h2 style="font-size:23px; font-weight:800; margin-bottom:10px;" data-i18n="welcome_title">Get content access</h2>
+      <p style="font-size:14px; color:#666; margin-bottom:20px; line-height:1.4;" data-i18n="welcome_sub">A short ad will be shown before you get the content.</p>
       <div onclick="abrirIntersticialPaso1()" style="border:1.5px solid var(--ui-stonegrey); border-radius:16px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; text-align:left; cursor:pointer;">
         <div>
-          <div style="font-weight:800; font-size:15px;">View a short ad</div>
-          <div style="font-size:12px; color:#666;">Site-wide access for 24 hours</div>
+          <div style="font-weight:800; font-size:15px;" data-i18n="view_short_ad">View a short ad</div>
+          <div style="font-size:12px; color:#666;" data-i18n="access_24h">Site-wide access for 24 hours</div>
         </div>
         <div style="width:32px; height:32px; border-radius:50%; background:var(--ui-orange); color:#fff; display:flex; align-items:center; justify-content:center;">▶</div>
       </div>
@@ -601,42 +724,212 @@
 
     <div style="max-width:440px; width:100%; margin:auto; text-align:left; padding:16px 0;">
       <h1 id="inter-title" style="font-size:28px; font-weight:800; margin-bottom:8px;">Submit Your Music & Content Online</h1>
-      <p style="color:#666; font-size:14px; margin-bottom:16px;">Plataforma verificada recomendada por Rayte Script para creadores y gamers.</p>
-      <img id="inter-img" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=700&q=80" style="width:100%; height:220px; object-fit:cover; border-radius:18px; margin-bottom:18px;">
+      <p style="color:#666; font-size:14px; margin-bottom:16px;">Sponsored partner recommended by Rayte Script.</p>
+      <img id="inter-img" onclick="registrarClicAnuncio()" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=700&q=80" style="width:100%; height:220px; object-fit:cover; border-radius:18px; margin-bottom:18px; cursor:pointer;">
       <button class="btn-charcoal" onclick="cerrarIntersticial()">OPEN ></button>
     </div>
     <div></div>
   </div>
 
-  <!-- BARRA FLOTANTE DE GANANCIAS + DOCK DE 5 BOTONES FUNCIONALES -->
+  <!-- BARRA FLOTANTE DE GANANCIAS + DOCK INFERIOR -->
   <div class="earn-floating-pill" onclick="navegarA('dashboard')">
-    Post & earn! <span id="pill-total-paid">$27.139.864</span> paid to creators.
+    Post & earn! <span>$27.139.864</span> paid to creators.
   </div>
 
   <div class="bottom-nav-dock">
     <button class="dock-tab active" id="tab-for-you" onclick="navegarA('for-you')">
       <span class="material-icons">home</span>
-      <span>For you</span>
+      <span data-i18n="nav_foryou">For you</span>
     </button>
     <button class="dock-tab" id="tab-explore" onclick="navegarA('explore')">
       <span class="material-icons">explore</span>
-      <span>Explore</span>
+      <span data-i18n="nav_explore">Explore</span>
     </button>
-    <button class="dock-fab-plus" onclick="navegarA('create')" title="Crear Acortador">
+    <button class="dock-fab-plus" onclick="navegarA('create')" title="Create">
       <span class="material-icons">add</span>
     </button>
     <button class="dock-tab" id="tab-dashboard" onclick="navegarA('dashboard')">
       <span class="material-icons">dashboard</span>
-      <span>Dashboard</span>
+      <span data-i18n="nav_dashboard">Dashboard</span>
     </button>
     <button class="dock-tab" id="tab-profile" onclick="navegarA('profile')">
       <span class="material-icons">person</span>
-      <span>Profile</span>
+      <span data-i18n="nav_profile">Profile</span>
     </button>
   </div>
 
   <script>
-    // ANUNCIOS DEL VISOR 1/3, 2/3, 3/3
+    // =========================================================================
+    // 1. SISTEMA MULTI-IDIOMA AUTOMÁTICO (ESPAÑOL, INGLÉS, PORTUGUÉS)
+    // =========================================================================
+    const TRADUCCIONES = {
+      es: {
+        back: "Atrás",
+        micro_ad_text: "⚡ Ejecutores y Scripts Actualizados Sin Key 2026",
+        ad_card_title: "Herramientas & Recursos Gaming Pro",
+        ad_card_sub: "Actualizaciones verificadas y acceso rápido sin esperas.",
+        discover_btn: "Descúbrelo >",
+        get_access_btn: "Obtener acceso",
+        share_post_btn: "Compartir enlace",
+        people_unlocked: "personas desbloquearon este enlace",
+        description_title: "Descripción",
+        bottom_ad_text: "🚀 ¿Quieres acceso rápido? Revisa la recomendación patrocinada",
+        choose_action: "Completa los pasos del creador para desbloquear:",
+        watch_ads_label: "Ver Anuncios",
+        continue_btn: "Continuar",
+        anti_bypass_notice: "Protección Anti-Bypass activa • Verificación en tiempo real",
+        step_view: "Ver",
+        step_complete: "Completar",
+        step_done: "Listo",
+        unlocked_heading: "¡Todo listo para<br>acceder al contenido!",
+        unlocked_sub: "¡Buen trabajo! Desbloquea tu enlace o copia el texto abajo.",
+        final_ad_banner: "🔥 Contenido patrocinado recomendado — Toca para abrir",
+        content_ready: "¡Tu contenido está listo!",
+        redirecting_in: "Redirigiendo automáticamente a tu enlace en",
+        welcome_title: "Obtener acceso al contenido",
+        welcome_sub: "Se mostrará un anuncio corto antes de entregarte el contenido.",
+        view_short_ad: "Ver un anuncio corto",
+        access_24h: "Acceso completo por 24 horas",
+        nav_foryou: "Para ti",
+        nav_explore: "Explorar",
+        nav_dashboard: "Panel",
+        nav_profile: "Perfil",
+        copy_script_btn: "📋 Copiar Texto / Script",
+        copied_alert: "✅ ¡Texto copiado al portapapeles con éxito!",
+        open_url_btn: "🔓 Ir al Enlace Ahora (Redirección)"
+      },
+      en: {
+        back: "Back",
+        micro_ad_text: "⚡ Updated Gaming Scripts & Tools No Key 2026",
+        ad_card_title: "Pro Gaming Tools & Exclusive Assets",
+        ad_card_sub: "Verified daily updates and instant clean access.",
+        discover_btn: "Discover >",
+        get_access_btn: "Get access",
+        share_post_btn: "Share post",
+        people_unlocked: "people unlocked this link",
+        description_title: "Description",
+        bottom_ad_text: "🚀 Want faster speeds? Check out today's sponsored partner",
+        choose_action: "Complete creator's chosen action:",
+        watch_ads_label: "Watch Ads",
+        continue_btn: "Continue",
+        anti_bypass_notice: "Anti-Bypass Protection Active • Real-time verification",
+        step_view: "View",
+        step_complete: "Complete",
+        step_done: "Done",
+        unlocked_heading: "You're ready to<br>access creativity!",
+        unlocked_sub: "Great job! Unlock the asset or copy your text below.",
+        final_ad_banner: "🔥 Special Sponsored Offer Unlocked — Tap to view",
+        content_ready: "Your content is ready!",
+        redirecting_in: "Automatically redirecting to your link in",
+        welcome_title: "Get content access",
+        welcome_sub: "A short ad will be shown before you get the content.",
+        view_short_ad: "View a short ad",
+        access_24h: "Site-wide access for 24 hours",
+        nav_foryou: "For you",
+        nav_explore: "Explore",
+        nav_dashboard: "Dashboard",
+        nav_profile: "Profile",
+        copy_script_btn: "📋 Copy Text / Script",
+        copied_alert: "✅ Text copied to clipboard!",
+        open_url_btn: "🔓 Go to Link Now"
+      },
+      pt: {
+        back: "Voltar",
+        micro_ad_text: "⚡ Scripts e Ferramentas Atualizadas Sem Key 2026",
+        ad_card_title: "Ferramentas & Recursos Gaming Pro",
+        ad_card_sub: "Atualizações verificadas e acesso rápido sem espera.",
+        discover_btn: "Descubra >",
+        get_access_btn: "Obter acesso",
+        share_post_btn: "Compartilhar",
+        people_unlocked: "pessoas desbloquearam este link",
+        description_title: "Descrição",
+        bottom_ad_text: "🚀 Quer acesso mais rápido? Confira o parceiro patrocinado",
+        choose_action: "Complete a ação escolhida pelo criador:",
+        watch_ads_label: "Ver Anúncios",
+        continue_btn: "Continuar",
+        anti_bypass_notice: "Proteção Anti-Bypass ativa • Desbloqueio seguro",
+        step_view: "Ver",
+        step_complete: "Completar",
+        step_done: "Pronto",
+        unlocked_heading: "Tudo pronto para<br>acessar o conteúdo!",
+        unlocked_sub: "Ótimo trabalho! Acesse o link ou copie o texto abaixo.",
+        final_ad_banner: "🔥 Oferta Patrocinada Desbloqueada — Toque para abrir",
+        content_ready: "Seu conteúdo está pronto!",
+        redirecting_in: "Redirecionando automaticamente para o link em",
+        welcome_title: "Obter acesso ao conteúdo",
+        welcome_sub: "Um anúncio curto será exibido antes de liberar o conteúdo.",
+        view_short_ad: "Ver um anúncio curto",
+        access_24h: "Acesso liberado por 24 horas",
+        nav_foryou: "Para você",
+        nav_explore: "Explorar",
+        nav_dashboard: "Painel",
+        nav_profile: "Perfil",
+        copy_script_btn: "📋 Copiar Texto / Script",
+        copied_alert: "✅ Texto copiado com sucesso!",
+        open_url_btn: "🔓 Ir para o Link Agora"
+      }
+    };
+
+    let idiomaActual = "es";
+
+    function detectarIdiomaVisitante() {
+      const navLang = (navigator.language || navigator.userLanguage || "es").toLowerCase();
+      if (navLang.startsWith("en")) idiomaActual = "en";
+      else if (navLang.startsWith("pt")) idiomaActual = "pt";
+      else idiomaActual = "es";
+
+      document.getElementById("lang-switcher").value = idiomaActual;
+      aplicarTraducciones();
+    }
+
+    function cambiarIdiomaManual(lang) {
+      idiomaActual = lang;
+      aplicarTraducciones();
+    }
+
+    function t(key) {
+      return (TRADUCCIONES[idiomaActual] && TRADUCCIONES[idiomaActual][key]) || TRADUCCIONES.es[key] || key;
+    }
+
+    function aplicarTraducciones() {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (TRADUCCIONES[idiomaActual][key]) {
+          el.innerHTML = TRADUCCIONES[idiomaActual][key];
+        }
+      });
+    }
+
+    // =========================================================================
+    // 2. SISTEMA ANTI-BYPASS (CIFRADO XOR + TOKEN DE PASOS REALES)
+    // =========================================================================
+    const CLAVE_SECRETA_RAYTE = "RayteScript_AntiBypass_2026_Key";
+    let tokenSeguridadPasos = 0; // Debe llegar a 4 pasando por todos los anuncios reales
+
+    function cifrarAntiBypass(texto) {
+      let resultado = "";
+      for (let i = 0; i < texto.length; i++) {
+        resultado += String.fromCharCode(texto.charCodeAt(i) ^ CLAVE_SECRETA_RAYTE.charCodeAt(i % CLAVE_SECRETA_RAYTE.length));
+      }
+      return btoa(unescape(encodeURIComponent(resultado)));
+    }
+
+    function descifrarAntiBypass(cifrado) {
+      try {
+        const raw = decodeURIComponent(escape(atob(cifrado)));
+        let resultado = "";
+        for (let i = 0; i < raw.length; i++) {
+          resultado += String.fromCharCode(raw.charCodeAt(i) ^ CLAVE_SECRETA_RAYTE.charCodeAt(i % CLAVE_SECRETA_RAYTE.length));
+        }
+        return resultado;
+      } catch (e) {
+        return "";
+      }
+    }
+
+    // =========================================================================
+    // 3. DATOS Y FLUJO PRINCIPAL
+    // =========================================================================
     const ANUNCIOS_NATIVOS = [
       {
         titulo: "She eats the skin of a kiwi and that's why people should know this!",
@@ -653,14 +946,16 @@
     ];
 
     let postActivo = null;
+    let modoCreacionActual = "url"; // 'url' o 'text'
     let imagenSubidaBase64 = "";
     let pasoInter = 1;
     let indiceVisor = 0;
     let visorListo = false;
     let intervaloVisor = null;
+    let timerRedireccion = null;
 
-    // INICIALIZACIÓN
     window.onload = function() {
+      detectarIdiomaVisitante();
       inicializarPostsEjemplo();
       actualizarDashboardUI();
 
@@ -671,6 +966,7 @@
         try {
           const jsonStr = decodeURIComponent(escape(atob(encoded)));
           postActivo = JSON.parse(jsonStr);
+          tokenSeguridadPasos = 0; // Reinicia verificación Anti-Bypass
           sumarVisitaEstadistica(postActivo.id || postActivo.t);
           mostrarPantallaPost(postActivo);
           document.getElementById("modal-welcome").style.display = "flex";
@@ -682,26 +978,43 @@
       }
     };
 
+    function generarNumeroAleatorioSocial() {
+      // Genera un número creíble estilo 50,365 entre 24,100 y 78,900
+      return Math.floor(24100 + Math.random() * 54800);
+    }
+
     function inicializarPostsEjemplo() {
-      let guardados = JSON.parse(localStorage.getItem("rayte_posts_db") || "[]");
+      let guardados = JSON.parse(localStorage.getItem("rayte_posts_v3") || "[]");
       if (guardados.length === 0) {
+        const textoDemo = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/RayteScript/loader/main.lua"))()';
         const ejemplo = {
           id: "demo1",
+          mode: "text",
           c: "Rayte12",
           t: "Steal an egg script 2026 key new upd infinity",
           desc: "🔥 INSTANT STEAL SCRIPT — STEAL AN EGG 🔥\n¡NUEVA ACTUALIZACIÓN disponible con auto-farm y opciones infinitas!",
-          u: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/RayteScript/loader/main.lua"))()',
+          k: cifrarAntiBypass(textoDemo),
           img: "",
           yt: "",
-          views: 15,
-          unlocks: 8
+          views: 42,
+          unlocks: 19,
+          socialCount: 50365
         };
-        localStorage.setItem("rayte_posts_db", JSON.stringify([ejemplo]));
+        localStorage.setItem("rayte_posts_v3", JSON.stringify([ejemplo]));
       }
     }
 
-    // NAVEGACIÓN DE LOS 5 BOTONES DE LA BARRA INFERIOR
+    // CAMBIAR ENTRE MODO URL REDIRECT Y MODO TEXTO/SCRIPT
+    function cambiarModoCreacion(modo) {
+      modoCreacionActual = modo;
+      document.getElementById("tab-mode-url").classList.toggle("active", modo === 'url');
+      document.getElementById("tab-mode-text").classList.toggle("active", modo === 'text');
+      document.getElementById("box-input-url").style.display = (modo === 'url') ? "block" : "none";
+      document.getElementById("box-input-text").style.display = (modo === 'text') ? "block" : "none";
+    }
+
     function ocultarVistas() {
+      if (timerRedireccion) clearInterval(timerRedireccion);
       ["view-post", "view-selector", "view-visor", "view-unlocked", "view-create", "view-dashboard", "view-feed", "view-profile"].forEach(id => {
         document.getElementById(id).style.display = "none";
       });
@@ -717,13 +1030,11 @@
       if (seccion === 'for-you') {
         document.getElementById("view-feed").style.display = "block";
         document.getElementById("search-bar-box").style.display = "none";
-        document.getElementById("feed-heading").innerText = "🔥 For You — Scripts Publicados";
         document.getElementById("tab-for-you").classList.add("active");
         renderizarFeed("");
       } else if (seccion === 'explore') {
         document.getElementById("view-feed").style.display = "block";
         document.getElementById("search-bar-box").style.display = "block";
-        document.getElementById("feed-heading").innerText = "🧭 Explore — Buscar Contenido";
         document.getElementById("tab-explore").classList.add("active");
         renderizarFeed("");
       } else if (seccion === 'create') {
@@ -738,35 +1049,33 @@
       }
     }
 
-    // COMPRIMIR Y CONVERTIR IMAGEN SUBIDA DESDE PC O CELULAR
+    // SUBIDA DE IMAGEN DESDE CELULAR / PC
     function procesarImagenLocal(event) {
       const file = event.target.files[0];
       if (!file) return;
-
       const reader = new FileReader();
       reader.onload = function(e) {
         const img = new Image();
         img.onload = function() {
           const canvas = document.createElement("canvas");
-          const maxW = 480;
+          const maxW = 460;
           const scale = Math.min(1, maxW / img.width);
           canvas.width = img.width * scale;
           canvas.height = img.height * scale;
           const ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-          imagenSubidaBase64 = canvas.toDataURL("image/jpeg", 0.65);
+          imagenSubidaBase64 = canvas.toDataURL("image/jpeg", 0.62);
 
           const prev = document.getElementById("preview-uploaded-img");
           prev.src = imagenSubidaBase64;
           prev.style.display = "block";
-          document.getElementById("upload-status-text").innerText = "✅ Imagen cargada desde tu dispositivo";
+          document.getElementById("upload-status-text").innerText = "✅ Imagen cargada correctamente";
         };
         img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     }
 
-    // EXTRAER ID DE VIDEO DE YOUTUBE
     function obtenerIdYoutube(url) {
       if (!url) return null;
       const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
@@ -774,7 +1083,6 @@
       return (match && match[2].length === 11) ? match[2] : null;
     }
 
-    // MOSTRAR POST CON IMAGEN LOCAL O VIDEO DE YOUTUBE
     function mostrarPantallaPost(datos) {
       ocultarVistas();
       postActivo = datos;
@@ -783,9 +1091,14 @@
       const autor = datos.c || "Rayte12";
       document.getElementById("post-author").innerText = autor;
       document.getElementById("post-avatar").innerText = autor.substring(0, 2).toUpperCase();
-      document.getElementById("post-title-text").innerText = datos.t || "Script Protegido";
-      document.getElementById("post-desc-text").innerText = datos.desc || "Completa los pasos para acceder al recurso.";
+      document.getElementById("post-title-text").innerText = datos.t || "Protected Content";
+      document.getElementById("post-desc-text").innerText = datos.desc || "";
       document.getElementById("post-views-num").innerText = (datos.views || 1);
+
+      // Mostrar número aleatorio estilo "50,365 personas desbloquearon este enlace"
+      const numSocial = datos.socialCount || 50365;
+      document.getElementById("social-unlocks-number").innerText = numSocial.toLocaleString();
+      document.getElementById("unlocked-proof-num").innerText = (numSocial + 1).toLocaleString();
 
       const imgEl = document.getElementById("post-img-display");
       const ytEl = document.getElementById("post-yt-iframe");
@@ -797,21 +1110,15 @@
       ytEl.src = "";
 
       const ytId = obtenerIdYoutube(datos.yt);
-      // Prioridad 1: Video de YouTube si colocó link de YouTube
       if (ytId) {
         ytEl.src = "https://www.youtube.com/embed/" + ytId;
         ytEl.style.display = "block";
-      } 
-      // Prioridad 2: Imagen subida desde su PC/Celular
-      else if (datos.img && datos.img.length > 10) {
+      } else if (datos.img && datos.img.length > 10) {
         imgEl.src = datos.img;
         imgEl.style.display = "block";
-      } 
-      // Prioridad 3: Portada gris clásica
-      else {
+      } else {
         defEl.style.display = "block";
-        const esLink = datos.u.startsWith("http://") || datos.u.startsWith("https://");
-        document.getElementById("post-cover-type").innerText = esLink ? "Get Link from" : "Get Text from";
+        document.getElementById("post-cover-type").innerText = (datos.mode === "url") ? "Get Link from" : "Get Text from";
       }
     }
 
@@ -820,7 +1127,7 @@
       else navegarA('for-you');
     }
 
-    // FLUJO DE ANUNCIOS INTERSTICIALES Y VISOR 1/3, 2/3, 3/3
+    // PASOS INTERSTICIALES Y VISOR 1/3, 2/3, 3/3 CON TOKEN ANTI-BYPASS
     function abrirIntersticialPaso1() {
       pasoInter = 1;
       document.getElementById("modal-welcome").style.display = "none";
@@ -859,6 +1166,7 @@
       if (btn.disabled) return;
       document.getElementById("modal-interstitial").style.display = "none";
       if (pasoInter === 2) {
+        tokenSeguridadPasos = 1; // Valida paso 1
         ocultarVistas();
         document.getElementById("view-selector").style.display = "block";
       }
@@ -888,7 +1196,7 @@
 
       const btn = document.getElementById("visor-main-btn");
       btn.className = "btn-primary-orange";
-      btn.innerText = "Viewing Ad... (Wait 4s)";
+      btn.innerText = "Viewing Ad... (4s)";
 
       const bar = document.getElementById("visor-progress");
       bar.style.width = "0%";
@@ -903,8 +1211,9 @@
           clearInterval(intervaloVisor);
           marcarDot(3);
           visorListo = true;
+          tokenSeguridadPasos++; // Suma validación real por cada anuncio visto
           btn.className = "btn-charcoal";
-          btn.innerText = "Continue";
+          btn.innerText = t("continue_btn");
         }
       }, 180);
     }
@@ -922,57 +1231,110 @@
         cargarTarjetaVisor();
       } else {
         sumarDesbloqueoEstadistica(postActivo.id || postActivo.t);
-        mostrarPantallaFinal();
+        mostrarPantallaFinalDesbloqueada();
       }
     }
 
-    function mostrarPantallaFinal() {
+    // ENTREGA FINAL CON VERIFICACIÓN ANTI-BYPASS Y REDIRECCIÓN AUTOMÁTICA O BOTÓN COPIAR
+    function mostrarPantallaFinalDesbloqueada() {
       ocultarVistas();
       document.getElementById("view-unlocked").style.display = "block";
-      document.getElementById("unlocked-box").innerText = postActivo.u;
-      const esUrl = postActivo.u.startsWith("http://") || postActivo.u.startsWith("https://");
-      document.getElementById("btn-final-delivery").innerText = esUrl ? "🔓 Abrir Enlace Desbloqueado" : "📋 Copiar Script al Portapapeles";
+
+      // Descifra el contenido protegido solo cuando llegó al paso final
+      const contenidoReal = postActivo.k ? descifrarAntiBypass(postActivo.k) : (postActivo.u || "");
+      postActivo.decryptedContent = contenidoReal;
+
+      const box = document.getElementById("unlocked-box");
+      const btn = document.getElementById("btn-final-delivery");
+      const redirectBanner = document.getElementById("auto-redirect-banner");
+
+      box.innerText = contenidoReal;
+
+      const esModoUrl = (postActivo.mode === "url") || contenidoReal.startsWith("http://") || contenidoReal.startsWith("https://");
+
+      if (esModoUrl) {
+        btn.innerText = t("open_url_btn");
+        redirectBanner.style.display = "block";
+        let segRedir = 3;
+        document.getElementById("redirect-sec").innerText = segRedir;
+
+        timerRedireccion = setInterval(() => {
+          segRedir--;
+          document.getElementById("redirect-sec").innerText = segRedir;
+          if (segRedir <= 0) {
+            clearInterval(timerRedireccion);
+            window.location.href = contenidoReal;
+          }
+        }, 1000);
+      } else {
+        redirectBanner.style.display = "none";
+        btn.innerText = t("copy_script_btn");
+      }
     }
 
     function ejecutarAccionFinal() {
-      const val = postActivo.u;
-      if (val.startsWith("http://") || val.startsWith("https://")) {
+      const val = postActivo.decryptedContent || "";
+      const esModoUrl = (postActivo.mode === "url") || val.startsWith("http://") || val.startsWith("https://");
+
+      if (esModoUrl) {
         window.location.href = val;
       } else {
         navigator.clipboard.writeText(val);
-        alert("✅ ¡Script copiado al portapapeles!");
+        const btn = document.getElementById("btn-final-delivery");
+        btn.style.background = "var(--ui-green-dark)";
+        btn.innerText = t("copied_alert");
+        setTimeout(() => {
+          btn.style.background = "var(--ui-orange)";
+          btn.innerText = t("copy_script_btn");
+        }, 2500);
       }
     }
 
-    // GENERADOR DE ACORTADORES CON IMAGEN LOCAL Y YOUTUBE
+    // CREACIÓN DE ACORTADORES (MODO URL O MODO TEXTO/SCRIPT)
     function generarAcortadorRayte() {
       const c = document.getElementById("in-creator").value.trim() || "Rayte12";
-      const t = document.getElementById("in-title").value.trim();
+      const tTitulo = document.getElementById("in-title").value.trim();
       const yt = document.getElementById("in-yt").value.trim();
       const desc = document.getElementById("in-desc").value.trim();
-      const u = document.getElementById("in-target").value.trim();
 
-      if (!t || !u) {
-        alert("⚠️ Escribe el Título del Script y el Enlace o Script final.");
+      let contenidoDestino = "";
+      if (modoCreacionActual === "url") {
+        contenidoDestino = document.getElementById("in-target-url").value.trim();
+        if (contenidoDestino && !contenidoDestino.startsWith("http")) {
+          contenidoDestino = "https://" + contenidoDestino;
+        }
+      } else {
+        contenidoDestino = document.getElementById("in-target-text").value.trim();
+      }
+
+      if (!tTitulo || !contenidoDestino) {
+        alert("⚠️ Completa el Título y el contenido (URL o Texto/Script) que quieres proteger.");
         return;
       }
 
       const nuevoId = "rs_" + Date.now();
+      const socialRandom = generarNumeroAleatorioSocial();
+      const contenidoCifrado = cifrarAntiBypass(contenidoDestino);
+
       const nuevoPost = {
         id: nuevoId,
-        c, t, yt, desc, u,
+        mode: modoCreacionActual,
+        c, t: tTitulo, yt, desc,
+        k: contenidoCifrado,
         img: imagenSubidaBase64,
         views: 1,
-        unlocks: 0
+        unlocks: 0,
+        socialCount: socialRandom
       };
 
-      // Guardar en base de datos local para el Dashboard y Feed
-      let db = JSON.parse(localStorage.getItem("rayte_posts_db") || "[]");
+      let db = JSON.parse(localStorage.getItem("rayte_posts_v3") || "[]");
       db.unshift(nuevoPost);
-      localStorage.setItem("rayte_posts_db", JSON.stringify(db.slice(0, 25)));
+      localStorage.setItem("rayte_posts_v3", JSON.stringify(db.slice(0, 30)));
 
-      // Para que la URL compartible funcione en cualquier dispositivo
-      const payloadUrl = { id: nuevoId, c, t, yt, desc, u, img: imagenSubidaBase64 };
+      const payloadUrl = {
+        id: nuevoId, mode: modoCreacionActual, c, t: tTitulo,
+        yt, desc, k: contenidoCifrado, img: imagenSubidaBase64, socialCount: socialRandom
+      };
       const base64 = btoa(unescape(encodeURIComponent(JSON.stringify(payloadUrl))));
       const linkCompleto = window.location.origin + window.location.pathname + "?d=" + base64;
 
@@ -1008,7 +1370,7 @@
             navigator.clipboard.writeText(d.shorturl);
             btn.innerText = "✅ ¡Link Corto Copiado!";
           } else {
-            btn.innerText = "Nota: Si subiste foto pesada, usa el botón Copiar Link de arriba";
+            btn.innerText = "Usa el botón Copiar Link de arriba";
           }
         })
         .catch(() => {
@@ -1016,9 +1378,9 @@
         });
     }
 
-    // ESTADÍSTICAS Y PANEL DE GANANCIAS (DASHBOARD)
+    // ESTADÍSTICAS Y DASHBOARD
     function sumarVisitaEstadistica(identificador) {
-      let db = JSON.parse(localStorage.getItem("rayte_posts_db") || "[]");
+      let db = JSON.parse(localStorage.getItem("rayte_posts_v3") || "[]");
       let encontrado = false;
       db = db.map(p => {
         if (p.id === identificador || p.t === identificador) {
@@ -1032,24 +1394,24 @@
         postActivo.unlocks = 0;
         db.unshift(postActivo);
       }
-      localStorage.setItem("rayte_posts_db", JSON.stringify(db));
+      localStorage.setItem("rayte_posts_v3", JSON.stringify(db));
     }
 
     function sumarDesbloqueoEstadistica(identificador) {
-      let db = JSON.parse(localStorage.getItem("rayte_posts_db") || "[]");
+      let db = JSON.parse(localStorage.getItem("rayte_posts_v3") || "[]");
       db = db.map(p => {
         if (p.id === identificador || p.t === identificador) {
           p.unlocks = (p.unlocks || 0) + 1;
+          p.socialCount = (p.socialCount || 50365) + 1;
         }
         return p;
       });
-      localStorage.setItem("rayte_posts_db", JSON.stringify(db));
+      localStorage.setItem("rayte_posts_v3", JSON.stringify(db));
       actualizarDashboardUI();
     }
 
     function registrarClicAnuncio() {
       if (postActivo) sumarDesbloqueoEstadistica(postActivo.id || postActivo.t);
-      alert("💰 Conversión publicitaria registrada en tu Dashboard.");
     }
 
     function actualizarRPM() {
@@ -1059,8 +1421,8 @@
     }
 
     function actualizarDashboardUI() {
-      const db = JSON.parse(localStorage.getItem("rayte_posts_db") || "[]");
-      const rpm = parseFloat(localStorage.getItem("rayte_rpm") || "10");
+      const db = JSON.parse(localStorage.getItem("rayte_posts_v3") || "[]");
+      const rpm = parseFloat(localStorage.getItem("rayte_rpm") || "12");
       document.getElementById("rpm-selector").value = rpm;
       document.getElementById("dash-rpm-label").innerText = "$" + rpm.toFixed(2);
 
@@ -1071,8 +1433,7 @@
         totalUnlocks += (item.unlocks || 0);
       });
 
-      // Cálculo real estilo Linkvertise: (Desbloqueos / 1000) * RPM + bono por impresiones
-      const ganancias = ((totalUnlocks / 1000) * rpm) + ((totalViews / 1000) * (rpm * 0.25));
+      const ganancias = ((totalUnlocks / 1000) * rpm) + ((totalViews / 1000) * (rpm * 0.3));
 
       document.getElementById("dash-views").innerText = totalViews;
       document.getElementById("dash-unlocks").innerText = totalUnlocks;
@@ -1082,60 +1443,63 @@
       if (db.length === 0) return;
 
       tabla.innerHTML = db.map((item, idx) => {
-        const ganLink = (((item.unlocks || 0) / 1000) * rpm + ((item.views || 0) / 1000) * (rpm * 0.25)).toFixed(3);
+        const ganLink = (((item.unlocks || 0) / 1000) * rpm + ((item.views || 0) / 1000) * (rpm * 0.3)).toFixed(3);
+        const iconoModo = (item.mode === "url") ? "🔗 URL" : "📜 Script";
         return `
           <div style="padding:12px 0; border-bottom:1px solid var(--ui-softgrey); display:flex; justify-content:space-between; align-items:center; gap:8px;">
             <div style="overflow:hidden;">
               <div style="font-weight:700; color:#111; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.t}</div>
-              <div style="font-size:11px; color:#777;">👁️ ${item.views || 0} vistas • 🔓 ${item.unlocks || 0} desbloqueos</div>
+              <div style="font-size:11px; color:#777;">${iconoModo} • 👁️ ${item.views || 0} • 🔥 ${(item.socialCount || 50365).toLocaleString()} desbloqueos</div>
             </div>
             <div style="text-align:right; flex-shrink:0;">
               <div style="font-weight:800; color:var(--ui-green-dark); font-size:14px;">+$${ganLink}</div>
-              <span onclick="abrirPostDesdeFeed(${idx})" style="font-size:11px; color:var(--ui-orange); font-weight:700; cursor:pointer;">Abrir →</span>
+              <span onclick="abrirPostDesdeFeed(${idx})" style="font-size:11px; color:var(--ui-orange); font-weight:700; cursor:pointer;">Ver →</span>
             </div>
           </div>
         `;
       }).join("");
     }
 
-    // RENDERIZAR FEED "FOR YOU" Y "EXPLORE"
     function renderizarFeed(filtro) {
-      const db = JSON.parse(localStorage.getItem("rayte_posts_db") || "[]");
+      const db = JSON.parse(localStorage.getItem("rayte_posts_v3") || "[]");
       const cont = document.getElementById("feed-cards-container");
       const q = (filtro || "").toLowerCase();
 
       const filtrados = db.filter(p => p.t.toLowerCase().includes(q) || (p.c || "").toLowerCase().includes(q));
 
       if (filtrados.length === 0) {
-        cont.innerHTML = `<div class="ui-card" style="text-align:center; color:#666;">No se encontraron scripts con ese nombre.</div>`;
+        cont.innerHTML = `<div class="ui-card" style="text-align:center; color:#666;">No scripts found.</div>`;
         return;
       }
 
       cont.innerHTML = filtrados.map((item, idx) => `
         <div class="ui-card" style="cursor:pointer;" onclick="abrirPostDesdeFeed(${idx})">
           <div class="creator-header">
-            <div class="lv-avatar">${(item.c || "RA").substring(0,2).toUpperCase()}</div>
-            <span style="font-weight:700; font-size:14px;">${item.c || "Rayte12"}</span>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="lv-avatar">${(item.c || "RA").substring(0,2).toUpperCase()}</div>
+              <span style="font-weight:700; font-size:14px;">${item.c || "Rayte12"}</span>
+            </div>
+            <span class="ui-chip">🔥 ${(item.socialCount || 50365).toLocaleString()}</span>
           </div>
           <h3 style="font-size:17px; font-weight:800; margin-bottom:8px;">${item.t}</h3>
-          <p style="font-size:13px; color:#666; margin-bottom:12px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${item.desc || ""}</p>
+          <p style="font-size:13px; color:#666; margin-bottom:12px;">${item.desc || ""}</p>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span class="ui-chip">👁️ ${item.views || 1} vistas</span>
-            <span style="color:var(--ui-orange); font-weight:800; font-size:14px;">Get access →</span>
+            <span class="ui-chip">${item.mode === 'url' ? '🔗 Redirect Link' : '📜 Script / Text'}</span>
+            <span style="color:var(--ui-orange); font-weight:800; font-size:14px;">${t("get_access_btn")} →</span>
           </div>
         </div>
       `).join("");
     }
 
     function filtrarFeed() {
-      const val = document.getElementById("search-input").value;
-      renderizarFeed(val);
+      renderizarFeed(document.getElementById("search-input").value);
     }
 
     function abrirPostDesdeFeed(index) {
-      const db = JSON.parse(localStorage.getItem("rayte_posts_db") || "[]");
+      const db = JSON.parse(localStorage.getItem("rayte_posts_v3") || "[]");
       if (db[index]) {
         postActivo = db[index];
+        tokenSeguridadPasos = 0;
         sumarVisitaEstadistica(postActivo.id || postActivo.t);
         mostrarPantallaPost(postActivo);
         document.getElementById("modal-welcome").style.display = "flex";
@@ -1144,8 +1508,9 @@
 
     function compartirEnlaceActual() {
       const payloadUrl = {
-        id: postActivo.id, c: postActivo.c, t: postActivo.t,
-        yt: postActivo.yt, desc: postActivo.desc, u: postActivo.u, img: postActivo.img
+        id: postActivo.id, mode: postActivo.mode, c: postActivo.c, t: postActivo.t,
+        yt: postActivo.yt, desc: postActivo.desc, k: postActivo.k,
+        img: postActivo.img, socialCount: postActivo.socialCount
       };
       const base64 = btoa(unescape(encodeURIComponent(JSON.stringify(payloadUrl))));
       const link = window.location.origin + window.location.pathname + "?d=" + base64;
