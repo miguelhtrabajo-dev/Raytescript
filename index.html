@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Rayte Script | Exclusive Content & Script Unlocker</title>
+  <title>Rayte Script | Creator Dashboard & Script Unlocker</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,113 +15,127 @@
 
   <style>
     :root {
+      --lv-orange: #ff8114;
+      --lv-orange-hover: #e06d0a;
+      --lv-darkgrey: #262626;
+      --lv-charcoal: #171717;
       --ui-orange: #fe9900;
       --ui-orange-hover: #fead33;
+      --ui-orange-light: #ffdfb0;
       --ui-orange-transparent-10: #fe99001a;
-      --ui-charcoalgrey: #171717;
+      --ui-purpley: #c5b3ff;
       --ui-purpley-light: #e8e1ff;
       --ui-lightgrey: #f5f5f5;
       --ui-softgrey: #e8e8e8;
       --ui-stonegrey: #d4d4d4;
-      --ui-ashgrey: #adadad;
+      --ui-ashgrey: #888888;
       --ui-white: #ffffff;
-      --ui-green: #7ccf00;
+      --ui-green: #00c951;
       --ui-green-dark: #15803d;
-      --ui-green-light: #e9f2dd;
-      --ui-red: #fa2c37;
+      --ui-green-light: #f0fdf4;
+      --ui-red: #fb2c36;
+      --ui-creator-gradient: linear-gradient(94deg, #fe9900 19.75%, #c5b3ff 79.72%);
+      --ui-premium-gradient: linear-gradient(90deg, #fe9900 0%, #ff6467 100%);
       --ui-font-family-primary: 'Outfit', sans-serif;
-      --ui-shadow: 0 4px 12px 0 rgba(0, 0, 0, .08);
-      --ui-shadow-m: 0 12px 36px 0 rgba(0, 0, 0, .16);
+      --ui-shadow: 0 4px 16px 0 rgba(0, 0, 0, .06);
+      --ui-shadow-m: 0 14px 36px 0 rgba(0, 0, 0, .14);
     }
 
     *, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       font-family: var(--ui-font-family-primary);
       background: var(--ui-lightgrey);
-      color: var(--ui-charcoalgrey);
+      color: var(--lv-charcoal);
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
     }
-    body { padding-bottom: 175px; }
+    body { padding-bottom: 165px; }
 
+    /* BANNERS LATERALES PC */
     .pc-side-ad {
-      position: fixed; top: 100px; width: 160px; height: 600px;
+      position: fixed; top: 90px; width: 160px; height: 600px;
       background: var(--ui-white); border-radius: 16px; border: 1px solid var(--ui-softgrey);
       box-shadow: var(--ui-shadow); display: none; flex-direction: column;
       align-items: center; justify-content: center; padding: 10px; text-align: center; z-index: 100;
     }
-    .pc-side-left { left: calc(50% - 420px); }
-    .pc-side-right { right: calc(50% - 420px); }
-    @media (min-width: 900px) { .pc-side-ad { display: flex; } }
+    .pc-side-left { left: calc(50% - 470px); }
+    .pc-side-right { right: calc(50% - 470px); }
+    @media (min-width: 1020px) { .pc-side-ad { display: flex; } }
 
+    /* HEADER ESTILO LINKVERTISE */
     .header-shell {
-      max-width: 480px; margin: 0 auto; padding: 12px 14px 6px;
+      max-width: 560px; margin: 0 auto; padding: 12px 14px 6px;
       position: sticky; top: 0; z-index: 800; background: linear-gradient(180deg, var(--ui-lightgrey) 80%, transparent);
     }
     .top-pill-bar {
       background: var(--ui-white); border-radius: 999px; padding: 10px 18px;
       display: flex; align-items: center; justify-content: space-between;
-      box-shadow: var(--ui-shadow);
+      box-shadow: var(--ui-shadow); border: 1px solid var(--ui-softgrey);
     }
     .brand-box {
       display: flex; align-items: center; gap: 9px; text-decoration: none;
-      color: var(--ui-charcoalgrey); font-weight: 800; font-size: 19px; letter-spacing: -0.4px; cursor: pointer;
+      color: var(--lv-charcoal); font-weight: 800; font-size: 19px; letter-spacing: -0.4px; cursor: pointer;
     }
     .brand-icon-mark {
-      width: 28px; height: 28px; border-radius: 8px;
-      background: linear-gradient(135deg, var(--ui-orange) 0%, #ff5500 100%);
+      width: 30px; height: 30px; border-radius: 9px;
+      background: var(--ui-premium-gradient);
       color: var(--ui-white); display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 16px; box-shadow: 0 3px 8px rgba(254, 153, 0, 0.35);
+      font-weight: 800; font-size: 16px; box-shadow: 0 3px 10px rgba(254, 153, 0, 0.35);
     }
     .top-actions { display: flex; align-items: center; gap: 8px; }
     .lang-pill {
       background: var(--ui-lightgrey); border: 1px solid var(--ui-stonegrey);
-      border-radius: 999px; padding: 4px 8px; font-size: 11px; font-weight: 700;
+      border-radius: 999px; padding: 5px 9px; font-size: 11px; font-weight: 700;
       font-family: inherit; cursor: pointer; outline: none;
     }
     .user-pill-btn {
-      background: var(--ui-orange-transparent-10); color: #d97706; border: 1px solid var(--ui-orange);
-      border-radius: 999px; padding: 5px 11px; font-size: 11.5px; font-weight: 800;
-      cursor: pointer; display: flex; align-items: center; gap: 4px; font-family: inherit;
+      background: var(--lv-charcoal); color: var(--ui-white); border: none;
+      border-radius: 999px; padding: 6px 13px; font-size: 11.5px; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: inherit;
+      transition: 0.2s;
     }
+    .user-pill-btn:hover { background: #333; }
 
-    .app-container { max-width: 480px; margin: 0 auto; padding: 0 14px; }
+    .app-container { max-width: 560px; margin: 0 auto; padding: 0 14px; }
 
     .micro-ad-strip {
       background: var(--ui-white); border: 1px solid var(--ui-softgrey); border-radius: 14px;
-      padding: 8px 12px; margin: 6px 0 12px; display: flex; align-items: center;
-      justify-content: space-between; box-shadow: var(--ui-shadow); cursor: pointer;
+      padding: 8px 14px; margin: 6px 0 12px; display: flex; align-items: center;
+      justify-content: space-between; box-shadow: var(--ui-shadow);
     }
-    .micro-ad-tag { background: #e0f2fe; color: #0284c7; font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px; }
+    .micro-ad-tag { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 6px; }
 
     .back-row {
       display: inline-flex; align-items: center; gap: 6px; font-size: 14px;
-      font-weight: 600; color: var(--ui-charcoalgrey); margin: 4px 4px 10px; cursor: pointer;
+      font-weight: 600; color: var(--lv-charcoal); margin: 4px 4px 10px; cursor: pointer;
     }
 
     .ui-card {
-      background: var(--ui-white); border-radius: 24px; padding: 20px;
-      box-shadow: var(--ui-shadow); margin-bottom: 16px;
+      background: var(--ui-white); border-radius: 22px; padding: 20px;
+      box-shadow: var(--ui-shadow); margin-bottom: 16px; border: 1px solid rgba(0,0,0,0.04);
     }
+
+    /* BOTONES LINKVERTISE */
     .btn-primary-orange {
       width: 100%; background: var(--ui-orange); color: var(--ui-white);
-      border: none; height: 48px; border-radius: 999px; font-size: 16px;
+      border: none; height: 48px; border-radius: 999px; font-size: 15.5px;
       font-weight: 700; font-family: inherit; cursor: pointer;
       display: flex; align-items: center; justify-content: center; gap: 8px;
       transition: background 0.16s, transform 0.1s;
+      box-shadow: 0 4px 14px rgba(254, 153, 0, 0.3);
     }
     .btn-primary-orange:hover { background: var(--ui-orange-hover); }
     .btn-primary-orange:active { transform: scale(0.98); }
 
     .btn-outline-orange {
-      width: 100%; background: var(--ui-white); color: var(--ui-charcoalgrey);
-      border: 2px solid var(--ui-orange); height: 45px; border-radius: 999px;
-      font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer;
+      width: 100%; background: var(--ui-white); color: var(--lv-charcoal);
+      border: 2px solid var(--ui-orange); height: 44px; border-radius: 999px;
+      font-size: 14.5px; font-weight: 700; font-family: inherit; cursor: pointer;
       display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px;
     }
     .btn-charcoal {
-      width: 100%; background: var(--ui-charcoalgrey); color: var(--ui-white);
-      border: none; height: 48px; border-radius: 999px; font-size: 16px;
+      width: 100%; background: var(--lv-charcoal); color: var(--ui-white);
+      border: none; height: 46px; border-radius: 999px; font-size: 15px;
       font-weight: 700; font-family: inherit; cursor: pointer;
       display: flex; align-items: center; justify-content: center; gap: 8px;
     }
@@ -131,7 +145,6 @@
       display: flex; align-items: center; justify-content: center; gap: 5px;
       background: #fafafa; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--ui-softgrey);
     }
-    .social-proof-counter b { color: var(--ui-charcoalgrey); font-weight: 800; }
 
     .ad-showcase-card {
       background: var(--ui-white); border-radius: 20px; overflow: hidden;
@@ -145,12 +158,12 @@
 
     .creator-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
     .lv-avatar {
-      width: 38px; height: 38px; border-radius: 50%; background: #fef3c7; color: #f59e0b;
+      width: 38px; height: 38px; border-radius: 50%; background: #ffedd5; color: #f97316;
       display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px;
     }
     .media-stage {
       width: 100%; border-radius: 18px; overflow: hidden; margin-bottom: 14px;
-      background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+      background: linear-gradient(135deg, #262626 0%, #171717 100%);
       position: relative; min-height: 190px; display: flex; align-items: center; justify-content: center;
     }
     .media-stage img { width: 100%; max-height: 250px; object-fit: cover; display: none; }
@@ -173,7 +186,7 @@
       padding: 10px; border-radius: 10px; border: none; font-family: inherit;
       font-size: 13px; font-weight: 700; cursor: pointer; background: transparent; color: #666; transition: 0.2s;
     }
-    .mode-tab-btn.active { background: var(--ui-white); color: var(--ui-charcoalgrey); box-shadow: var(--ui-shadow); }
+    .mode-tab-btn.active { background: var(--ui-white); color: var(--lv-charcoal); box-shadow: var(--ui-shadow); }
 
     .upload-dropzone {
       border: 2px dashed var(--ui-stonegrey); border-radius: 16px; padding: 16px;
@@ -186,10 +199,10 @@
     }
 
     .field-box { margin-bottom: 14px; text-align: left; }
-    .field-box label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--ui-charcoalgrey); }
+    .field-box label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--lv-charcoal); }
     .field-box input, .field-box textarea, .field-box select {
       width: 100%; padding: 12px 14px; border: 1.5px solid var(--ui-stonegrey);
-      border-radius: 14px; font-size: 14px; font-family: inherit; background: #fafafa; outline: none;
+      border-radius: 12px; font-size: 14px; font-family: inherit; background: #fafafa; outline: none; transition: 0.16s;
     }
     .field-box input:focus, .field-box textarea:focus, .field-box select:focus { border-color: var(--ui-orange); background: var(--ui-white); }
 
@@ -212,21 +225,112 @@
     .stepper-line { position: absolute; top: 12px; left: 16%; right: 16%; height: 2px; background: var(--ui-softgrey); z-index: 1; }
     .step-col { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 33%; }
     .step-dot {
-      width: 25px; height: 25px; border-radius: 50%; background: var(--ui-charcoalgrey);
+      width: 25px; height: 25px; border-radius: 50%; background: var(--lv-charcoal);
       color: var(--ui-white); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;
     }
     .step-dot.done { background: var(--ui-orange); }
     .step-caption { font-size: 12px; font-weight: 600; color: #383838; }
 
-    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-    .stat-tile {
-      background: var(--ui-lightgrey); border-radius: 18px; padding: 14px; text-align: left;
-      border: 1px solid var(--ui-softgrey);
+    /* ================= ESTILOS LINKVERTISE CREATOR DASHBOARD ================= */
+    .lv-dash-hero {
+      background: var(--lv-charcoal);
+      color: var(--ui-white);
+      border-radius: 24px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: var(--ui-shadow-m);
+      position: relative;
+      overflow: hidden;
     }
-    .stat-tile .label { font-size: 12px; color: #666; font-weight: 600; }
-    .stat-tile .val { font-size: 22px; font-weight: 800; margin-top: 4px; color: var(--ui-charcoalgrey); }
-    .stat-tile.highlight { background: var(--ui-orange-transparent-10); border-color: var(--ui-orange); }
-    .stat-tile.highlight .val { color: #d97706; }
+    .lv-dash-hero::before {
+      content: "";
+      position: absolute; top: -40px; right: -40px; width: 150px; height: 150px;
+      background: var(--ui-creator-gradient);
+      filter: blur(55px); opacity: 0.45; pointer-events: none;
+    }
+    .lv-user-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px; position: relative; z-index: 2;
+    }
+    .lv-balance-box {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px; padding: 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px; position: relative; z-index: 2;
+    }
+    .lv-balance-val { font-size: 28px; font-weight: 800; color: var(--ui-orange); letter-spacing: -0.5px; }
+    .lv-kpi-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; position: relative; z-index: 2;
+    }
+    .lv-kpi-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 11px 10px; text-align: center;
+    }
+    .lv-kpi-card .k-num { font-size: 17px; font-weight: 800; color: #fff; margin-top: 2px; }
+    .lv-kpi-card .k-lbl { font-size: 10.5px; color: #aaa; font-weight: 600; }
+
+    /* GRÁFICO DE BARRAS ESTILO LINKVERTISE */
+    .lv-chart-box {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      height: 110px; padding: 16px 8px 4px; gap: 8px;
+      border-bottom: 1px solid var(--ui-softgrey); margin-bottom: 8px;
+    }
+    .lv-bar-col {
+      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end;
+    }
+    .lv-bar-fill {
+      width: 100%; max-width: 28px; border-radius: 6px 6px 2px 2px;
+      background: linear-gradient(180deg, var(--ui-orange) 0%, #ffdfb0 100%);
+      transition: height 0.3s ease; min-height: 6px;
+    }
+    .lv-bar-lbl { font-size: 10px; font-weight: 700; color: #888; }
+
+    /* TARJETAS INDIVIDUALES DE ENLACES POR USUARIO */
+    .lv-link-item {
+      background: var(--ui-white);
+      border: 1.5px solid var(--ui-softgrey);
+      border-radius: 18px;
+      padding: 15px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .lv-link-item:hover {
+      border-color: var(--ui-orange);
+      box-shadow: var(--ui-shadow);
+    }
+    .lv-link-top {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 10px;
+    }
+    .lv-link-title {
+      font-size: 15px; font-weight: 800; color: var(--lv-charcoal); line-height: 1.25;
+      display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .lv-link-url-short {
+      font-size: 11.5px; color: var(--lv-orange); font-weight: 700; font-family: monospace;
+      display: block; margin-top: 2px;
+    }
+    .lv-link-metrics {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+      background: var(--ui-lightgrey); border-radius: 12px; padding: 9px 8px; margin-bottom: 10px; text-align: center;
+    }
+    .lv-m-box .m-label { font-size: 10px; color: #666; font-weight: 600; display: block; }
+    .lv-m-box .m-val { font-size: 13.5px; font-weight: 800; color: var(--lv-charcoal); }
+    .lv-m-box.earn .m-val { color: var(--ui-green-dark); }
+
+    .lv-link-actions {
+      display: flex; justify-content: space-between; align-items: center; gap: 6px;
+    }
+    .lv-btn-mini {
+      flex: 1; padding: 7px 10px; border-radius: 9px; border: 1px solid var(--ui-stonegrey);
+      background: var(--ui-white); font-family: inherit; font-size: 11.5px; font-weight: 700;
+      cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+      color: var(--lv-charcoal); transition: 0.15s;
+    }
+    .lv-btn-mini:hover { background: var(--ui-lightgrey); }
+    .lv-btn-mini.orange { background: var(--ui-orange-transparent-10); border-color: var(--ui-orange); color: #b45309; }
+    .lv-btn-mini.danger { color: var(--ui-red); border-color: #fecaca; background: #fef2f2; flex: 0 0 auto; }
 
     .cpm-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
     .cpm-table th, .cpm-table td { padding: 8px 6px; text-align: left; border-bottom: 1px solid var(--ui-softgrey); }
@@ -247,7 +351,7 @@
 
     .earn-floating-pill {
       position: fixed; bottom: 78px; left: 50%; transform: translateX(-50%);
-      background: var(--ui-charcoalgrey); color: var(--ui-white); padding: 7px 18px;
+      background: var(--lv-charcoal); color: var(--ui-white); padding: 7px 18px;
       border-radius: 999px; font-size: 12.5px; font-weight: 600; white-space: nowrap;
       z-index: 950; box-shadow: var(--ui-shadow-m); cursor: pointer;
     }
@@ -255,7 +359,7 @@
 
     .bottom-nav-dock {
       position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%);
-      background: var(--ui-white); max-width: 460px; width: 94%; border-radius: 999px;
+      background: var(--ui-white); max-width: 480px; width: 94%; border-radius: 999px;
       padding: 7px 22px; display: flex; justify-content: space-around; align-items: center;
       box-shadow: var(--ui-shadow-m); z-index: 950; border: 1px solid var(--ui-softgrey);
     }
@@ -263,11 +367,11 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       font-size: 11px; font-weight: 600; color: var(--ui-ashgrey); cursor: pointer; gap: 2px; border: none; background: none; font-family: inherit;
     }
-    .dock-tab.active { color: var(--ui-charcoalgrey); font-weight: 700; }
+    .dock-tab.active { color: var(--ui-orange); font-weight: 800; }
     .dock-tab .material-icons { font-size: 22px; }
 
     .badge-status-pending {
-      background: #fef3c7; color: #d97706; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 999px;
+      background: #fffbeb; color: #b45309; border: 1px solid #fde68a; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 999px;
     }
   </style>
 </head>
@@ -314,8 +418,8 @@
           <option value="pt">🇧🇷 PT</option>
         </select>
         <button type="button" class="user-pill-btn" id="header-user-btn" onclick="navegarA('auth')">
-          <span class="material-icons" style="font-size:15px;">person</span>
-          <span id="header-user-label">Registrarse / Entrar</span>
+          <span class="material-icons" style="font-size:15px;">account_circle</span>
+          <span id="header-user-label">Iniciar Sesión</span>
         </button>
       </div>
     </div>
@@ -325,12 +429,12 @@
 
     <div class="micro-ad-strip">
       <div style="display:flex; align-items:center; gap:8px;">
-        <span class="micro-ad-tag">AD</span>
-        <span style="font-size:12px; font-weight:700;" data-i18n="micro_ad_text">⚡ Ejecutores y Scripts Actualizados Sin Key 2026</span>
+        <span class="micro-ad-tag">LINKVERTISE PARTNER</span>
+        <span style="font-size:12px; font-weight:700;" data-i18n="micro_ad_text">⚡ Monetiza tus Enlaces y Scripts — Pagos Verificados</span>
       </div>
     </div>
 
-    <!-- PANTALLA 1: POST -->
+    <!-- ================= PANTALLA 1: POST (VISTA VISITANTE) ================= -->
     <div id="view-post" style="display: none;">
       <div class="back-row" onclick="navegarA('create')">
         <span class="material-icons" style="font-size:18px;">arrow_back</span> <span data-i18n="back">Back</span>
@@ -355,9 +459,12 @@
         <div class="creator-header">
           <div style="display:flex; align-items:center; gap:10px;">
             <div class="lv-avatar" id="post-avatar">RA</div>
-            <span style="font-weight:700; font-size:15px;" id="post-author">Rayte12</span>
+            <div>
+              <div style="font-weight:800; font-size:15px;" id="post-author">Rayte12</div>
+              <div style="font-size:11px; color:#777;">Creator Partner</div>
+            </div>
           </div>
-          <span style="font-size:11px; color:var(--ui-green-dark); background:var(--ui-green-light); padding:3px 9px; border-radius:999px; font-weight:800;">✔ Verified</span>
+          <span style="font-size:11px; color:var(--ui-green-dark); background:var(--ui-green-light); padding:4px 10px; border-radius:999px; font-weight:800; border:1px solid #bbf7d0;">✔ Verified Link</span>
         </div>
 
         <div class="media-stage">
@@ -365,14 +472,14 @@
           <iframe id="post-yt-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <div class="media-default-text" id="post-default-cover">
             <h2 id="post-cover-type">Get Script from</h2>
-            <p>🌐 Rayte Script</p>
+            <p style="color:var(--ui-orange); font-weight:700;">🌐 Rayte Script Network</p>
           </div>
         </div>
 
         <div class="chips-row">
           <span class="ui-chip"><span class="material-icons" style="font-size:14px;">public</span> Public</span>
-          <span class="ui-chip"><span class="material-icons" style="font-size:14px;">verified</span> 100%</span>
-          <span class="ui-chip"><span class="material-icons" style="font-size:14px;">visibility</span> <span id="post-views-num">1</span></span>
+          <span class="ui-chip"><span class="material-icons" style="font-size:14px;">verified</span> 100% Safe</span>
+          <span class="ui-chip"><span class="material-icons" style="font-size:14px;">visibility</span> <span id="post-views-num">1</span> views</span>
         </div>
 
         <h1 class="post-heading" id="post-title-text">Loading...</h1>
@@ -406,7 +513,7 @@
       </div>
     </div>
 
-    <!-- PANTALLA 2: SELECTOR -->
+    <!-- ================= PANTALLA 2: SELECTOR ================= -->
     <div id="view-selector" style="display: none;">
       <div class="back-row" onclick="volverAlPostActual()">
         <span class="material-icons" style="font-size:18px;">arrow_back</span> <span data-i18n="back">Back</span>
@@ -427,7 +534,7 @@
       </div>
     </div>
 
-    <!-- PANTALLA 3: VISOR (7 SEGUNDOS POR ANUNCIO) -->
+    <!-- ================= PANTALLA 3: VISOR (7 SEGUNDOS POR ANUNCIO) ================= -->
     <div id="view-visor" style="display: none;">
       <div class="back-row" onclick="volverAlPostActual()">
         <span class="material-icons" style="font-size:18px;">arrow_back</span> <span data-i18n="back">Back</span>
@@ -438,7 +545,7 @@
             <div class="lv-avatar" style="background:var(--ui-purpley-light); color:#6d28d9;">RS</div>
             <span style="font-weight:700;">Rayte Script</span>
           </div>
-          <span style="background:var(--ui-charcoalgrey); color:#fff; font-size:11px; font-weight:700; padding:5px 12px; border-radius:999px;">⚡ Adsterra Verified</span>
+          <span style="background:var(--lv-charcoal); color:#fff; font-size:11px; font-weight:700; padding:5px 12px; border-radius:999px;">⚡ Adsterra Verified</span>
         </div>
 
         <!-- VISOR NATIVE BANNER -->
@@ -476,14 +583,14 @@
       </div>
     </div>
 
-    <!-- PANTALLA 4: DESBLOQUEADO -->
+    <!-- ================= PANTALLA 4: DESBLOQUEADO ================= -->
     <div id="view-unlocked" style="display: none;">
       <div class="back-row" onclick="volverAlPostActual()">
         <span class="material-icons" style="font-size:18px;">arrow_back</span> <span data-i18n="back">Back</span>
       </div>
       <div class="ui-card" style="text-align:center; padding:24px 20px;">
         <h2 style="font-size:25px; font-weight:800; line-height:1.2;" data-i18n="unlocked_heading">You're ready to<br>access creativity!</h2>
-        <div style="width:78px; height:78px; border-radius:50%; background:var(--ui-green); color:#fff; font-size:42px; display:flex; align-items:center; justify-content:center; margin:16px auto; box-shadow:0 8px 22px rgba(124,207,0,0.35);">
+        <div style="width:78px; height:78px; border-radius:50%; background:var(--ui-green); color:#fff; font-size:42px; display:flex; align-items:center; justify-content:center; margin:16px auto; box-shadow:0 8px 22px rgba(0,201,81,0.35);">
           <span class="material-icons" style="font-size:44px;">check</span>
         </div>
         <p style="font-size:14px; color:#555; line-height:1.45;" data-i18n="unlocked_sub">
@@ -508,22 +615,22 @@
       </div>
     </div>
 
-    <!-- PANTALLA 5: CREADOR -->
+    <!-- ================= PANTALLA 5: CREADOR DE ENLACES ================= -->
     <div id="view-create" style="display: block;">
       <div class="ui-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <span style="background:var(--ui-orange-transparent-10); color:#d97706; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:800;">➕ Rayte Script Creator</span>
-          <span style="font-size:12px; color:var(--ui-green-dark); font-weight:700;">🔒 Anti-Bypass v2</span>
+          <span style="background:var(--ui-orange-transparent-10); color:#b45309; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:800;">⚡ Linkvertise Style Studio</span>
+          <span style="font-size:12px; color:var(--ui-green-dark); font-weight:700;">🔒 Anti-Bypass v3</span>
         </div>
-        <h2 style="font-size:21px; font-weight:800; margin-bottom:6px;" data-i18n="create_heading">Crear Nuevo Acortador</h2>
-        <p style="font-size:13px; color:#666; margin-bottom:14px;" data-i18n="create_sub">Acorta tus enlaces o scripts, compártelos y gana el 30% del Revenue real de Adsterra según el país de tus visitas.</p>
+        <h2 style="font-size:22px; font-weight:800; margin-bottom:6px;" data-i18n="create_heading">Crear Nuevo Enlace Monetizado</h2>
+        <p style="font-size:13px; color:#666; margin-bottom:14px;">Cada enlace que creas queda guardado únicamente en tu cuenta personal y te paga el <b>30% neto</b> de las visitas.</p>
 
-        <!-- AVISO DE REGISTRO PARA CREADORES -->
-        <div id="creator-guest-banner" style="background:#fef3c7; border:1.5px solid #f59e0b; padding:12px 14px; border-radius:16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; gap:10px;">
+        <!-- AVISO DE REGISTRO PARA INVITADOS -->
+        <div id="creator-guest-banner" style="background:linear-gradient(90deg, #fffbeb 0%, #ffedd5 100%); border:1.5px solid #f59e0b; padding:13px 15px; border-radius:16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; gap:10px;">
           <div style="font-size:12px; font-weight:700; color:#92400e; line-height:1.35;">
-            💰 <b>¿Quieres monetizar tus enlaces?</b><br>Regístrate gratis para guardar tus links y cobrar tus ganancias.
+            👤 <b>No has iniciado sesión:</b><br>Regístrate o entra a tu cuenta para que tus URLs queden guardadas en tu panel personal y sumen saldo.
           </div>
-          <button type="button" onclick="navegarA('auth')" style="background:#f59e0b; color:#fff; border:none; padding:8px 12px; border-radius:10px; font-size:11.5px; font-weight:800; cursor:pointer; flex-shrink:0;">Crear Cuenta</button>
+          <button type="button" onclick="navegarA('auth')" style="background:var(--lv-charcoal); color:#fff; border:none; padding:9px 13px; border-radius:999px; font-size:11.5px; font-weight:800; cursor:pointer; flex-shrink:0;">Entrar / Registro</button>
         </div>
 
         <div class="mode-selector-tabs">
@@ -533,7 +640,7 @@
 
         <div class="field-box">
           <label>👤 Alias de Creador</label>
-          <input type="text" id="in-creator" value="Rayte12" placeholder="Ej: Rayte12">
+          <input type="text" id="in-creator" value="Rayte12" placeholder="Tu nombre de creador">
         </div>
 
         <div class="field-box">
@@ -542,7 +649,7 @@
         </div>
 
         <div class="field-box" id="box-input-url">
-          <label>🔗 URL de Destino (Redireccionará automáticamente al terminar los anuncios) *</label>
+          <label>🔗 URL de Destino (Redireccionará al terminar los 3 anuncios de 7s) *</label>
           <input type="url" id="in-target-url" placeholder="https://mega.nz/... o https://tu-web.com">
         </div>
 
@@ -552,10 +659,10 @@
         </div>
 
         <div class="field-box">
-          <label>🖼️ Subir Imagen desde tu Celular o PC (Opcional)</label>
+          <label>🖼️ Subir Miniatura desde tu Celular o PC (Opcional)</label>
           <div class="upload-dropzone" onclick="document.getElementById('in-file-img').click()">
             <span class="material-icons" style="font-size:30px; color:var(--ui-orange);">add_photo_alternate</span>
-            <p style="font-size:13px; font-weight:700; margin-top:4px;" id="upload-status-text">Toca aquí para elegir una imagen</p>
+            <p style="font-size:13px; font-weight:700; margin-top:4px;" id="upload-status-text">Toca aquí para subir una imagen</p>
             <input type="file" id="in-file-img" accept="image/*" style="display:none;" onchange="procesarImagenLocal(event)">
             <img id="preview-uploaded-img" class="upload-preview-img" alt="Preview">
           </div>
@@ -568,15 +675,15 @@
 
         <div class="field-box">
           <label>📝 Descripción del Post</label>
-          <textarea id="in-desc" rows="3" placeholder="🔥 INSTANT SCRIPT — Detalles o notas..."></textarea>
+          <textarea id="in-desc" rows="3" placeholder="🔥 INSTANT SCRIPT — Instrucciones o detalles..."></textarea>
         </div>
 
         <button type="button" class="btn-primary-orange" onclick="generarAcortadorRayte()">
-          <span class="material-icons">bolt</span> Generar Enlace Protegido
+          <span class="material-icons">bolt</span> Publicar y Acortar Enlace
         </button>
 
         <div id="create-result-box" style="display:none; margin-top:18px; background:var(--ui-green-light); border:1.5px solid var(--ui-green); padding:16px; border-radius:18px;">
-          <p style="font-size:14px; font-weight:800; color:var(--ui-green-dark); margin-bottom:8px;">✅ ¡Enlace permanente generado con éxito!</p>
+          <p style="font-size:14px; font-weight:800; color:var(--ui-green-dark); margin-bottom:8px;">✅ ¡Enlace guardado en tu Panel de Creador!</p>
           <input type="text" id="out-generated-link" readonly style="width:100%; padding:10px; border-radius:10px; border:1px solid #bbf7d0; font-size:12px; margin-bottom:10px; background:#fff;">
           
           <div style="display:flex; gap:8px; margin-bottom:10px;">
@@ -585,151 +692,208 @@
           </div>
 
           <button type="button" id="btn-short-yt" class="btn-outline-orange" style="height:38px; font-size:12px; margin-top:0; background:#fff;" onclick="acortarConIsGd()">
-            ✨ Generar Link Cortito para YouTube (is.gd)
+            ✨ Acortar URL con is.gd (Ideal para YouTube/TikTok)
           </button>
           <input type="text" id="out-short-link" readonly style="display:none; width:100%; padding:9px; border-radius:10px; border:1px solid #bbf7d0; font-size:13px; font-weight:700; margin-top:8px; background:#fff; color:#0284c7;">
         </div>
       </div>
     </div>
 
-    <!-- PANTALLA 6: DASHBOARD, CPM POR PAÍSES (30% CREADOR / 70% ADMIN) & RETIROS -->
+    <!-- ================= PANTALLA 6: DASHBOARD ESTILO LINKVERTISE STUDIO ================= -->
     <div id="view-dashboard" style="display: none;">
-      <div class="ui-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-          <div>
-            <h2 style="font-size:20px; font-weight:800;">📊 Panel de Ganancias</h2>
-            <p style="font-size:12px; color:#666;" id="dash-user-welcome">Modo Invitado (Inicia sesión para cobrar)</p>
-          </div>
-          <span style="background:var(--ui-green-light); color:var(--ui-green-dark); font-size:11px; font-weight:800; padding:4px 10px; border-radius:999px;">30% Revenue Share</span>
-        </div>
 
-        <div class="stats-grid">
-          <div class="stat-tile highlight">
-            <div class="label">💰 Tu Saldo (30% Neto)</div>
-            <div class="val" id="dash-earnings">$0.000</div>
-          </div>
-          <div class="stat-tile">
-            <div class="label">🔓 Desbloqueos (3 Ads)</div>
-            <div class="val" id="dash-unlocks">0</div>
-          </div>
-          <div class="stat-tile">
-            <div class="label">👁️ Visitas Totales</div>
-            <div class="val" id="dash-views">0</div>
-          </div>
-          <div class="stat-tile">
-            <div class="label">🌍 Tu Tarifa CPM (30%)</div>
-            <div class="val" id="dash-rpm-label">$1.26</div>
-          </div>
-        </div>
-
-        <!-- SELECTOR DE PAÍS DE AUDIENCIA (BASADO EN CPM REAL DE ADSTERRA) -->
-        <div style="background:var(--ui-lightgrey); padding:12px 14px; border-radius:16px; margin-bottom:14px;">
-          <label style="font-size:12px; font-weight:800; display:block; margin-bottom:6px; color:#333;">
-            🌎 Región Principal de tu Tráfico (Cálculo automático Adsterra):
-          </label>
-          <select id="country-tier-selector" onchange="actualizarTierPais()" style="width:100%; padding:9px 12px; border-radius:10px; border:1px solid var(--ui-stonegrey); font-weight:700; font-family:inherit; font-size:12.5px; background:#fff;">
-            <option value="TIER1">🇺🇸🇬🇧🇨🇦 Tier 1 (EE.UU, UK, Canadá, Alemania) — Tu 30%: $3.60 / 1k</option>
-            <option value="TIER2">🇪🇸🇲🇽🇨🇱 Tier 2 (España, Chile, México, Brasil) — Tu 30%: $1.50 / 1k</option>
-            <option value="GLOBAL" selected>🌐 Tráfico Mixto Global (Promedio Adsterra) — Tu 30%: $1.26 / 1k</option>
-            <option value="TIER3">🇦🇷🇵🇪🇨🇴 Tier 3 (Resto de Latam / Global) — Tu 30%: $0.72 / 1k</option>
-          </select>
-          <p style="font-size:11px; color:#666; margin-top:6px;">
-            💡 Cada visitante que completa los 3 anuncios de 7s + Banners genera múltiples impresiones en Adsterra. Tú recibes el <b>30% neto</b> de lo generado.
-          </p>
-        </div>
-
-        <button type="button" class="btn-primary-orange" onclick="navegarA('create')">➕ Crear Nuevo Acortador</button>
-      </div>
-
-      <!-- TABLA TRANSPARENTE DE TARIFAS CPM POR PAÍS -->
-      <div class="ui-card">
-        <h3 style="font-size:15px; font-weight:800; margin-bottom:6px;">🌍 Tabla de Pagos por País (1,000 Desbloqueos Completos)</h3>
-        <p style="font-size:11.5px; color:#666; margin-bottom:8px;">Cálculo basado en las impresiones totales por sesión (Banners + Social Bar + 3 Pasos de 7s en Adsterra):</p>
-        <table class="cpm-table">
-          <thead>
-            <tr>
-              <th>País / Región</th>
-              <th>CPM Total Adsterra</th>
-              <th>Tu Pago (30% Creador)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>🇺🇸 EE.UU / 🇬🇧 UK / 🇨🇦 Canadá</td>
-              <td>$12.00 USD</td>
-              <td style="font-weight:800; color:var(--ui-green-dark);">$3.60 USD</td>
-            </tr>
-            <tr>
-              <td>🇪🇸 España / 🇨🇱 Chile / 🇲🇽 México / 🇧🇷 Brasil</td>
-              <td>$5.00 USD</td>
-              <td style="font-weight:800; color:var(--ui-green-dark);">$1.50 USD</td>
-            </tr>
-            <tr>
-              <td>🌐 Promedio Global Mixto</td>
-              <td>$4.20 USD</td>
-              <td style="font-weight:800; color:var(--ui-green-dark);">$1.26 USD</td>
-            </tr>
-            <tr>
-              <td>🇦🇷 Argentina / 🇨🇴 Colombia / 🇵🇪 Perú / Otros</td>
-              <td>$2.40 USD</td>
-              <td style="font-weight:800; color:var(--ui-green-dark);">$0.72 USD</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- SECCIÓN DE RETIRO MANUAL CON AUDITORÍA -->
-      <div class="ui-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <h3 style="font-size:17px; font-weight:800;">🏦 Solicitar Retiro de Ganancias</h3>
-          <span class="badge-status-pending">Mínimo $5.00 USD</span>
-        </div>
-        <p style="font-size:12.5px; color:#555; line-height:1.45; margin-bottom:14px;">
-          🔍 <b>Verificación Manual:</b> Al solicitar tu cobro, revisaremos en el panel de Adsterra que tus visitas e impresiones sean <b>100% orgánicas</b> y reales antes de enviarte tu 30% correspondiente.
+      <!-- SI NO HA INICIADO SESIÓN, PEDIR LOGIN PARA VER SU PANEL PERSONAL -->
+      <div id="dash-locked-guest" class="ui-card" style="display:none; text-align:center; padding:32px 20px;">
+        <div class="brand-icon-mark" style="width:54px; height:54px; font-size:26px; margin:0 auto 14px;">🔒</div>
+        <h2 style="font-size:22px; font-weight:800; margin-bottom:8px;">Creator Studio Privado</h2>
+        <p style="font-size:13.5px; color:#666; margin-bottom:20px; line-height:1.45;">
+          En <b>Rayte Script</b> cada creador tiene su propio panel privado con sus enlaces, estadísticas de visitas y ganancias independientes. Inicia sesión o crea tu cuenta gratis para ver tus números.
         </p>
-
-        <div class="field-box">
-          <label>💳 Método de Cobro</label>
-          <select id="payout-method">
-            <option value="PayPal">PayPal (USD)</option>
-            <option value="Binance USDT">Binance Pay / USDT (BEP20 / TRC20)</option>
-            <option value="Transferencia Bancaria Chile">Transferencia Bancaria / CuentaRUT (Chile)</option>
-          </select>
-        </div>
-
-        <div class="field-box">
-          <label>📝 Datos de tu Cuenta (Correo PayPal, ID Binance o Datos Bancarios)</label>
-          <input type="text" id="payout-details" placeholder="Ej: micorreo@paypal.com o RUT / N° Cuenta">
-        </div>
-
-        <div class="field-box">
-          <label>💵 Monto a Retirar (USD)</label>
-          <input type="number" id="payout-amount" step="0.01" min="5" placeholder="Ej: 5.00">
-        </div>
-
-        <button type="button" class="btn-charcoal" onclick="solicitarRetiroManual()">
-          <span class="material-icons">payments</span> Solicitar Cobro Manual
+        <button type="button" class="btn-primary-orange" onclick="navegarA('auth')">
+          🔑 Iniciar Sesión / Crear Cuenta Gratis
         </button>
-
-        <div id="payout-history-box" style="margin-top:16px; border-top:1px solid var(--ui-softgrey); padding-top:12px;">
-          <h4 style="font-size:13px; font-weight:800; margin-bottom:8px;">📋 Mis Solicitudes de Cobro</h4>
-          <div id="payout-history-list" style="font-size:12px; color:#666;">No tienes retiros pendientes.</div>
-        </div>
       </div>
 
-      <div class="ui-card">
-        <h3 style="font-size:16px; font-weight:800; margin-bottom:12px;">🔗 Mis Enlaces Creados</h3>
-        <div id="dash-links-table" style="font-size:13px; color:#666;">Aún no has creado enlaces.</div>
+      <!-- CONTENIDO PRIVADO DEL USUARIO CONECTADO -->
+      <div id="dash-authenticated-content" style="display:none;">
+        
+        <!-- HERO OSCURO ESTILO LINKVERTISE -->
+        <div class="lv-dash-hero">
+          <div class="lv-user-bar">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="lv-avatar" id="dash-avatar-circle" style="width:42px; height:42px; font-size:15px;">RA</div>
+              <div>
+                <div style="font-size:16px; font-weight:800;" id="dash-user-name">Rayte12</div>
+                <div style="font-size:11px; color:#bbb;" id="dash-user-email">creator@raytescript.com</div>
+              </div>
+            </div>
+            <span style="background:rgba(0,201,81,0.2); color:#4ade80; border:1px solid rgba(74,222,128,0.3); font-size:11px; font-weight:800; padding:4px 10px; border-radius:999px;">
+              ● 30% RevShare Activo
+            </span>
+          </div>
+
+          <div class="lv-balance-box">
+            <div>
+              <div style="font-size:11.5px; color:#ccc; font-weight:600;">SALDO DISPONIBLE PARA RETIRO (TU 30%)</div>
+              <div class="lv-balance-val" id="dash-earnings">$0.000 USD</div>
+            </div>
+            <button type="button" onclick="document.getElementById('payout-card-section').scrollIntoView({behavior:'smooth'})" style="background:var(--ui-orange); color:#fff; border:none; padding:10px 16px; border-radius:999px; font-weight:800; font-size:12px; cursor:pointer; font-family:inherit;">
+              Retirar Saldo →
+            </button>
+          </div>
+
+          <div class="lv-kpi-grid">
+            <div class="lv-kpi-card">
+              <div class="k-lbl">👁️ Visitas Links</div>
+              <div class="k-num" id="dash-views">0</div>
+            </div>
+            <div class="lv-kpi-card">
+              <div class="k-lbl">🔓 Desbloqueos</div>
+              <div class="k-num" id="dash-unlocks">0</div>
+            </div>
+            <div class="lv-kpi-card">
+              <div class="k-lbl">📈 Tu RPM (30%)</div>
+              <div class="k-num" id="dash-rpm-label" style="color:#ffdfb0;">$1.26</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GRÁFICO DE ESTADÍSTICAS Y FILTRO REGIONAL ADSTERRA -->
+        <div class="ui-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div>
+              <h3 style="font-size:16px; font-weight:800;">📈 Rendimiento de Tus Enlaces</h3>
+              <p style="font-size:11.5px; color:#777;">Estadísticas exclusivas de tu cuenta</p>
+            </div>
+            <span class="ui-chip" id="dash-links-count-badge">0 Links creados</span>
+          </div>
+
+          <!-- BARRAS DE ESTADÍSTICAS ESTILO LINKVERTISE -->
+          <div class="lv-chart-box" id="lv-stats-bars">
+            <div class="lv-bar-col"><div class="lv-bar-fill" style="height:25%;"></div><span class="lv-bar-lbl">Lun</span></div>
+            <div class="lv-bar-col"><div class="lv-bar-fill" style="height:40%;"></div><span class="lv-bar-lbl">Mar</span></div>
+            <div class="lv-bar-col"><div class="lv-bar-fill" style="height:35%;"></div><span class="lv-bar-lbl">Mié</span></div>
+            <div class="lv-bar-col"><div class="lv-bar-fill" style="height:60%;"></div><span class="lv-bar-lbl">Jue</span></div>
+            <div class="lv-bar-col"><div class="lv-bar-fill" style="height:50%;"></div><span class="lv-bar-lbl">Vie</span></div>
+            <div class="lv-bar-col"><div class="lv-bar-fill" style="height:80%;"></div><span class="lv-bar-lbl">Sáb</span></div>
+            <div class="lv-bar-col"><div class="lv-bar-fill" id="bar-today" style="height:95%;"></div><span class="lv-bar-lbl" style="color:var(--ui-orange);">Hoy</span></div>
+          </div>
+
+          <div style="background:var(--ui-lightgrey); padding:12px 14px; border-radius:14px; margin-top:12px;">
+            <label style="font-size:12px; font-weight:800; display:block; margin-bottom:6px; color:#333;">
+              🌎 Región de tu Audiencia (Tarifa Oficial Adsterra 70/30):
+            </label>
+            <select id="country-tier-selector" onchange="actualizarTierPais()" style="width:100%; padding:9px 12px; border-radius:10px; border:1px solid var(--ui-stonegrey); font-weight:700; font-family:inherit; font-size:12.5px; background:#fff;">
+              <option value="TIER1">🇺🇸🇬🇧🇨🇦 Tier 1 (EE.UU, UK, Canadá, Alemania) — Tu 30%: $3.60 / 1k</option>
+              <option value="TIER2">🇪🇸🇲🇽🇨🇱 Tier 2 (España, Chile, México, Brasil) — Tu 30%: $1.50 / 1k</option>
+              <option value="GLOBAL" selected>🌐 Tráfico Mixto Global (Promedio Adsterra) — Tu 30%: $1.26 / 1k</option>
+              <option value="TIER3">🇦🇷🇵🇪🇨🇴 Tier 3 (Resto de Latam / Mundo) — Tu 30%: $0.72 / 1k</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- LISTA DE ENLACES CREADOS POR ESTE USUARIO (ESTILO LINKVERTISE) -->
+        <div class="ui-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
+            <h3 style="font-size:17px; font-weight:800;">🔗 Mis Enlaces Creados (My Links)</h3>
+            <button type="button" onclick="navegarA('create')" style="background:var(--ui-orange); color:#fff; border:none; padding:6px 13px; border-radius:999px; font-size:12px; font-weight:800; cursor:pointer; font-family:inherit;">
+              + Nuevo Link
+            </button>
+          </div>
+
+          <div class="field-box" style="margin-bottom:12px;">
+            <input type="text" id="filter-my-links" oninput="actualizarDashboardUI()" placeholder="🔍 Buscar entre mis enlaces creados..." style="padding:10px 14px; font-size:13px;">
+          </div>
+
+          <div id="dash-links-table"></div>
+        </div>
+
+        <!-- TABLA TRANSPARENTE DE PAGOS POR PAÍS -->
+        <div class="ui-card">
+          <h3 style="font-size:15px; font-weight:800; margin-bottom:6px;">🌍 Tabla de Tarifas RPM por País (30% Creador)</h3>
+          <p style="font-size:11.5px; color:#666; margin-bottom:8px;">Lo que ganas por cada 1,000 usuarios que desbloquean tus enlaces viendo los 3 anuncios de 7 segundos:</p>
+          <table class="cpm-table">
+            <thead>
+              <tr>
+                <th>País / Región</th>
+                <th>CPM Bruto Adsterra</th>
+                <th>Tu Ganancia (30%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🇺🇸 EE.UU / 🇬🇧 UK / 🇨🇦 Canadá</td>
+                <td>$12.00 USD</td>
+                <td style="font-weight:800; color:var(--ui-green-dark);">$3.60 USD</td>
+              </tr>
+              <tr>
+                <td>🇪🇸 España / 🇨🇱 Chile / 🇲🇽 México / 🇧🇷 Brasil</td>
+                <td>$5.00 USD</td>
+                <td style="font-weight:800; color:var(--ui-green-dark);">$1.50 USD</td>
+              </tr>
+              <tr>
+                <td>🌐 Promedio Global Mixto</td>
+                <td>$4.20 USD</td>
+                <td style="font-weight:800; color:var(--ui-green-dark);">$1.26 USD</td>
+              </tr>
+              <tr>
+                <td>🇦🇷 Argentina / 🇨🇴 Colombia / 🇵🇪 Perú</td>
+                <td>$2.40 USD</td>
+                <td style="font-weight:800; color:var(--ui-green-dark);">$0.72 USD</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SECCIÓN DE RETIRO MANUAL CON AUDITORÍA -->
+        <div class="ui-card" id="payout-card-section">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="font-size:17px; font-weight:800;">🏦 Solicitar Retiro (Payout)</h3>
+            <span class="badge-status-pending">Mínimo $5.00 USD</span>
+          </div>
+          <p style="font-size:12.5px; color:#555; line-height:1.45; margin-bottom:14px;">
+            🔍 <b>Auditoría de Tráfico Orgánico:</b> Al solicitar tu retiro, verificaremos manualmente en nuestro servidor de Adsterra que las visitas de tus enlaces sean reales y orgánicas antes de transferir tu 30%.
+          </p>
+
+          <div class="field-box">
+            <label>💳 Método de Pago</label>
+            <select id="payout-method">
+              <option value="PayPal">PayPal (USD)</option>
+              <option value="Binance USDT">Binance Pay / USDT (BEP20 / TRC20)</option>
+              <option value="Transferencia Bancaria Chile">Transferencia Bancaria / CuentaRUT (Chile)</option>
+            </select>
+          </div>
+
+          <div class="field-box">
+            <label>📝 Datos de tu Cuenta Destino</label>
+            <input type="text" id="payout-details" placeholder="Ej: micorreo@paypal.com o RUT / N° Cuenta">
+          </div>
+
+          <div class="field-box">
+            <label>💵 Monto a Retirar (USD)</label>
+            <input type="number" id="payout-amount" step="0.01" min="5" placeholder="Ej: 5.00">
+          </div>
+
+          <button type="button" class="btn-charcoal" onclick="solicitarRetiroManual()">
+            <span class="material-icons">payments</span> Solicitar Cobro Manual
+          </button>
+
+          <div id="payout-history-box" style="margin-top:16px; border-top:1px solid var(--ui-softgrey); padding-top:12px;">
+            <h4 style="font-size:13px; font-weight:800; margin-bottom:8px;">📋 Mis Retiros Solicitados</h4>
+            <div id="payout-history-list" style="font-size:12px; color:#666;">No tienes retiros pendientes.</div>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- PANTALLA 7: REGISTRO E INICIO DE SESIÓN RÁPIDO -->
+    <!-- ================= PANTALLA 7: REGISTRO E INICIO DE SESIÓN ================= -->
     <div id="view-auth" style="display: none;">
       <div class="ui-card" id="auth-form-card">
         <div style="text-align:center; margin-bottom:16px;">
-          <div class="brand-icon-mark" style="width:44px; height:44px; font-size:22px; margin:0 auto 10px;">R</div>
-          <h2 style="font-size:22px; font-weight:800;" id="auth-heading">Portal de Creadores</h2>
-          <p style="font-size:13px; color:#666;">Crea tu cuenta en 10 segundos o inicia sesión para monetizar tus enlaces.</p>
+          <div class="brand-icon-mark" style="width:46px; height:46px; font-size:22px; margin:0 auto 10px;">R</div>
+          <h2 style="font-size:22px; font-weight:800;" id="auth-heading">Rayte Script Studio</h2>
+          <p style="font-size:13px; color:#666;">Cada usuario registrado tiene su propio panel privado de enlaces y ganancias.</p>
         </div>
 
         <div class="mode-selector-tabs">
@@ -738,7 +902,7 @@
         </div>
 
         <div class="field-box" id="box-auth-alias" style="display:block;">
-          <label>👤 Tu Nombre o Alias de Creador *</label>
+          <label>👤 Nombre o Alias de Creador *</label>
           <input type="text" id="auth-alias" placeholder="Ej: RayteCreator">
         </div>
 
@@ -753,39 +917,39 @@
         </div>
 
         <div class="field-box" id="box-auth-payment" style="display:block;">
-          <label>💳 Cuenta para recibir tus pagos (PayPal, Binance o CuentaRUT)</label>
+          <label>💳 Cuenta para recibir pagos (PayPal, Binance o CuentaRUT)</label>
           <input type="text" id="auth-PrefPay" placeholder="Ej: PayPal: tucorreo@gmail.com">
         </div>
 
         <button type="button" class="btn-primary-orange" id="btn-auth-submit" onclick="procesarAutenticacion()">
-          🚀 Registrarme y Empezar a Ganar
+          🚀 Crear mi Cuenta y Ver mi Panel
         </button>
       </div>
 
-      <!-- TARJETA CUANDO EL USUARIO YA ESTÁ CONECTADO -->
+      <!-- TARJETA DE PERFIL CONECTADO -->
       <div class="ui-card" id="auth-logged-card" style="display:none; text-align:center;">
         <div class="lv-avatar" id="profile-avatar-big" style="width:64px; height:64px; font-size:22px; margin:0 auto 10px;">RA</div>
         <h2 style="font-size:20px; font-weight:800;" id="profile-name-big">Rayte12</h2>
         <p style="font-size:13px; color:#666; margin-bottom:14px;" id="profile-email-big">usuario@correo.com</p>
         
-        <div style="background:var(--ui-lightgrey); padding:14px; border-radius:14px; margin-bottom:16px; font-size:12.5px; text-align:left; line-height:1.5;">
-          <div>✅ <b>Estado:</b> Cuenta de Creador Activa</div>
-          <div>💰 <b>Comisión:</b> Recibes el 30% neto del CPM de Adsterra por país</div>
-          <div>🔍 <b>Pagos:</b> Depósito manual tras verificación de visitas orgánicas</div>
+        <div style="background:var(--ui-lightgrey); padding:14px; border-radius:14px; margin-bottom:16px; font-size:12.5px; text-align:left; line-height:1.6;">
+          <div>✅ <b>Panel Privado:</b> Solo tú puedes ver y gestionar tus URLs acortadas</div>
+          <div>💰 <b>Reparto:</b> Recibes el 30% neto del CPM de Adsterra por país</div>
+          <div>⏱️ <b>Visor:</b> 3 anuncios de 7 segundos por desbloqueo</div>
         </div>
 
         <button type="button" class="btn-primary-orange" onclick="navegarA('dashboard')" style="margin-bottom:10px;">
-          📊 Ver Mis Ganancias y Retirar
+          📊 Abrir Mi Creator Dashboard
         </button>
         <button type="button" class="btn-outline-orange" onclick="cerrarSesionUsuario()">
-          🚪 Cerrar Sesión
+          🚪 Cerrar Sesión (Cambiar de Usuario)
         </button>
       </div>
     </div>
 
   </div>
 
-  <!-- MODAL 1 -->
+  <!-- MODAL 1: BIENVENIDA -->
   <div class="backdrop-modal" id="modal-welcome">
     <div class="welcome-dialog">
       <div style="color:var(--ui-orange); font-weight:700; font-size:15px; margin-bottom:8px;">Welcome to Rayte Script</div>
@@ -801,7 +965,7 @@
     </div>
   </div>
 
-  <!-- MODAL 2 -->
+  <!-- MODAL 2: INTERSTICIAL -->
   <div class="interstitial-full" id="modal-interstitial">
     <div style="display:flex; justify-content:space-between; align-items:center; max-width:460px; width:100%; margin:0 auto;">
       <span style="font-size:12px; color:#0284c7; background:#e0f2fe; padding:4px 10px; border-radius:8px; font-weight:700;">ⓘ Sponsored Video / Ad</span>
@@ -811,7 +975,6 @@
     <div style="max-width:440px; width:100%; margin:auto; text-align:left; padding:16px 0;">
       <h1 id="inter-title" style="font-size:28px; font-weight:800; margin-bottom:8px;">Submit Your Music & Content Online</h1>
       <p style="color:#666; font-size:14px; margin-bottom:16px;">Sponsored partner recommended by Rayte Script.</p>
-      <!-- BANNER 300x250 INTERSTICIAL -->
       <div style="text-align:center; margin-bottom:18px;">
         <script>
           atOptions = {
@@ -830,52 +993,44 @@
   </div>
 
   <div class="earn-floating-pill" onclick="navegarA('dashboard')">
-    Post & earn! <span>30% Commission</span> on every link.
+    Creator Studio • <span>Gana el 30%</span> de cada enlace acortado
   </div>
 
   <div class="bottom-nav-dock">
     <button type="button" class="dock-tab active" id="tab-for-you" onclick="navegarA('create')">
-      <span class="material-icons">add_circle</span>
-      <span data-i18n="nav_foryou">Crear</span>
+      <span class="material-icons">add_link</span>
+      <span data-i18n="nav_foryou">Acortar Link</span>
     </button>
     <button type="button" class="dock-tab" id="tab-dashboard" onclick="navegarA('dashboard')">
-      <span class="material-icons">account_balance_wallet</span>
-      <span data-i18n="nav_dashboard">Ganancias</span>
+      <span class="material-icons">analytics</span>
+      <span data-i18n="nav_dashboard">Mi Dashboard</span>
     </button>
     <button type="button" class="dock-tab" id="tab-auth" onclick="navegarA('auth')">
       <span class="material-icons">person</span>
-      <span>Registro / Cuenta</span>
+      <span>Mi Cuenta</span>
     </button>
   </div>
 
   <script>
-    // WHATSAPP DEL ADMINISTRADOR (MIGUEL) PARA RECIBIR Y AUDITAR SOLICITUDES DE COBRO
     const ADMIN_WHATSAPP = "56945281442";
-
-    // CONFIGURACIÓN DE REPARTO: 70% DUEÑO (MIGUEL) / 30% CREADOR DEL ENLACE
     const PORCENTAJE_CREADOR = 0.30;
     const PORCENTAJE_ADMIN = 0.70;
 
-    // TABLA DE TARIFAS CPM (100% BRUTO ADSTERRA POR CADA 1,000 SESIONES COMPLETAS CON BANNERS + 3 ANUNCIOS)
     const TARIFAS_PAISES_ADSTERRA = {
-      TIER1: { nombre: "Tier 1 (EE.UU, UK, Canadá, Europa)", cpmBruto: 12.00 }, // 30% Creador = $3.60 | 70% Miguel = $8.40
-      TIER2: { nombre: "Tier 2 (España, Chile, México, Brasil)", cpmBruto: 5.00 }, // 30% Creador = $1.50 | 70% Miguel = $3.50
-      GLOBAL: { nombre: "Tráfico Global Mixto (Promedio)", cpmBruto: 4.20 }, // 30% Creador = $1.26 | 70% Miguel = $2.94
-      TIER3: { nombre: "Tier 3 (Resto de Latam y Mundo)", cpmBruto: 2.40 }  // 30% Creador = $0.72 | 70% Miguel = $1.68
+      TIER1: { nombre: "Tier 1 (EE.UU, UK, Canadá, Alemania)", cpmBruto: 12.00 },
+      TIER2: { nombre: "Tier 2 (España, Chile, México, Brasil)", cpmBruto: 5.00 },
+      GLOBAL: { nombre: "Tráfico Global Mixto (Promedio)", cpmBruto: 4.20 },
+      TIER3: { nombre: "Tier 3 (Resto de Latam y Mundo)", cpmBruto: 2.40 }
     };
 
     const TRADUCCIONES = {
       es: {
         back: "Atrás",
-        micro_ad_text: "⚡ Ejecutores y Scripts Actualizados Sin Key 2026",
-        ad_card_title: "Herramientas & Recursos Gaming Pro",
-        ad_card_sub: "Actualizaciones verificadas y acceso rápido sin esperas.",
-        discover_btn: "Descúbrelo >",
+        micro_ad_text: "⚡ Monetiza tus Enlaces y Scripts — Pagos Verificados",
         get_access_btn: "Obtener acceso",
         share_post_btn: "Compartir enlace",
         people_unlocked: "personas desbloquearon este enlace",
         description_title: "Descripción",
-        bottom_ad_text: "🚀 ¿Quieres acceso rápido? Revisa la recomendación patrocinada",
         choose_action: "Completa los pasos del creador para desbloquear:",
         watch_ads_label: "Ver Anuncios",
         continue_btn: "Continuar",
@@ -884,31 +1039,26 @@
         step_complete: "Completar",
         step_done: "Listo",
         unlocked_heading: "¡Todo listo para<br>acceder al contenido!",
-        unlocked_sub: "¡Buen trabajo! Copia tu texto o script abajo.",
-        final_ad_banner: "🔥 Contenido patrocinado recomendado — Toca para abrir",
+        unlocked_sub: "¡Buen trabajo! Copia tu texto o accede a tu enlace abajo.",
         content_ready: "¡Tu contenido está listo!",
         redirecting_in: "Redirigiendo automáticamente a tu enlace en",
         welcome_title: "Obtener acceso al contenido",
         welcome_sub: "Se mostrará un anuncio corto antes de entregarte el contenido.",
         view_short_ad: "Ver un anuncio corto",
         access_24h: "Acceso completo por 24 horas",
-        nav_foryou: "Crear",
-        nav_dashboard: "Ganancias",
+        nav_foryou: "Acortar Link",
+        nav_dashboard: "Mi Dashboard",
         copy_script_btn: "📋 Copiar Texto / Script",
         copied_alert: "✅ ¡Texto copiado al portapapeles con éxito!",
         open_url_btn: "🔓 Ir al Enlace Ahora (Redirección)"
       },
       en: {
         back: "Back",
-        micro_ad_text: "⚡ Updated Gaming Scripts & Tools No Key 2026",
-        ad_card_title: "Pro Gaming Tools & Exclusive Assets",
-        ad_card_sub: "Verified daily updates and instant clean access.",
-        discover_btn: "Discover >",
+        micro_ad_text: "⚡ Monetize your Links & Scripts — Verified Payouts",
         get_access_btn: "Get access",
         share_post_btn: "Share post",
         people_unlocked: "people unlocked this link",
         description_title: "Description",
-        bottom_ad_text: "🚀 Want faster speeds? Check out today's sponsored partner",
         choose_action: "Complete creator's chosen action:",
         watch_ads_label: "Watch Ads",
         continue_btn: "Continue",
@@ -917,31 +1067,26 @@
         step_complete: "Complete",
         step_done: "Done",
         unlocked_heading: "You're ready to<br>access creativity!",
-        unlocked_sub: "Great job! Copy your text or script below.",
-        final_ad_banner: "🔥 Special Sponsored Offer Unlocked — Tap to view",
+        unlocked_sub: "Great job! Unlock the asset below.",
         content_ready: "Your content is ready!",
         redirecting_in: "Automatically redirecting to your link in",
         welcome_title: "Get content access",
         welcome_sub: "A short ad will be shown before you get the content.",
         view_short_ad: "View a short ad",
         access_24h: "Site-wide access for 24 hours",
-        nav_foryou: "Create",
-        nav_dashboard: "Earnings",
+        nav_foryou: "Create Link",
+        nav_dashboard: "My Dashboard",
         copy_script_btn: "📋 Copy Text / Script",
         copied_alert: "✅ Text copied to clipboard!",
         open_url_btn: "🔓 Go to Link Now"
       },
       pt: {
         back: "Voltar",
-        micro_ad_text: "⚡ Scripts e Ferramentas Atualizadas Sem Key 2026",
-        ad_card_title: "Ferramentas & Recursos Gaming Pro",
-        ad_card_sub: "Atualizações verificadas e acesso rápido sem espera.",
-        discover_btn: "Descubra >",
+        micro_ad_text: "⚡ Monetize seus Links e Scripts — Pagamentos Verificados",
         get_access_btn: "Obter acesso",
         share_post_btn: "Compartilhar",
         people_unlocked: "pessoas desbloquearam este link",
         description_title: "Descrição",
-        bottom_ad_text: "🚀 Quer acesso mais rápido? Confira o parceiro patrocinado",
         choose_action: "Complete a ação escolhida pelo criador:",
         watch_ads_label: "Ver Anúncios",
         continue_btn: "Continuar",
@@ -950,16 +1095,15 @@
         step_complete: "Completar",
         step_done: "Pronto",
         unlocked_heading: "Tudo pronto para<br>acessar o conteúdo!",
-        unlocked_sub: "Ótimo trabalho! Copie seu texto ou script abaixo.",
-        final_ad_banner: "🔥 Oferta Patrocinada Desbloqueada — Toque para abrir",
+        unlocked_sub: "Ótimo trabalho! Copie seu texto ou acesse abaixo.",
         content_ready: "Seu conteúdo está pronto!",
         redirecting_in: "Redirecionando automaticamente para o link em",
         welcome_title: "Obter acesso ao conteúdo",
         welcome_sub: "Um anúncio curto será exibido antes de liberar o conteúdo.",
         view_short_ad: "Ver um anúncio curto",
         access_24h: "Acesso liberado por 24 horas",
-        nav_foryou: "Criar",
-        nav_dashboard: "Ganhos",
+        nav_foryou: "Criar Link",
+        nav_dashboard: "Meu Painel",
         copy_script_btn: "📋 Copiar Texto / Script",
         copied_alert: "✅ Texto copiado com sucesso!",
         open_url_btn: "🔓 Ir para o Link Agora"
@@ -977,7 +1121,6 @@
       document.getElementById("lang-switcher").value = idiomaActual;
       aplicarTraducciones();
 
-      // Auto-detectar Tier de país aproximado si no se ha elegido antes
       if (!localStorage.getItem("rayte_country_tier")) {
         const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
         if (tz.includes("new_york") || tz.includes("chicago") || tz.includes("los_angeles") || tz.includes("london") || tz.includes("toronto")) {
@@ -1035,6 +1178,7 @@
     let intervaloVisor = null;
     let timerRedireccion = null;
     let modoAuthActual = "register";
+    let imagenSubidaBase64 = "";
 
     window.onload = function() {
       detectarIdiomaVisitante();
@@ -1063,7 +1207,7 @@
       navegarA('create');
     };
 
-    /* ================= SISTEMA DE REGISTRO FÁCIL Y FUNCIONAL ================= */
+    /* ================= GESTIÓN DE USUARIOS Y PANELES AISLADOS ================= */
     function obtenerUsuarioActual() {
       try {
         return JSON.parse(localStorage.getItem("rayte_active_user") || "null");
@@ -1072,13 +1216,28 @@
       }
     }
 
+    // Clave única en localStorage para que cada usuario vea SOLO sus propios enlaces
+    function obtenerClaveLinksUsuario(email) {
+      return "rayte_links_user_" + (email || "guest").toLowerCase().trim();
+    }
+
+    function obtenerLinksDelUsuario(email) {
+      const key = obtenerClaveLinksUsuario(email);
+      return JSON.parse(localStorage.getItem(key) || "[]");
+    }
+
+    function guardarLinksDelUsuario(email, lista) {
+      const key = obtenerClaveLinksUsuario(email);
+      localStorage.setItem(key, JSON.stringify(lista));
+    }
+
     function cambiarTabAuth(modo) {
       modoAuthActual = modo;
       document.getElementById("tab-auth-register").classList.toggle("active", modo === "register");
       document.getElementById("tab-auth-login").classList.toggle("active", modo === "login");
       document.getElementById("box-auth-alias").style.display = (modo === "register") ? "block" : "none";
       document.getElementById("box-auth-payment").style.display = (modo === "register") ? "block" : "none";
-      document.getElementById("btn-auth-submit").innerText = (modo === "register") ? "🚀 Registrarme y Empezar a Ganar" : "🔑 Entrar a mi Cuenta";
+      document.getElementById("btn-auth-submit").innerText = (modo === "register") ? "🚀 Crear mi Cuenta y Ver mi Panel" : "🔑 Entrar a mi Panel";
     }
 
     function procesarAutenticacion() {
@@ -1098,9 +1257,14 @@
         const nombreFinal = alias || email.split("@")[0];
         const existente = usuarios.find(u => u.email === email);
         if (existente) {
-          // Si ya existía, le iniciamos sesión directamente para que sea fácil y sin trabas
-          localStorage.setItem("rayte_active_user", JSON.stringify(existente));
-          alert("👋 Ya tenías cuenta con este correo. ¡Sesión iniciada como " + existente.alias + "!");
+          if (existente.pass === pass) {
+            localStorage.setItem("rayte_active_user", JSON.stringify(existente));
+            alert("👋 ¡Bienvenido de vuelta, " + existente.alias + "!");
+          } else {
+            alert("⚠️ Este correo ya está registrado. Usa la pestaña 'Iniciar Sesión' con tu contraseña.");
+            cambiarTabAuth('login');
+            return;
+          }
         } else {
           const nuevoUser = {
             alias: nombreFinal,
@@ -1112,27 +1276,16 @@
           usuarios.push(nuevoUser);
           localStorage.setItem("rayte_users_db", JSON.stringify(usuarios));
           localStorage.setItem("rayte_active_user", JSON.stringify(nuevoUser));
-
-          // Vincular enlaces creados como invitado en este dispositivo a su nueva cuenta
-          let creaciones = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
-          creaciones.forEach(p => {
-            if (!p.ownerEmail || p.ownerEmail === "guest") {
-              p.ownerEmail = nuevoUser.email;
-              p.c = nuevoUser.alias;
-            }
-          });
-          localStorage.setItem("rayte_mis_creaciones", JSON.stringify(creaciones));
-
-          alert("✅ ¡Bienvenido " + nombreFinal + "! Tu cuenta ha sido creada. Ya ganas el 30% de todos tus enlaces acortados.");
+          alert("✅ ¡Cuenta creada para " + nombreFinal + "! Ahora tienes tu propio Dashboard privado estilo Linkvertise.");
         }
       } else {
         const encontrado = usuarios.find(u => u.email === email && u.pass === pass);
         if (!encontrado) {
-          alert("❌ Correo o contraseña incorrectos. Si eres nuevo, toca la pestaña 'Crear Cuenta Gratis'.");
+          alert("❌ Correo o contraseña incorrectos. Si aún no tienes cuenta, selecciona 'Crear Cuenta Gratis'.");
           return;
         }
         localStorage.setItem("rayte_active_user", JSON.stringify(encontrado));
-        alert("👋 ¡Bienvenido de vuelta, " + encontrado.alias + "!");
+        alert("👋 ¡Sesión iniciada como " + encontrado.alias + "!");
       }
 
       verificarSesionActiva();
@@ -1144,14 +1297,12 @@
       const headerLabel = document.getElementById("header-user-label");
       const guestBanner = document.getElementById("creator-guest-banner");
       const inCreator = document.getElementById("in-creator");
-      const dashWelcome = document.getElementById("dash-user-welcome");
 
       if (user) {
         headerLabel.innerText = user.alias;
         if (guestBanner) guestBanner.style.display = "none";
         if (inCreator) inCreator.value = user.alias;
-        if (dashWelcome) dashWelcome.innerText = "✅ Conectado como: " + user.alias + " (" + user.email + ")";
-        if (user.prefPay && document.getElementById("payout-details") && !document.getElementById("payout-details").value) {
+        if (user.prefPay && document.getElementById("payout-details")) {
           document.getElementById("payout-details").value = user.prefPay;
         }
         document.getElementById("auth-form-card").style.display = "none";
@@ -1160,9 +1311,8 @@
         document.getElementById("profile-email-big").innerText = user.email;
         document.getElementById("profile-avatar-big").innerText = user.alias.substring(0, 2).toUpperCase();
       } else {
-        headerLabel.innerText = "Registrarse / Entrar";
+        headerLabel.innerText = "Iniciar Sesión";
         if (guestBanner) guestBanner.style.display = "flex";
-        if (dashWelcome) dashWelcome.innerText = "⚠️ Modo Invitado — Regístrate gratis para cobrar tus ganancias";
         document.getElementById("auth-form-card").style.display = "block";
         document.getElementById("auth-logged-card").style.display = "none";
       }
@@ -1171,6 +1321,7 @@
     function cerrarSesionUsuario() {
       localStorage.removeItem("rayte_active_user");
       verificarSesionActiva();
+      actualizarDashboardUI();
       navegarA('auth');
     }
 
@@ -1228,7 +1379,6 @@
       };
       reader.readAsDataURL(file);
     }
-    let imagenSubidaBase64 = "";
 
     function obtenerIdYoutube(url) {
       if (!url) return null;
@@ -1271,7 +1421,7 @@
         imgEl.style.display = "block";
       } else {
         defEl.style.display = "block";
-        document.getElementById("post-cover-type").innerText = (datos.mode === "url") ? "Get Link from" : "Get Text from";
+        document.getElementById("post-cover-type").innerText = (datos.mode === "url") ? "Get Link from" : "Get Script from";
       }
     }
 
@@ -1320,7 +1470,7 @@
       }
     }
 
-    /* ================= VISOR DE 3 ANUNCIOS (7 SEGUNDOS CADA UNO) ================= */
+    /* ================= VISOR DE 3 ANUNCIOS (7 SEGUNDOS EXACTOS CADA UNO) ================= */
     function iniciarVisor3Ads() {
       ocultarVistas();
       document.getElementById("view-visor").style.display = "block";
@@ -1350,7 +1500,7 @@
       const bar = document.getElementById("visor-progress");
       bar.style.width = "0%";
 
-      // 20 pasos * 350ms = 7,000 milisegundos = 7 segundos exactos por cada anuncio
+      // 20 pasos * 350ms = 7,000ms = 7 segundos exactos por anuncio
       let p = 0;
       intervaloVisor = setInterval(() => {
         p += 5;
@@ -1448,9 +1598,16 @@
       }
     }
 
+    /* ================= CREACIÓN DE ENLACES VINCULADOS AL USUARIO ================= */
     function generarAcortadorRayte() {
       const user = obtenerUsuarioActual();
-      const c = document.getElementById("in-creator").value.trim() || (user ? user.alias : "Rayte12");
+      if (!user) {
+        alert("🔒 Para crear un enlace y que quede registrado en tu Dashboard personal para ganar dinero, primero regístrate o inicia sesión (toma 10 segundos).");
+        navegarA('auth');
+        return;
+      }
+
+      const c = document.getElementById("in-creator").value.trim() || user.alias;
       const tTitle = document.getElementById("in-title").value.trim();
       const yt = document.getElementById("in-yt").value.trim();
       const desc = document.getElementById("in-desc").value.trim();
@@ -1472,30 +1629,43 @@
         return;
       }
 
+      const linkId = "lv_" + Math.random().toString(36).substring(2, 8);
       const socialRandom = Math.floor(24100 + Math.random() * 54800);
       const contenidoCifrado = cifrarAntiBypass(contenidoDestino);
 
-      const nuevoPost = {
+      // Objeto ligero para la URL permanente
+      const payloadUrl = {
+        lid: linkId,
         mode: modoCreacionActual,
-        c,
-        ownerEmail: user ? user.email : "guest",
-        t: tTitle, yt, desc,
+        c: c,
+        ownerEmail: user.email,
+        t: tTitle,
+        yt: yt,
+        desc: desc,
         k: contenidoCifrado,
         img: imagenSubidaBase64,
         views: 1,
         unlocks: 0,
-        socialCount: socialRandom
+        socialCount: socialRandom,
+        createdAt: new Date().toLocaleDateString()
       };
 
-      const jsonStr = JSON.stringify(nuevoPost);
+      const jsonStr = JSON.stringify(payloadUrl);
       const dataCifrada = cifrarAntiBypass(jsonStr);
       const linkCompleto = window.location.origin + window.location.pathname + "?data=" + encodeURIComponent(dataCifrada);
+
+      payloadUrl.fullUrl = linkCompleto;
 
       document.getElementById("out-generated-link").value = linkCompleto;
       document.getElementById("out-short-link").style.display = "none";
       document.getElementById("create-result-box").style.display = "block";
-      postActivo = nuevoPost;
-      guardarEstadisticaLocal(nuevoPost);
+      postActivo = payloadUrl;
+
+      // Guardar exclusivamente en la lista privada de este usuario
+      let misLinks = obtenerLinksDelUsuario(user.email);
+      misLinks.unshift(payloadUrl);
+      guardarLinksDelUsuario(user.email, misLinks);
+
       actualizarDashboardUI();
     }
 
@@ -1510,6 +1680,11 @@
       const el = document.getElementById(id);
       navigator.clipboard.writeText(el.value);
       alert("✅ ¡Enlace copiado al portapapeles!");
+    }
+
+    function copiarTextoDirecto(txt) {
+      navigator.clipboard.writeText(txt);
+      alert("✅ ¡URL de tu enlace copiada al portapapeles!");
     }
 
     function abrirLinkGenerado() {
@@ -1544,33 +1719,40 @@
       alert("🔗 Enlace copiado al portapapeles.");
     }
 
-    function guardarEstadisticaLocal(post) {
-      let db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
-      db.unshift(post);
-      localStorage.setItem("rayte_mis_creaciones", JSON.stringify(db.slice(0, 50)));
-    }
-
+    /* ================= CONTEO DE VISITAS Y DESBLOQUEOS POR USUARIO ================= */
     function sumarVisitaEstadistica(post) {
-      let db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
-      let encontrado = db.find(p => p.t === post.t);
+      if (!post || !post.ownerEmail) return;
+      let lista = obtenerLinksDelUsuario(post.ownerEmail);
+      let encontrado = lista.find(p => (post.lid && p.lid === post.lid) || p.t === post.t);
       if (encontrado) {
         encontrado.views = (encontrado.views || 0) + 1;
-        localStorage.setItem("rayte_mis_creaciones", JSON.stringify(db));
+        guardarLinksDelUsuario(post.ownerEmail, lista);
       }
     }
 
     function sumarDesbloqueoEstadistica(post) {
-      let db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
-      let encontrado = db.find(p => p.t === post.t);
+      if (!post || !post.ownerEmail) return;
+      let lista = obtenerLinksDelUsuario(post.ownerEmail);
+      let encontrado = lista.find(p => (post.lid && p.lid === post.lid) || p.t === post.t);
       if (encontrado) {
         encontrado.unlocks = (encontrado.unlocks || 0) + 1;
         encontrado.socialCount = (encontrado.socialCount || 50365) + 1;
-        localStorage.setItem("rayte_mis_creaciones", JSON.stringify(db));
+        guardarLinksDelUsuario(post.ownerEmail, lista);
       }
       actualizarDashboardUI();
     }
 
-    /* ================= CÁLCULO 70% ADMIN / 30% CREADOR POR PAÍSES ================= */
+    function eliminarEnlaceUsuario(lid) {
+      const user = obtenerUsuarioActual();
+      if (!user) return;
+      if (!confirm("¿Seguro que deseas eliminar este enlace de tu lista?")) return;
+      let lista = obtenerLinksDelUsuario(user.email);
+      lista = lista.filter(item => item.lid !== lid);
+      guardarLinksDelUsuario(user.email, lista);
+      actualizarDashboardUI();
+    }
+
+    /* ================= DASHBOARD ESTILO LINKVERTISE (70% ADMIN / 30% CREADOR) ================= */
     function actualizarTierPais() {
       const tier = document.getElementById("country-tier-selector").value;
       localStorage.setItem("rayte_country_tier", tier);
@@ -1579,15 +1761,13 @@
 
     function calcularSaldoActual() {
       const user = obtenerUsuarioActual();
-      const db = JSON.parse(localStorage.getItem("rayte_mis_creaciones") || "[]");
       const tierKey = localStorage.getItem("rayte_country_tier") || "GLOBAL";
       const infoTier = TARIFAS_PAISES_ADSTERRA[tierKey] || TARIFAS_PAISES_ADSTERRA.GLOBAL;
 
-      // 100% Bruto Adsterra vs 30% Creador vs 70% Miguel
       const cpmBrutoAdsterra = infoTier.cpmBruto;
       const cpmCreador30 = cpmBrutoAdsterra * PORCENTAJE_CREADOR;
 
-      const misPosts = user ? db.filter(i => i.ownerEmail === user.email || i.c === user.alias) : db;
+      const misPosts = user ? obtenerLinksDelUsuario(user.email) : [];
 
       let totalViews = 0;
       let totalUnlocks = 0;
@@ -1596,17 +1776,15 @@
         totalUnlocks += (item.unlocks || 0);
       });
 
-      // Ingreso Bruto Total generado para Adsterra (100%)
       const brutoTotalAdsterra = ((totalUnlocks / 1000) * cpmBrutoAdsterra) + ((totalViews / 1000) * (cpmBrutoAdsterra * 0.20));
-      // Ganancia del Creador (30%)
       const gananciaCreadorBruta = brutoTotalAdsterra * PORCENTAJE_CREADOR;
-      // Ganancia de Miguel (70%)
       const gananciaAdmin70 = brutoTotalAdsterra * PORCENTAJE_ADMIN;
 
       const retirado = parseFloat(localStorage.getItem("rayte_withdrawn_" + (user ? user.email : "guest")) || "0");
       const disponibleCreador = Math.max(0, gananciaCreadorBruta - retirado);
 
       return {
+        user,
         misPosts,
         totalViews,
         totalUnlocks,
@@ -1622,45 +1800,110 @@
 
     function actualizarDashboardUI() {
       const datos = calcularSaldoActual();
+      const guestLock = document.getElementById("dash-locked-guest");
+      const authContent = document.getElementById("dash-authenticated-content");
 
-      document.getElementById("country-tier-selector").value = datos.tierKey;
-      document.getElementById("dash-rpm-label").innerText = "$" + datos.cpmCreador30.toFixed(2);
-      document.getElementById("dash-views").innerText = datos.totalViews;
-      document.getElementById("dash-unlocks").innerText = datos.totalUnlocks;
-      document.getElementById("dash-earnings").innerText = "$" + datos.disponibleCreador.toFixed(3);
-
-      renderizarHistorialRetiros();
-
-      const tabla = document.getElementById("dash-links-table");
-      if (datos.misPosts.length === 0) {
-        tabla.innerHTML = "Aún no has creado enlaces en esta cuenta.";
+      if (!datos.user) {
+        if (guestLock) guestLock.style.display = "block";
+        if (authContent) authContent.style.display = "none";
         return;
       }
 
-      tabla.innerHTML = datos.misPosts.map((item) => {
-        const brutoLink = (((item.unlocks || 0) / 1000) * datos.cpmBrutoAdsterra) + (((item.views || 0) / 1000) * (datos.cpmBrutoAdsterra * 0.20));
+      if (guestLock) guestLock.style.display = "none";
+      if (authContent) authContent.style.display = "block";
+
+      // Cabecera del usuario conectado
+      document.getElementById("dash-user-name").innerText = datos.user.alias;
+      document.getElementById("dash-user-email").innerText = datos.user.email;
+      document.getElementById("dash-avatar-circle").innerText = datos.user.alias.substring(0, 2).toUpperCase();
+
+      // KPIs Superiores
+      document.getElementById("country-tier-selector").value = datos.tierKey;
+      document.getElementById("dash-rpm-label").innerText = "$" + datos.cpmCreador30.toFixed(2);
+      document.getElementById("dash-views").innerText = datos.totalViews.toLocaleString();
+      document.getElementById("dash-unlocks").innerText = datos.totalUnlocks.toLocaleString();
+      document.getElementById("dash-earnings").innerText = "$" + datos.disponibleCreador.toFixed(3) + " USD";
+      document.getElementById("dash-links-count-badge").innerText = datos.misPosts.length + " Links activos";
+
+      renderizarHistorialRetiros();
+
+      const filtroTexto = (document.getElementById("filter-my-links") ? document.getElementById("filter-my-links").value : "").toLowerCase();
+      const postsFiltrados = datos.misPosts.filter(p => p.t.toLowerCase().includes(filtroTexto));
+
+      const tabla = document.getElementById("dash-links-table");
+      if (postsFiltrados.length === 0) {
+        tabla.innerHTML = `
+          <div style="text-align:center; padding:24px 12px; background:var(--ui-lightgrey); border-radius:16px; color:#666;">
+            <span class="material-icons" style="font-size:34px; color:var(--ui-orange); display:block; margin-bottom:6px;">link_off</span>
+            <b>Aún no tienes enlaces creados en tu cuenta.</b><br>
+            <span style="font-size:12px;">Ve a 'Acortar Link' para publicar tu primer enlace y ver aquí sus estadísticas en tiempo real.</span>
+          </div>
+        `;
+        return;
+      }
+
+      tabla.innerHTML = postsFiltrados.map((item) => {
+        const vistas = item.views || 1;
+        const desbloqueos = item.unlocks || 0;
+        const ctr = Math.min(100, Math.round((desbloqueos / Math.max(1, vistas)) * 100));
+        const brutoLink = ((desbloqueos / 1000) * datos.cpmBrutoAdsterra) + ((vistas / 1000) * (datos.cpmBrutoAdsterra * 0.20));
         const ganCreador30 = (brutoLink * PORCENTAJE_CREADOR).toFixed(3);
-        const iconoModo = (item.mode === "url") ? "🔗 URL" : "📜 Script";
+        const badgeTipo = (item.mode === "url") ? "🔗 URL Redirect" : "📜 Script / Text";
+        const codigoCorto = "rayte.link/" + (item.lid || "post");
+        const urlParaAbrir = item.fullUrl || (window.location.origin + window.location.pathname + "?data=" + encodeURIComponent(cifrarAntiBypass(JSON.stringify(item))));
+
         return `
-          <div style="padding:12px 0; border-bottom:1px solid var(--ui-softgrey); display:flex; justify-content:space-between; align-items:center; gap:8px;">
-            <div style="overflow:hidden;">
-              <div style="font-weight:700; color:#111; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.t}</div>
-              <div style="font-size:11px; color:#777;">${iconoModo} • 👁️ ${item.views || 1} vistas • 🔓 ${item.unlocks || 0} desbloqueos</div>
+          <div class="lv-link-item">
+            <div class="lv-link-top">
+              <div style="overflow:hidden;">
+                <div class="lv-link-title">${item.t}</div>
+                <span class="lv-link-url-short">${codigoCorto} • ${badgeTipo} • 📅 ${item.createdAt || "Hoy"}</span>
+              </div>
+              <span style="background:var(--ui-green-light); color:var(--ui-green-dark); font-size:10.5px; font-weight:800; padding:3px 8px; border-radius:999px; flex-shrink:0;">
+                ● Active
+              </span>
             </div>
-            <div style="text-align:right; flex-shrink:0;">
-              <div style="font-weight:800; color:var(--ui-green-dark); font-size:14px;">+$${ganCreador30}</div>
-              <div style="font-size:10px; color:#888;">Tu 30%</div>
+
+            <div class="lv-link-metrics">
+              <div class="lv-m-box">
+                <span class="m-label">👁️ Visitas</span>
+                <span class="m-val">${vistas}</span>
+              </div>
+              <div class="lv-m-box">
+                <span class="m-label">🔓 Unlocks</span>
+                <span class="m-val">${desbloqueos}</span>
+              </div>
+              <div class="lv-m-box">
+                <span class="m-label">⚡ Conversión</span>
+                <span class="m-val">${ctr}%</span>
+              </div>
+              <div class="lv-m-box earn">
+                <span class="m-label">💰 Tu 30%</span>
+                <span class="m-val">+$${ganCreador30}</span>
+              </div>
+            </div>
+
+            <div class="lv-link-actions">
+              <button type="button" class="lv-btn-mini orange" onclick="copiarTextoDirecto('${urlParaAbrir}')">
+                <span class="material-icons" style="font-size:15px;">content_copy</span> Copiar URL
+              </button>
+              <button type="button" class="lv-btn-mini" onclick="window.location.href='${urlParaAbrir}'">
+                <span class="material-icons" style="font-size:15px;">open_in_new</span> Ver Link
+              </button>
+              <button type="button" class="lv-btn-mini danger" onclick="eliminarEnlaceUsuario('${item.lid}')" title="Eliminar">
+                <span class="material-icons" style="font-size:15px;">delete_outline</span>
+              </button>
             </div>
           </div>
         `;
       }).join("");
     }
 
-    /* ================= SOLICITUD DE RETIRO MANUAL CON DESGLOSE 70/30 ================= */
+    /* ================= SOLICITUD DE RETIRO MANUAL CON AUDITORÍA 70/30 ================= */
     function solicitarRetiroManual() {
       const user = obtenerUsuarioActual();
       if (!user) {
-        alert("⚠️ Primero regístrate o inicia sesión en la pestaña 'Registro / Cuenta' para poder cobrar tus ganancias.");
+        alert("⚠️ Inicia sesión primero para solicitar retiros.");
         navegarA('auth');
         return;
       }
@@ -1679,7 +1922,7 @@
         return;
       }
       if (monto > datos.disponibleCreador) {
-        alert("⚠️ Saldo insuficiente. Tu saldo disponible (30% comisión creador) es de $" + datos.disponibleCreador.toFixed(3) + " USD.");
+        alert("⚠️ Saldo insuficiente. Tu saldo disponible (30% comisión de tus enlaces) es de $" + datos.disponibleCreador.toFixed(3) + " USD.");
         return;
       }
 
@@ -1699,8 +1942,9 @@
         region: datos.infoTier.nombre,
         views: datos.totalViews,
         unlocks: datos.totalUnlocks,
+        linksCount: datos.misPosts.length,
         fecha: new Date().toLocaleDateString(),
-        estado: "En Revisión de Tráfico Orgánico"
+        estado: "En Auditoría de Tráfico Orgánico"
       };
 
       const prevRetirado = parseFloat(localStorage.getItem("rayte_withdrawn_" + user.email) || "0");
@@ -1712,43 +1956,40 @@
 
       actualizarDashboardUI();
 
-      // Reporte completo para Miguel con el cálculo exacto 100% / 70% / 30%
       const mensajeWhatsApp = 
-        `🏦 *SOLICITUD DE RETIRO (30% CREADOR) - RAYTE SCRIPT*\n` +
+        `🏦 *SOLICITUD DE PAGO (CREATOR STUDIO) - RAYTE SCRIPT*\n` +
         `• *Orden:* ${codigoOrden}\n` +
         `• *Creador:* ${user.alias} (${user.email})\n` +
-        `• *Región declarada:* ${datos.infoTier.nombre}\n` +
-        `• *Tráfico registrado:* ${datos.totalViews} vistas / ${datos.totalUnlocks} desbloqueos (3 ads de 7s)\n\n` +
+        `• *Enlaces activos del usuario:* ${datos.misPosts.length} URLs\n` +
+        `• *Tráfico acumulado:* ${datos.totalViews} vistas / ${datos.totalUnlocks} desbloqueos (3 ads de 7s)\n` +
+        `• *Región declarada:* ${datos.infoTier.nombre}\n\n` +
         `📊 *AUDITORÍA ADSTERRA (70/30):*\n` +
-        `• *100% Generado en Adsterra:* $${totalBrutoRequerido} USD\n` +
+        `• *100% Bruto Adsterra:* $${totalBrutoRequerido} USD\n` +
         `• *70% Ganancia Admin (Miguel):* $${gananciaTuyaAdmin} USD\n` +
-        `• *30% A Pagar al Creador:* $${monto.toFixed(2)} USD\n\n` +
+        `• *30% A Depositar al Creador:* $${monto.toFixed(2)} USD\n\n` +
         `💳 *DATOS DE PAGO:*\n` +
         `• *Método:* ${metodo}\n` +
         `• *Cuenta destino:* ${detalles}\n\n` +
         `🔍 _Solicito verificación manual de mis visitas orgánicas para depósito._`;
 
-      alert("✅ Solicitud " + codigoOrden + " registrada. Se enviará tu ficha al administrador para verificar tus visitas orgánicas en Adsterra y liberar tu pago.");
+      alert("✅ Solicitud " + codigoOrden + " generada. Se enviará tu ficha al administrador para auditar tus visitas orgánicas en Adsterra y procesar tu pago.");
       window.open("https://wa.me/" + ADMIN_WHATSAPP + "?text=" + encodeURIComponent(mensajeWhatsApp), "_blank");
     }
 
     function renderizarHistorialRetiros() {
       const user = obtenerUsuarioActual();
       const box = document.getElementById("payout-history-list");
-      if (!user) {
-        box.innerHTML = "Inicia sesión para ver tus cobros.";
-        return;
-      }
+      if (!user) return;
       const historial = JSON.parse(localStorage.getItem("rayte_payouts_" + user.email) || "[]");
       if (historial.length === 0) {
         box.innerHTML = "No tienes retiros pendientes.";
         return;
       }
       box.innerHTML = historial.map(h => `
-        <div style="padding:8px 0; border-bottom:1px solid var(--ui-softgrey); display:flex; justify-content:space-between; align-items:center;">
+        <div style="padding:10px 0; border-bottom:1px solid var(--ui-softgrey); display:flex; justify-content:space-between; align-items:center;">
           <div>
             <b>${h.id} • $${h.montoCreador30} USD (Tu 30%)</b> — ${h.metodo}<br>
-            <span style="font-size:11px; color:#777;">Fecha: ${h.fecha} • Cuenta: ${h.detalles}</span>
+            <span style="font-size:11px; color:#777;">Fecha: ${h.fecha} • Destino: ${h.detalles}</span>
           </div>
           <span class="badge-status-pending">⏳ ${h.estado}</span>
         </div>
