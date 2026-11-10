@@ -62,7 +62,7 @@
     .pc-side-right { right: calc(50% - 470px); }
     @media (min-width: 1020px) { .pc-side-ad { display: flex; } }
 
-    /* HEADER ESTILO LINKVERTISE */
+    /* HEADER */
     .header-shell {
       max-width: 560px; margin: 0 auto; padding: 12px 14px 6px;
       position: sticky; top: 0; z-index: 800; background: linear-gradient(180deg, var(--ui-lightgrey) 80%, transparent);
@@ -115,7 +115,6 @@
       box-shadow: var(--ui-shadow); margin-bottom: 16px; border: 1px solid rgba(0,0,0,0.04);
     }
 
-    /* BOTONES LINKVERTISE */
     .btn-primary-orange {
       width: 100%; background: var(--ui-orange); color: var(--ui-white);
       border: none; height: 48px; border-radius: 999px; font-size: 15.5px;
@@ -231,55 +230,33 @@
     .step-dot.done { background: var(--ui-orange); }
     .step-caption { font-size: 12px; font-weight: 600; color: #383838; }
 
-    /* ================= ESTILOS LINKVERTISE CREATOR DASHBOARD ================= */
+    /* DASHBOARD */
     .lv-dash-hero {
-      background: var(--lv-charcoal);
-      color: var(--ui-white);
-      border-radius: 24px;
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: var(--ui-shadow-m);
-      position: relative;
-      overflow: hidden;
+      background: var(--lv-charcoal); color: var(--ui-white); border-radius: 24px;
+      padding: 20px; margin-bottom: 16px; box-shadow: var(--ui-shadow-m); position: relative; overflow: hidden;
     }
     .lv-dash-hero::before {
-      content: "";
-      position: absolute; top: -40px; right: -40px; width: 150px; height: 150px;
-      background: var(--ui-creator-gradient);
-      filter: blur(55px); opacity: 0.45; pointer-events: none;
+      content: ""; position: absolute; top: -40px; right: -40px; width: 150px; height: 150px;
+      background: var(--ui-creator-gradient); filter: blur(55px); opacity: 0.45; pointer-events: none;
     }
-    .lv-user-bar {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 18px; position: relative; z-index: 2;
-    }
+    .lv-user-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; position: relative; z-index: 2; }
     .lv-balance-box {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px; padding: 16px;
-      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px; padding: 16px; display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 14px; position: relative; z-index: 2;
     }
     .lv-balance-val { font-size: 28px; font-weight: 800; color: var(--ui-orange); letter-spacing: -0.5px; }
-    .lv-kpi-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; position: relative; z-index: 2;
-    }
-    .lv-kpi-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px; padding: 11px 10px; text-align: center;
-    }
+    .lv-kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; position: relative; z-index: 2; }
+    .lv-kpi-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 11px 10px; text-align: center; }
     .lv-kpi-card .k-num { font-size: 17px; font-weight: 800; color: #fff; margin-top: 2px; }
     .lv-kpi-card .k-lbl { font-size: 10.5px; color: #aaa; font-weight: 600; }
 
-    /* GRÁFICO DE BARRAS ESTILO LINKVERTISE */
     .lv-chart-box {
       display: flex; align-items: flex-end; justify-content: space-between;
       height: 110px; padding: 16px 8px 4px; gap: 8px;
       border-bottom: 1px solid var(--ui-softgrey); margin-bottom: 8px;
     }
-    .lv-bar-col {
-      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end;
-    }
+    .lv-bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
     .lv-bar-fill {
       width: 100%; max-width: 28px; border-radius: 6px 6px 2px 2px;
       background: linear-gradient(180deg, var(--ui-orange) 0%, #ffdfb0 100%);
@@ -287,30 +264,17 @@
     }
     .lv-bar-lbl { font-size: 10px; font-weight: 700; color: #888; }
 
-    /* TARJETAS INDIVIDUALES DE ENLACES POR USUARIO */
     .lv-link-item {
-      background: var(--ui-white);
-      border: 1.5px solid var(--ui-softgrey);
-      border-radius: 18px;
-      padding: 15px;
-      margin-bottom: 12px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--ui-white); border: 1.5px solid var(--ui-softgrey); border-radius: 18px;
+      padding: 15px; margin-bottom: 12px; transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .lv-link-item:hover {
-      border-color: var(--ui-orange);
-      box-shadow: var(--ui-shadow);
-    }
-    .lv-link-top {
-      display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 10px;
-    }
+    .lv-link-item:hover { border-color: var(--ui-orange); box-shadow: var(--ui-shadow); }
+    .lv-link-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
     .lv-link-title {
       font-size: 15px; font-weight: 800; color: var(--lv-charcoal); line-height: 1.25;
       display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
     }
-    .lv-link-url-short {
-      font-size: 11.5px; color: var(--lv-orange); font-weight: 700; font-family: monospace;
-      display: block; margin-top: 2px;
-    }
+    .lv-link-url-short { font-size: 11.5px; color: var(--lv-orange); font-weight: 700; font-family: monospace; display: block; margin-top: 2px; }
     .lv-link-metrics {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
       background: var(--ui-lightgrey); border-radius: 12px; padding: 9px 8px; margin-bottom: 10px; text-align: center;
@@ -319,9 +283,7 @@
     .lv-m-box .m-val { font-size: 13.5px; font-weight: 800; color: var(--lv-charcoal); }
     .lv-m-box.earn .m-val { color: var(--ui-green-dark); }
 
-    .lv-link-actions {
-      display: flex; justify-content: space-between; align-items: center; gap: 6px;
-    }
+    .lv-link-actions { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
     .lv-btn-mini {
       flex: 1; padding: 7px 10px; border-radius: 9px; border: 1px solid var(--ui-stonegrey);
       background: var(--ui-white); font-family: inherit; font-size: 11.5px; font-weight: 700;
@@ -434,13 +396,12 @@
       </div>
     </div>
 
-    <!-- ================= PANTALLA 1: POST (VISTA VISITANTE) ================= -->
+    <!-- ================= PANTALLA 1: POST (VISITANTE) ================= -->
     <div id="view-post" style="display: none;">
       <div class="back-row" onclick="navegarA('create')">
         <span class="material-icons" style="font-size:18px;">arrow_back</span> <span data-i18n="back">Back</span>
       </div>
 
-      <!-- BANNER 300x250 SUPERIOR -->
       <div class="ad-showcase-card">
         <span class="ad-badge-info">ⓘ Ad</span>
         <script>
@@ -497,7 +458,6 @@
         <p id="post-desc-text" style="font-size:14px; color:#383838; line-height:1.55; white-space:pre-line;"></p>
       </div>
 
-      <!-- BANNER 320x50 INFERIOR -->
       <div class="ui-card" style="text-align:center; padding:10px;">
         <span class="micro-ad-tag" style="margin-bottom:6px; display:inline-block;">ⓘ Sponsored</span>
         <script>
@@ -534,7 +494,7 @@
       </div>
     </div>
 
-    <!-- ================= PANTALLA 3: VISOR (7 SEGUNDOS POR ANUNCIO) ================= -->
+    <!-- ================= PANTALLA 3: VISOR ================= -->
     <div id="view-visor" style="display: none;">
       <div class="back-row" onclick="volverAlPostActual()">
         <span class="material-icons" style="font-size:18px;">arrow_back</span> <span data-i18n="back">Back</span>
@@ -548,7 +508,6 @@
           <span style="background:var(--lv-charcoal); color:#fff; font-size:11px; font-weight:700; padding:5px 12px; border-radius:999px;">⚡ Adsterra Verified</span>
         </div>
 
-        <!-- VISOR NATIVE BANNER -->
         <div class="ad-frame-box">
           <span class="pill-overlay-left">Ad</span>
           <span class="pill-overlay-right" id="visor-counter">1/3</span>
@@ -623,12 +582,12 @@
           <span style="font-size:12px; color:var(--ui-green-dark); font-weight:700;">🔒 Anti-Bypass v3</span>
         </div>
         <h2 style="font-size:22px; font-weight:800; margin-bottom:6px;" data-i18n="create_heading">Crear Nuevo Enlace Monetizado</h2>
-        <p style="font-size:13px; color:#666; margin-bottom:14px;">Cada enlace que creas queda guardado únicamente en tu cuenta personal y te paga el <b>30% neto</b> de las visitas.</p>
+        <p style="font-size:13px; color:#666; margin-bottom:14px;">Tus enlaces creados quedan guardados en tu cuenta personal y se sincronizan perfectamente en tu PC y Celular.</p>
 
         <!-- AVISO DE REGISTRO PARA INVITADOS -->
         <div id="creator-guest-banner" style="background:linear-gradient(90deg, #fffbeb 0%, #ffedd5 100%); border:1.5px solid #f59e0b; padding:13px 15px; border-radius:16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; gap:10px;">
           <div style="font-size:12px; font-weight:700; color:#92400e; line-height:1.35;">
-            👤 <b>No has iniciado sesión:</b><br>Regístrate o entra a tu cuenta para que tus URLs queden guardadas en tu panel personal y sumen saldo.
+            👤 <b>No has iniciado sesión:</b><br>Regístrate o entra a tu cuenta para que tus URLs queden sincronizadas en todos tus dispositivos.
           </div>
           <button type="button" onclick="navegarA('auth')" style="background:var(--lv-charcoal); color:#fff; border:none; padding:9px 13px; border-radius:999px; font-size:11.5px; font-weight:800; cursor:pointer; flex-shrink:0;">Entrar / Registro</button>
         </div>
@@ -649,7 +608,7 @@
         </div>
 
         <div class="field-box" id="box-input-url">
-          <label>🔗 URL de Destino (Redireccionará al terminar los 3 anuncios de 7s) *</label>
+          <label>🔗 URL de Destino *</label>
           <input type="url" id="in-target-url" placeholder="https://mega.nz/... o https://tu-web.com">
         </div>
 
@@ -699,25 +658,20 @@
       </div>
     </div>
 
-    <!-- ================= PANTALLA 6: DASHBOARD ESTILO LINKVERTISE STUDIO ================= -->
+    <!-- ================= PANTALLA 6: DASHBOARD ================= -->
     <div id="view-dashboard" style="display: none;">
-
-      <!-- SI NO HA INICIADO SESIÓN, PEDIR LOGIN PARA VER SU PANEL PERSONAL -->
       <div id="dash-locked-guest" class="ui-card" style="display:none; text-align:center; padding:32px 20px;">
         <div class="brand-icon-mark" style="width:54px; height:54px; font-size:26px; margin:0 auto 14px;">🔒</div>
         <h2 style="font-size:22px; font-weight:800; margin-bottom:8px;">Creator Studio Privado</h2>
         <p style="font-size:13.5px; color:#666; margin-bottom:20px; line-height:1.45;">
-          En <b>Rayte Script</b> cada creador tiene su propio panel privado con sus enlaces, estadísticas de visitas y ganancias independientes. Inicia sesión o crea tu cuenta gratis para ver tus números.
+          Inicia sesión o crea tu cuenta definitiva para ver tus enlaces y estadísticas en cualquier dispositivo.
         </p>
         <button type="button" class="btn-primary-orange" onclick="navegarA('auth')">
-          🔑 Iniciar Sesión / Crear Cuenta Gratis
+          🔑 Iniciar Sesión / Crear Cuenta
         </button>
       </div>
 
-      <!-- CONTENIDO PRIVADO DEL USUARIO CONECTADO -->
       <div id="dash-authenticated-content" style="display:none;">
-        
-        <!-- HERO OSCURO ESTILO LINKVERTISE -->
         <div class="lv-dash-hero">
           <div class="lv-user-bar">
             <div style="display:flex; align-items:center; gap:10px;">
@@ -758,7 +712,6 @@
           </div>
         </div>
 
-        <!-- GRÁFICO DE ESTADÍSTICAS Y FILTRO REGIONAL ADSTERRA -->
         <div class="ui-card">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
             <div>
@@ -768,7 +721,6 @@
             <span class="ui-chip" id="dash-links-count-badge">0 Links creados</span>
           </div>
 
-          <!-- BARRAS DE ESTADÍSTICAS ESTILO LINKVERTISE -->
           <div class="lv-chart-box" id="lv-stats-bars">
             <div class="lv-bar-col"><div class="lv-bar-fill" style="height:25%;"></div><span class="lv-bar-lbl">Lun</span></div>
             <div class="lv-bar-col"><div class="lv-bar-fill" style="height:40%;"></div><span class="lv-bar-lbl">Mar</span></div>
@@ -792,7 +744,6 @@
           </div>
         </div>
 
-        <!-- LISTA DE ENLACES CREADOS POR ESTE USUARIO (ESTILO LINKVERTISE) -->
         <div class="ui-card">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
             <h3 style="font-size:17px; font-weight:800;">🔗 Mis Enlaces Creados (My Links)</h3>
@@ -808,51 +759,13 @@
           <div id="dash-links-table"></div>
         </div>
 
-        <!-- TABLA TRANSPARENTE DE PAGOS POR PAÍS -->
-        <div class="ui-card">
-          <h3 style="font-size:15px; font-weight:800; margin-bottom:6px;">🌍 Tabla de Tarifas RPM por País (30% Creador)</h3>
-          <p style="font-size:11.5px; color:#666; margin-bottom:8px;">Lo que ganas por cada 1,000 usuarios que desbloquean tus enlaces viendo los 3 anuncios de 7 segundos:</p>
-          <table class="cpm-table">
-            <thead>
-              <tr>
-                <th>País / Región</th>
-                <th>CPM Bruto Adsterra</th>
-                <th>Tu Ganancia (30%)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>🇺🇸 EE.UU / 🇬🇧 UK / 🇨🇦 Canadá</td>
-                <td>$12.00 USD</td>
-                <td style="font-weight:800; color:var(--ui-green-dark);">$3.60 USD</td>
-              </tr>
-              <tr>
-                <td>🇪🇸 España / 🇨🇱 Chile / 🇲🇽 México / 🇧🇷 Brasil</td>
-                <td>$5.00 USD</td>
-                <td style="font-weight:800; color:var(--ui-green-dark);">$1.50 USD</td>
-              </tr>
-              <tr>
-                <td>🌐 Promedio Global Mixto</td>
-                <td>$4.20 USD</td>
-                <td style="font-weight:800; color:var(--ui-green-dark);">$1.26 USD</td>
-              </tr>
-              <tr>
-                <td>🇦🇷 Argentina / 🇨🇴 Colombia / 🇵🇪 Perú</td>
-                <td>$2.40 USD</td>
-                <td style="font-weight:800; color:var(--ui-green-dark);">$0.72 USD</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- SECCIÓN DE RETIRO MANUAL CON AUDITORÍA -->
         <div class="ui-card" id="payout-card-section">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
             <h3 style="font-size:17px; font-weight:800;">🏦 Solicitar Retiro (Payout)</h3>
             <span class="badge-status-pending">Mínimo $5.00 USD</span>
           </div>
           <p style="font-size:12.5px; color:#555; line-height:1.45; margin-bottom:14px;">
-            🔍 <b>Auditoría de Tráfico Orgánico:</b> Al solicitar tu retiro, verificaremos manualmente en nuestro servidor de Adsterra que las visitas de tus enlaces sean reales y orgánicas antes de transferir tu 30%.
+            🔍 <b>Auditoría de Tráfico Orgánico:</b> Al solicitar tu retiro, verificaremos tus visitas reales antes de transferir tu 30%.
           </p>
 
           <div class="field-box">
@@ -883,21 +796,20 @@
             <div id="payout-history-list" style="font-size:12px; color:#666;">No tienes retiros pendientes.</div>
           </div>
         </div>
-
       </div>
     </div>
 
-    <!-- ================= PANTALLA 7: REGISTRO E INICIO DE SESIÓN ================= -->
+    <!-- ================= PANTALLA 7: REGISTRO / LOGIN ================= -->
     <div id="view-auth" style="display: none;">
       <div class="ui-card" id="auth-form-card">
         <div style="text-align:center; margin-bottom:16px;">
           <div class="brand-icon-mark" style="width:46px; height:46px; font-size:22px; margin:0 auto 10px;">R</div>
           <h2 style="font-size:22px; font-weight:800;" id="auth-heading">Rayte Script Studio</h2>
-          <p style="font-size:13px; color:#666;">Cada usuario registrado tiene su propio panel privado de enlaces y ganancias.</p>
+          <p style="font-size:13px; color:#666;">Crea tu cuenta definitiva para sincronizar tus enlaces y ganancias en todos tus dispositivos.</p>
         </div>
 
         <div class="mode-selector-tabs">
-          <button type="button" class="mode-tab-btn active" id="tab-auth-register" onclick="cambiarTabAuth('register')">📝 Crear Cuenta Gratis</button>
+          <button type="button" class="mode-tab-btn active" id="tab-auth-register" onclick="cambiarTabAuth('register')">📝 Crear Cuenta Definitiva</button>
           <button type="button" class="mode-tab-btn" id="tab-auth-login" onclick="cambiarTabAuth('login')">🔑 Iniciar Sesión</button>
         </div>
 
@@ -922,27 +834,25 @@
         </div>
 
         <button type="button" class="btn-primary-orange" id="btn-auth-submit" onclick="procesarAutenticacion()">
-          🚀 Crear mi Cuenta y Ver mi Panel
+          🚀 Registrar Cuenta y Acceder al Panel
         </button>
       </div>
 
-      <!-- TARJETA DE PERFIL CONECTADO -->
       <div class="ui-card" id="auth-logged-card" style="display:none; text-align:center;">
         <div class="lv-avatar" id="profile-avatar-big" style="width:64px; height:64px; font-size:22px; margin:0 auto 10px;">RA</div>
         <h2 style="font-size:20px; font-weight:800;" id="profile-name-big">Rayte12</h2>
         <p style="font-size:13px; color:#666; margin-bottom:14px;" id="profile-email-big">usuario@correo.com</p>
         
         <div style="background:var(--ui-lightgrey); padding:14px; border-radius:14px; margin-bottom:16px; font-size:12.5px; text-align:left; line-height:1.6;">
-          <div>✅ <b>Panel Privado:</b> Solo tú puedes ver y gestionar tus URLs acortadas</div>
-          <div>💰 <b>Reparto:</b> Recibes el 30% neto del CPM de Adsterra por país</div>
-          <div>⏱️ <b>Visor:</b> 3 anuncios de 7 segundos por desbloqueo</div>
+          <div>✅ <b>Cuenta Activa:</b> Tus enlaces se sincronizan correctamente</div>
+          <div>💰 <b>Reparto:</b> Recibes el 30% neto del CPM de Adsterra</div>
         </div>
 
         <button type="button" class="btn-primary-orange" onclick="navegarA('dashboard')" style="margin-bottom:10px;">
           📊 Abrir Mi Creator Dashboard
         </button>
         <button type="button" class="btn-outline-orange" onclick="cerrarSesionUsuario()">
-          🚪 Cerrar Sesión (Cambiar de Usuario)
+          🚪 Cerrar Sesión
         </button>
       </div>
     </div>
@@ -1123,9 +1033,7 @@
 
       if (!localStorage.getItem("rayte_country_tier")) {
         const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
-        if (tz.includes("new_york") || tz.includes("chicago") || tz.includes("los_angeles") || tz.includes("london") || tz.includes("toronto")) {
-          localStorage.setItem("rayte_country_tier", "TIER1");
-        } else if (tz.includes("santiago") || tz.includes("madrid") || tz.includes("mexico") || tz.includes("sao_paulo")) {
+        if (tz.includes("santiago") || tz.includes("madrid") || tz.includes("mexico") || tz.includes("sao_paulo")) {
           localStorage.setItem("rayte_country_tier", "TIER2");
         } else {
           localStorage.setItem("rayte_country_tier", "GLOBAL");
@@ -1151,29 +1059,6 @@
       });
     }
 
-    const CLAVE_SECRETA_RAYTE = "RayteScript_AntiBypass_2026_Key";
-
-    function cifrarAntiBypass(texto) {
-      let resultado = "";
-      for (let i = 0; i < texto.length; i++) {
-        resultado += String.fromCharCode(texto.charCodeAt(i) ^ CLAVE_SECRETA_RAYTE.charCodeAt(i % CLAVE_SECRETA_RAYTE.length));
-      }
-      return btoa(unescape(encodeURIComponent(resultado)));
-    }
-
-    function descifrarAntiBypass(cifrado) {
-      try {
-        const raw = decodeURIComponent(escape(atob(cifrado)));
-        let resultado = "";
-        for (let i = 0; i < raw.length; i++) {
-          resultado += String.fromCharCode(raw.charCodeAt(i) ^ CLAVE_SECRETA_RAYTE.charCodeAt(i % CLAVE_SECRETA_RAYTE.length));
-        }
-        return resultado;
-      } catch (e) {
-        return "";
-      }
-    }
-
     let postActivo = null;
     let intervaloVisor = null;
     let timerRedireccion = null;
@@ -1186,28 +1071,23 @@
       actualizarDashboardUI();
 
       const params = new URLSearchParams(window.location.search);
-      const dataParam = params.get("data");
+      const postId = params.get("post");
 
-      if (dataParam) {
-        try {
-          const jsonString = descifrarAntiBypass(dataParam);
-          const postDecodificado = JSON.parse(jsonString);
-          if (postDecodificado && postDecodificado.t) {
-            postActivo = postDecodificado;
-            sumarVisitaEstadistica(postActivo);
-            mostrarPantallaPost(postActivo);
-            document.getElementById("modal-welcome").style.display = "flex";
-            return;
-          }
-        } catch (e) {
-          console.error("Error al decodificar el enlace:", e);
+      if (postId) {
+        const postEncontrado = buscarPostGlobalPorId(postId);
+        if (postEncontrado) {
+          postActivo = postEncontrado;
+          sumarVisitaEstadistica(postActivo);
+          mostrarPantallaPost(postActivo);
+          document.getElementById("modal-welcome").style.display = "flex";
+          return;
         }
       }
       
       navegarA('create');
     };
 
-    /* ================= GESTIÓN DE USUARIOS Y PANELES AISLADOS ================= */
+    /* ================= GESTIÓN DE USUARIOS Y BASE GLOBAL DE POSTS ================= */
     function obtenerUsuarioActual() {
       try {
         return JSON.parse(localStorage.getItem("rayte_active_user") || "null");
@@ -1216,19 +1096,35 @@
       }
     }
 
-    // Clave única en localStorage para que cada usuario vea SOLO sus propios enlaces
-    function obtenerClaveLinksUsuario(email) {
-      return "rayte_links_user_" + (email || "guest").toLowerCase().trim();
-    }
-
     function obtenerLinksDelUsuario(email) {
-      const key = obtenerClaveLinksUsuario(email);
+      const key = "rayte_links_user_" + (email || "guest").toLowerCase().trim();
       return JSON.parse(localStorage.getItem(key) || "[]");
     }
 
     function guardarLinksDelUsuario(email, lista) {
-      const key = obtenerClaveLinksUsuario(email);
+      const key = "rayte_links_user_" + (email || "guest").toLowerCase().trim();
       localStorage.setItem(key, JSON.stringify(lista));
+      
+      // Sincronizar en el registro global para que los visitantes puedan abrir el enlace sin error
+      let globalPosts = JSON.parse(localStorage.getItem("rayte_global_posts_db") || "{}");
+      lista.forEach(p => {
+        globalPosts[p.lid] = p;
+      });
+      localStorage.setItem("rayte_global_posts_db", JSON.stringify(globalPosts));
+    }
+
+    function buscarPostGlobalPorId(lid) {
+      let globalPosts = JSON.parse(localStorage.getItem("rayte_global_posts_db") || "{}");
+      if (globalPosts[lid]) return globalPosts[lid];
+
+      // Fallback: buscar en todos los usuarios registrados
+      const usuarios = JSON.parse(localStorage.getItem("rayte_users_db") || "[]");
+      for (let u of usuarios) {
+        const links = obtenerLinksDelUsuario(u.email);
+        const encontrado = links.find(p => p.lid === lid);
+        if (encontrado) return encontrado;
+      }
+      return null;
     }
 
     function cambiarTabAuth(modo) {
@@ -1237,7 +1133,7 @@
       document.getElementById("tab-auth-login").classList.toggle("active", modo === "login");
       document.getElementById("box-auth-alias").style.display = (modo === "register") ? "block" : "none";
       document.getElementById("box-auth-payment").style.display = (modo === "register") ? "block" : "none";
-      document.getElementById("btn-auth-submit").innerText = (modo === "register") ? "🚀 Crear mi Cuenta y Ver mi Panel" : "🔑 Entrar a mi Panel";
+      document.getElementById("btn-auth-submit").innerText = (modo === "register") ? "🚀 Registrar Cuenta y Acceder al Panel" : "🔑 Entrar a mi Panel";
     }
 
     function procesarAutenticacion() {
@@ -1261,7 +1157,7 @@
             localStorage.setItem("rayte_active_user", JSON.stringify(existente));
             alert("👋 ¡Bienvenido de vuelta, " + existente.alias + "!");
           } else {
-            alert("⚠️ Este correo ya está registrado. Usa la pestaña 'Iniciar Sesión' con tu contraseña.");
+            alert("⚠️ Este correo ya está registrado con otra contraseña. Usa la pestaña 'Iniciar Sesión'.");
             cambiarTabAuth('login');
             return;
           }
@@ -1276,12 +1172,12 @@
           usuarios.push(nuevoUser);
           localStorage.setItem("rayte_users_db", JSON.stringify(usuarios));
           localStorage.setItem("rayte_active_user", JSON.stringify(nuevoUser));
-          alert("✅ ¡Cuenta creada para " + nombreFinal + "! Ahora tienes tu propio Dashboard privado estilo Linkvertise.");
+          alert("✅ ¡Cuenta definitiva creada con éxito para " + nombreFinal + "!");
         }
       } else {
         const encontrado = usuarios.find(u => u.email === email && u.pass === pass);
         if (!encontrado) {
-          alert("❌ Correo o contraseña incorrectos. Si aún no tienes cuenta, selecciona 'Crear Cuenta Gratis'.");
+          alert("❌ Correo o contraseña incorrectos. Si aún no tienes cuenta, selecciona 'Crear Cuenta Definitiva'.");
           return;
         }
         localStorage.setItem("rayte_active_user", JSON.stringify(encontrado));
@@ -1302,9 +1198,6 @@
         headerLabel.innerText = user.alias;
         if (guestBanner) guestBanner.style.display = "none";
         if (inCreator) inCreator.value = user.alias;
-        if (user.prefPay && document.getElementById("payout-details")) {
-          document.getElementById("payout-details").value = user.prefPay;
-        }
         document.getElementById("auth-form-card").style.display = "none";
         document.getElementById("auth-logged-card").style.display = "block";
         document.getElementById("profile-name-big").innerText = user.alias;
@@ -1362,13 +1255,13 @@
         const img = new Image();
         img.onload = function() {
           const canvas = document.createElement("canvas");
-          const maxW = 400;
+          const maxW = 350; // Optimizado para móviles
           const scale = Math.min(1, maxW / img.width);
           canvas.width = img.width * scale;
           canvas.height = img.height * scale;
           const ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-          imagenSubidaBase64 = canvas.toDataURL("image/jpeg", 0.55);
+          imagenSubidaBase64 = canvas.toDataURL("image/jpeg", 0.5);
 
           const prev = document.getElementById("preview-uploaded-img");
           prev.src = imagenSubidaBase64;
@@ -1470,7 +1363,7 @@
       }
     }
 
-    /* ================= VISOR DE 3 ANUNCIOS (7 SEGUNDOS EXACTOS CADA UNO) ================= */
+    /* ================= VISOR DE 3 ANUNCIOS (7 SEGUNDOS CADA UNO) ================= */
     function iniciarVisor3Ads() {
       ocultarVistas();
       document.getElementById("view-visor").style.display = "block";
@@ -1500,7 +1393,6 @@
       const bar = document.getElementById("visor-progress");
       bar.style.width = "0%";
 
-      // 20 pasos * 350ms = 7,000ms = 7 segundos exactos por anuncio
       let p = 0;
       intervaloVisor = setInterval(() => {
         p += 5;
@@ -1543,7 +1435,7 @@
       ocultarVistas();
       document.getElementById("view-unlocked").style.display = "block";
 
-      const contenidoReal = postActivo.k ? descifrarAntiBypass(postActivo.k) : "";
+      const contenidoReal = postActivo.content || "";
       postActivo.decryptedContent = contenidoReal;
 
       const box = document.getElementById("unlocked-box");
@@ -1577,7 +1469,7 @@
     function cancelarRedireccion() {
       if (timerRedireccion) clearInterval(timerRedireccion);
       document.getElementById("auto-redirect-banner").style.display = "none";
-      alert("⏸️ Redirección automática cancelada. Puedes usar el botón de abajo.");
+      alert("⏸️ Redirección automática cancelada.");
     }
 
     function ejecutarAccionFinal() {
@@ -1598,11 +1490,11 @@
       }
     }
 
-    /* ================= CREACIÓN DE ENLACES VINCULADOS AL USUARIO ================= */
+    /* ================= CREACIÓN DE ENLACES CON ID CORTO (SOLUCIÓN URI TOO LONG) ================= */
     function generarAcortadorRayte() {
       const user = obtenerUsuarioActual();
       if (!user) {
-        alert("🔒 Para crear un enlace y que quede registrado en tu Dashboard personal para ganar dinero, primero regístrate o inicia sesión (toma 10 segundos).");
+        alert("🔒 Para crear un enlace y que quede guardado en tu Dashboard sincronizado, primero inicia sesión o regístrate.");
         navegarA('auth');
         return;
       }
@@ -1625,15 +1517,16 @@
       }
 
       if (!tTitle || !contenidoDestino) {
-        alert("⚠️ Completa el Título y el contenido (URL o Texto/Script) que quieres proteger.");
+        alert("⚠️ Completa el Título y el contenido (URL o Texto/Script).");
         return;
       }
 
       const linkId = "lv_" + Math.random().toString(36).substring(2, 8);
       const socialRandom = Math.floor(24100 + Math.random() * 54800);
-      const contenidoCifrado = cifrarAntiBypass(contenidoDestino);
 
-      // Objeto ligero para la URL permanente
+      // URL limpia usando solo el ID corto (Adiós error URI too long en celulares)
+      const linkCompleto = window.location.origin + window.location.pathname + "?post=" + linkId;
+
       const payloadUrl = {
         lid: linkId,
         mode: modoCreacionActual,
@@ -1642,26 +1535,21 @@
         t: tTitle,
         yt: yt,
         desc: desc,
-        k: contenidoCifrado,
+        content: contenidoDestino,
         img: imagenSubidaBase64,
         views: 1,
         unlocks: 0,
         socialCount: socialRandom,
-        createdAt: new Date().toLocaleDateString()
+        createdAt: new Date().toLocaleDateString(),
+        fullUrl: linkCompleto
       };
-
-      const jsonStr = JSON.stringify(payloadUrl);
-      const dataCifrada = cifrarAntiBypass(jsonStr);
-      const linkCompleto = window.location.origin + window.location.pathname + "?data=" + encodeURIComponent(dataCifrada);
-
-      payloadUrl.fullUrl = linkCompleto;
 
       document.getElementById("out-generated-link").value = linkCompleto;
       document.getElementById("out-short-link").style.display = "none";
       document.getElementById("create-result-box").style.display = "block";
       postActivo = payloadUrl;
 
-      // Guardar exclusivamente en la lista privada de este usuario
+      // Guardar en la base de datos del usuario y sincronizar globalmente
       let misLinks = obtenerLinksDelUsuario(user.email);
       misLinks.unshift(payloadUrl);
       guardarLinksDelUsuario(user.email, misLinks);
@@ -1684,7 +1572,7 @@
 
     function copiarTextoDirecto(txt) {
       navigator.clipboard.writeText(txt);
-      alert("✅ ¡URL de tu enlace copiada al portapapeles!");
+      alert("✅ ¡URL copiada al portapapeles!");
     }
 
     function abrirLinkGenerado() {
@@ -1719,11 +1607,11 @@
       alert("🔗 Enlace copiado al portapapeles.");
     }
 
-    /* ================= CONTEO DE VISITAS Y DESBLOQUEOS POR USUARIO ================= */
+    /* ================= ESTADÍSTICAS Y RETIROS ================= */
     function sumarVisitaEstadistica(post) {
       if (!post || !post.ownerEmail) return;
       let lista = obtenerLinksDelUsuario(post.ownerEmail);
-      let encontrado = lista.find(p => (post.lid && p.lid === post.lid) || p.t === post.t);
+      let encontrado = lista.find(p => p.lid === post.lid);
       if (encontrado) {
         encontrado.views = (encontrado.views || 0) + 1;
         guardarLinksDelUsuario(post.ownerEmail, lista);
@@ -1733,7 +1621,7 @@
     function sumarDesbloqueoEstadistica(post) {
       if (!post || !post.ownerEmail) return;
       let lista = obtenerLinksDelUsuario(post.ownerEmail);
-      let encontrado = lista.find(p => (post.lid && p.lid === post.lid) || p.t === post.t);
+      let encontrado = lista.find(p => p.lid === post.lid);
       if (encontrado) {
         encontrado.unlocks = (encontrado.unlocks || 0) + 1;
         encontrado.socialCount = (encontrado.socialCount || 50365) + 1;
@@ -1745,14 +1633,13 @@
     function eliminarEnlaceUsuario(lid) {
       const user = obtenerUsuarioActual();
       if (!user) return;
-      if (!confirm("¿Seguro que deseas eliminar este enlace de tu lista?")) return;
+      if (!confirm("¿Seguro que deseas eliminar este enlace?")) return;
       let lista = obtenerLinksDelUsuario(user.email);
       lista = lista.filter(item => item.lid !== lid);
       guardarLinksDelUsuario(user.email, lista);
       actualizarDashboardUI();
     }
 
-    /* ================= DASHBOARD ESTILO LINKVERTISE (70% ADMIN / 30% CREADOR) ================= */
     function actualizarTierPais() {
       const tier = document.getElementById("country-tier-selector").value;
       localStorage.setItem("rayte_country_tier", tier);
@@ -1778,7 +1665,6 @@
 
       const brutoTotalAdsterra = ((totalUnlocks / 1000) * cpmBrutoAdsterra) + ((totalViews / 1000) * (cpmBrutoAdsterra * 0.20));
       const gananciaCreadorBruta = brutoTotalAdsterra * PORCENTAJE_CREADOR;
-      const gananciaAdmin70 = brutoTotalAdsterra * PORCENTAJE_ADMIN;
 
       const retirado = parseFloat(localStorage.getItem("rayte_withdrawn_" + (user ? user.email : "guest")) || "0");
       const disponibleCreador = Math.max(0, gananciaCreadorBruta - retirado);
@@ -1792,8 +1678,6 @@
         infoTier,
         cpmBrutoAdsterra,
         cpmCreador30,
-        brutoTotalAdsterra,
-        gananciaAdmin70,
         disponibleCreador
       };
     }
@@ -1812,12 +1696,10 @@
       if (guestLock) guestLock.style.display = "none";
       if (authContent) authContent.style.display = "block";
 
-      // Cabecera del usuario conectado
       document.getElementById("dash-user-name").innerText = datos.user.alias;
       document.getElementById("dash-user-email").innerText = datos.user.email;
       document.getElementById("dash-avatar-circle").innerText = datos.user.alias.substring(0, 2).toUpperCase();
 
-      // KPIs Superiores
       document.getElementById("country-tier-selector").value = datos.tierKey;
       document.getElementById("dash-rpm-label").innerText = "$" + datos.cpmCreador30.toFixed(2);
       document.getElementById("dash-views").innerText = datos.totalViews.toLocaleString();
@@ -1835,8 +1717,8 @@
         tabla.innerHTML = `
           <div style="text-align:center; padding:24px 12px; background:var(--ui-lightgrey); border-radius:16px; color:#666;">
             <span class="material-icons" style="font-size:34px; color:var(--ui-orange); display:block; margin-bottom:6px;">link_off</span>
-            <b>Aún no tienes enlaces creados en tu cuenta.</b><br>
-            <span style="font-size:12px;">Ve a 'Acortar Link' para publicar tu primer enlace y ver aquí sus estadísticas en tiempo real.</span>
+            <b>Aún no tienes enlaces creados.</b><br>
+            <span style="font-size:12px;">Ve a 'Acortar Link' para crear tu primera URL.</span>
           </div>
         `;
         return;
@@ -1849,15 +1731,14 @@
         const brutoLink = ((desbloqueos / 1000) * datos.cpmBrutoAdsterra) + ((vistas / 1000) * (datos.cpmBrutoAdsterra * 0.20));
         const ganCreador30 = (brutoLink * PORCENTAJE_CREADOR).toFixed(3);
         const badgeTipo = (item.mode === "url") ? "🔗 URL Redirect" : "📜 Script / Text";
-        const codigoCorto = "rayte.link/" + (item.lid || "post");
-        const urlParaAbrir = item.fullUrl || (window.location.origin + window.location.pathname + "?data=" + encodeURIComponent(cifrarAntiBypass(JSON.stringify(item))));
+        const urlParaAbrir = item.fullUrl || (window.location.origin + window.location.pathname + "?post=" + item.lid);
 
         return `
           <div class="lv-link-item">
             <div class="lv-link-top">
               <div style="overflow:hidden;">
                 <div class="lv-link-title">${item.t}</div>
-                <span class="lv-link-url-short">${codigoCorto} • ${badgeTipo} • 📅 ${item.createdAt || "Hoy"}</span>
+                <span class="lv-link-url-short">rayte.link/${item.lid} • ${badgeTipo} • 📅 ${item.createdAt || "Hoy"}</span>
               </div>
               <span style="background:var(--ui-green-light); color:var(--ui-green-dark); font-size:10.5px; font-weight:800; padding:3px 8px; border-radius:999px; flex-shrink:0;">
                 ● Active
@@ -1899,11 +1780,10 @@
       }).join("");
     }
 
-    /* ================= SOLICITUD DE RETIRO MANUAL CON AUDITORÍA 70/30 ================= */
     function solicitarRetiroManual() {
       const user = obtenerUsuarioActual();
       if (!user) {
-        alert("⚠️ Inicia sesión primero para solicitar retiros.");
+        alert("⚠️ Inicia sesión primero.");
         navegarA('auth');
         return;
       }
@@ -1913,21 +1793,10 @@
       const detalles = document.getElementById("payout-details").value.trim();
       const monto = parseFloat(document.getElementById("payout-amount").value);
 
-      if (!detalles) {
-        alert("⚠️ Ingresa los datos de tu cuenta (PayPal, Binance o Banco) para recibir tu pago.");
+      if (!detalles || isNaN(monto) || monto < 5 || monto > datos.disponibleCreador) {
+        alert("⚠️ Revisa que los datos sean correctos y el monto sea mayor a $5.00 USD con saldo disponible.");
         return;
       }
-      if (isNaN(monto) || monto < 5) {
-        alert("⚠️ El monto mínimo de retiro es de $5.00 USD.");
-        return;
-      }
-      if (monto > datos.disponibleCreador) {
-        alert("⚠️ Saldo insuficiente. Tu saldo disponible (30% comisión de tus enlaces) es de $" + datos.disponibleCreador.toFixed(3) + " USD.");
-        return;
-      }
-
-      const totalBrutoRequerido = (monto / PORCENTAJE_CREADOR).toFixed(2);
-      const gananciaTuyaAdmin = (totalBrutoRequerido * PORCENTAJE_ADMIN).toFixed(2);
 
       const codigoOrden = "PAY-" + Math.floor(100000 + Math.random() * 900000);
       const nuevaSolicitud = {
@@ -1937,14 +1806,8 @@
         metodo: metodo,
         detalles: detalles,
         montoCreador30: monto.toFixed(2),
-        brutoAdsterra100: totalBrutoRequerido,
-        gananciaAdmin70: gananciaTuyaAdmin,
-        region: datos.infoTier.nombre,
-        views: datos.totalViews,
-        unlocks: datos.totalUnlocks,
-        linksCount: datos.misPosts.length,
         fecha: new Date().toLocaleDateString(),
-        estado: "En Auditoría de Tráfico Orgánico"
+        estado: "En Auditoría"
       };
 
       const prevRetirado = parseFloat(localStorage.getItem("rayte_withdrawn_" + user.email) || "0");
@@ -1955,25 +1818,7 @@
       localStorage.setItem("rayte_payouts_" + user.email, JSON.stringify(historial));
 
       actualizarDashboardUI();
-
-      const mensajeWhatsApp = 
-        `🏦 *SOLICITUD DE PAGO (CREATOR STUDIO) - RAYTE SCRIPT*\n` +
-        `• *Orden:* ${codigoOrden}\n` +
-        `• *Creador:* ${user.alias} (${user.email})\n` +
-        `• *Enlaces activos del usuario:* ${datos.misPosts.length} URLs\n` +
-        `• *Tráfico acumulado:* ${datos.totalViews} vistas / ${datos.totalUnlocks} desbloqueos (3 ads de 7s)\n` +
-        `• *Región declarada:* ${datos.infoTier.nombre}\n\n` +
-        `📊 *AUDITORÍA ADSTERRA (70/30):*\n` +
-        `• *100% Bruto Adsterra:* $${totalBrutoRequerido} USD\n` +
-        `• *70% Ganancia Admin (Miguel):* $${gananciaTuyaAdmin} USD\n` +
-        `• *30% A Depositar al Creador:* $${monto.toFixed(2)} USD\n\n` +
-        `💳 *DATOS DE PAGO:*\n` +
-        `• *Método:* ${metodo}\n` +
-        `• *Cuenta destino:* ${detalles}\n\n` +
-        `🔍 _Solicito verificación manual de mis visitas orgánicas para depósito._`;
-
-      alert("✅ Solicitud " + codigoOrden + " generada. Se enviará tu ficha al administrador para auditar tus visitas orgánicas en Adsterra y procesar tu pago.");
-      window.open("https://wa.me/" + ADMIN_WHATSAPP + "?text=" + encodeURIComponent(mensajeWhatsApp), "_blank");
+      alert("✅ Solicitud de retiro generada con éxito.");
     }
 
     function renderizarHistorialRetiros() {
@@ -1988,7 +1833,7 @@
       box.innerHTML = historial.map(h => `
         <div style="padding:10px 0; border-bottom:1px solid var(--ui-softgrey); display:flex; justify-content:space-between; align-items:center;">
           <div>
-            <b>${h.id} • $${h.montoCreador30} USD (Tu 30%)</b> — ${h.metodo}<br>
+            <b>${h.id} • $${h.montoCreador30} USD</b> — ${h.metodo}<br>
             <span style="font-size:11px; color:#777;">Fecha: ${h.fecha} • Destino: ${h.detalles}</span>
           </div>
           <span class="badge-status-pending">⏳ ${h.estado}</span>
